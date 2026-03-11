@@ -1,8 +1,8 @@
-.time-window{
-    background-color: black;
-}
+@use 'colors';
 
-.time-label{
-    color: white;
-    font-size: 16px;
+.clock {
+    background-color: map-get($map: colors.$theme-colors, $key: primary);
+    color: map-get($map: colors.$theme-colors, $key: accent);
+    padding: 8px 10px 8px 10px;
+    border-radius: 22px;
 }
