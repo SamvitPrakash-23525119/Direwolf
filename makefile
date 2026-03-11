@@ -12,8 +12,10 @@ CSS := $(CSS_DIST)/main.css
 
 # Config
 HEADLESS := false
+EXTENSIONS := tsx,scss
 
-.DEFAULT_GOAL := run
+.DEFAULT_GOAL := live-update
+.PHONY := clean run live-update
 
 $(CSS): $(MAIN_SCSS)
 	@echo 'Compiling Styles...'
@@ -23,8 +25,10 @@ run: clean $(CSS)
 	@echo 'Running Application...'
 	ags run $(AGS_ENTRY) --gtk 4
 
+live-update:
+	@echo 'Watching for changes...'
+	nodemon --ext $(EXTENSIONS)  --exec "make run" -r $(AGS)
+
 clean:
 	@echo 'Cleaning up...'
 	rm -f $(CSS_DIST)/*.css.map $(CSS)
-
-.PHONY := clean run
