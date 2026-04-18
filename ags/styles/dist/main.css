@@ -1,8 +1,15 @@
 .clock {
-  background-color: #005461;
-  color: #3BC1A8;
-  padding: 8px 10px 8px 10px;
+  font-size: 15px;
+  color: rgb(248, 228, 134);
+}
+
+.workspace-right-bar {
+  background-color: rgba(0, 3, 7, 0.6);
+  padding: 14px;
+  padding-bottom: 7px;
+  padding-top: 7px;
   border-radius: 22px;
+  margin-top: 3px;
 }
 
 /*# sourceMappingURL=main.css.map */
