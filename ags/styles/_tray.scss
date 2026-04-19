@@ -1,0 +1,19 @@
+@use "colors";
+
+.tray-bar {
+  background-color: map-get($map: colors.$theme-colors, $key: primary);
+  padding: 14px;
+  padding-bottom: 7px;
+  padding-top: 7px;
+  border-radius: 22px;
+  margin-top: 4px;
+}
+
+.icon {
+  color: map-get($map: colors.$theme-colors, $key: accent);
+  padding: 5px;
+}
+
+.battery {
+  color: map-get($map: colors.$theme-colors, $key: accent);
+}
