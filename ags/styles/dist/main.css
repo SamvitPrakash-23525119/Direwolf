@@ -3,13 +3,22 @@
   color: rgb(248, 228, 134);
 }
 
-.workspace-right-bar {
+.tray-bar {
   background-color: rgba(0, 3, 7, 0.6);
   padding: 14px;
   padding-bottom: 7px;
   padding-top: 7px;
   border-radius: 22px;
-  margin-top: 3px;
+  margin-top: 4px;
+}
+
+.icon {
+  color: rgb(248, 228, 134);
+  padding: 5px;
+}
+
+.battery {
+  color: rgb(248, 228, 134);
 }
 
 /*# sourceMappingURL=main.css.map */
