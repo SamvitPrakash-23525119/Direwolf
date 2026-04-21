@@ -23,6 +23,8 @@ $(CSS): $(MAIN_SCSS)
 
 ags: clean $(CSS)
 	@echo 'Running Application...'
+	GI_TYPELIB_PATH=/usr/local/lib/girepository-1.0 \
+    LD_LIBRARY_PATH=/usr/local \
 	ags run $(AGS_ENTRY) --gtk 4
 
 live-update:
