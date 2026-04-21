@@ -39,7 +39,9 @@ export default function Bar() {
             {(id) => (
               <button
                 class={focusedWorkspace.as((focused) =>
-                  focused?.id === id ? "workspace active" : "workspace-button",
+                  focused?.id === id
+                    ? "workspace-button-active"
+                    : "workspace-button",
                 )}
                 onClicked={() => hypr.dispatch("workspace", `${id}`)}
               >

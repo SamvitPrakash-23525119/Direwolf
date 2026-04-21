@@ -9,6 +9,12 @@
   margin-top: 4px;
 }
 
+.workspace-bar-special {
+  border-width: 1px;
+  border-style: solid;
+  border: map-get($map: colors.$theme-colors, $key: accent);
+}
+
 .workspace-label {
   color: map-get($map: colors.$theme-colors, $key: accent);
   padding-left: 6px;
@@ -24,7 +30,7 @@
   font-size: 12px;
 }
 
-.active {
+.workspace-button-active {
   border-radius: 33px;
   padding: 6px;
   padding-left: 10px;
