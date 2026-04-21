@@ -1,3 +1,14 @@
+@keyframes pulse {
+  0% {
+    background-color: rgba(255, 255, 255, 0.08);
+  }
+  50% {
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+  100% {
+    background-color: rgba(255, 255, 255, 0.08);
+  }
+}
 .tray-bar {
   background-color: rgba(0, 3, 7, 0.6);
   padding: 14px;
@@ -23,15 +34,15 @@
 }
 
 .workspace-bar-special {
-  border-width: 1px;
-  border-style: solid;
   border: rgb(248, 228, 134);
+  border-style: solid;
+  border-width: 1px;
 }
 
 .workspace-label {
   color: rgb(248, 228, 134);
-  padding-left: 6px;
   padding-right: 6px;
+  padding-left: 6px;
   font-size: 15px;
 }
 
@@ -39,17 +50,34 @@
   color: rgb(248, 228, 134);
   background-color: rgba(0, 0, 0, 0);
   border-radius: 22px;
-  padding: 6px;
   font-size: 12px;
+  padding: 6px;
+}
+
+.workspace-button:hover {
+  color: white;
 }
 
 .workspace-button-active {
-  border-radius: 33px;
+  background-color: rgba(255, 255, 255, 0.08);
+  animation: pulse 1s normal ease-in-out;
   padding: 6px;
-  padding-left: 10px;
   padding-right: 10px;
+  padding-left: 10px;
+  border-radius: 33px;
 }
 
+@keyframes pulse {
+  0% {
+    background-color: rgba(255, 255, 255, 0.08);
+  }
+  50% {
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+  100% {
+    background-color: rgba(255, 255, 255, 0.08);
+  }
+}
 .media-bar {
   background-color: rgba(0, 3, 7, 0.6);
   padding: 14px;
