@@ -1,7 +1,21 @@
 import { Astal, Gtk } from "ags/gtk4"
-import { createBinding } from "gnim"
+import { createBinding, For } from "gnim"
+
+import HyprlandUtils from "../../utilities/hyprland"
+import getWorkspaceGroup from "../../utilities/workspaces"
+import toRoman from "../../utilities/to_numerals"
 
 export default function Bar() {
+  const hyprUtil = HyprlandUtils.getInstance()
+  const hypr = hyprUtil.getHypr()
+
+  const focusedWorkspace = createBinding(hypr, "focusedWorkspace")
+
+  const visibleIds = focusedWorkspace.as((focused) => {
+    const currentId = focused?.id ?? 1
+    return getWorkspaceGroup(currentId, 5)
+  })
+
   return (
     <window
       class={"top-bar-window"}
@@ -20,12 +34,19 @@ export default function Bar() {
           <label class={"media-label"} label={"DireWolf - The Wolf Is Loose"} />
         </box>
 
-        <box class={"workspace-bar"} halign={Gtk.Align.BASELINE_CENTER} hexpand>
-          <label class={"workspace-label"} label={"I"} />
-          <label class={"workspace-label"} label={"II"} />
-          <label class={"workspace-label"} label={"III"} />
-          <label class={"workspace-label"} label={"IV"} />
-          <label class={"workspace-label"} label={"IX"} />
+        <box class={"workspace-bar"} halign={Gtk.Align.CENTER} hexpand>
+          <For each={visibleIds}>
+            {(id) => (
+              <button
+                class={focusedWorkspace.as((focused) =>
+                  focused?.id === id ? "workspace active" : "workspace-button",
+                )}
+                onClicked={() => hypr.dispatch("workspace", `${id}`)}
+              >
+                <label label={toRoman(id)} />
+              </button>
+            )}
+          </For>
         </box>
 
         <box class={"tray-bar"} halign={Gtk.Align.END} hexpand>

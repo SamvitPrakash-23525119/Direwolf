@@ -16,8 +16,8 @@
 .workspace-bar {
   background-color: rgba(0, 3, 7, 0.6);
   padding: 14px;
-  padding-bottom: 7px;
-  padding-top: 7px;
+  padding-bottom: 5px;
+  padding-top: 5px;
   border-radius: 22px;
   margin-top: 4px;
 }
@@ -27,6 +27,21 @@
   padding-left: 6px;
   padding-right: 6px;
   font-size: 15px;
+}
+
+.workspace-button {
+  color: rgb(248, 228, 134);
+  background-color: rgba(0, 0, 0, 0);
+  border-radius: 22px;
+  padding: 6px;
+  font-size: 12px;
+}
+
+.active {
+  border-radius: 33px;
+  padding: 6px;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 .media-bar {
