@@ -1,7 +1,8 @@
 @use "colors";
+@use "sass:map";
 
 .media-bar {
-  background-color: map-get($map: colors.$theme-colors, $key: primary);
+  background-color: map.get($map: colors.$theme-colors, $key: primary);
   padding: 14px;
   padding-bottom: 7px;
   padding-top: 7px;
@@ -11,7 +12,7 @@
 }
 
 .media-title {
-  color: map-get($map: colors.$theme-colors, $key: accent);
+  color: map.get($map: colors.$theme-colors, $key: accent);
   padding-left: 6px;
   padding-right: 6px;
   font-size: 11px;
@@ -19,7 +20,7 @@
 }
 
 .media-artist {
-  color: map-get($map: colors.$theme-colors, $key: accent);
+  color: map.get($map: colors.$theme-colors, $key: accent);
   padding-left: 6px;
   padding-right: 6px;
   font-size: 11px;
@@ -31,9 +32,5 @@
   padding-left: 2px;
   padding-right: 2px;
   margin: 2px;
-  border-radius: 33px;
-}
-
-.cover-art {
   border-radius: 33px;
 }

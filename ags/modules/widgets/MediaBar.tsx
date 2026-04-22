@@ -1,4 +1,3 @@
-import { Gtk } from "ags/gtk4"
 import Mpris from "gi://AstalMpris"
 import { createState, createBinding, createEffect } from "gnim"
 
