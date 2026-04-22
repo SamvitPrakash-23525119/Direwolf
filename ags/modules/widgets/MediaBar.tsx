@@ -1,4 +1,5 @@
 import Mpris from "gi://AstalMpris"
+import { Gtk } from "ags/gtk4"
 import { createState, createBinding, createEffect } from "gnim"
 
 export default function MediaBar() {
@@ -40,8 +41,6 @@ export default function MediaBar() {
           setPlayback(false)
         }
 
-        setAvailable(true)
-
         const play_pause_method = () => {
           if (playback()) player.pause()
           else player.play()
@@ -58,6 +57,7 @@ export default function MediaBar() {
         setPlay_pause(() => play_pause_method)
         setPlay_next(() => next_method)
         setPlay_previous(() => previous_method)
+        setAvailable(title() != "" ? true : false)
       }
     })
   })
@@ -67,7 +67,7 @@ export default function MediaBar() {
       $type="start"
       class={"media-bar"}
       visible={available((t) => t)}
-      width_request={200}
+      width_request={100}
     >
       <image class={"cover-art"} file={coverArt((t) => t)} pixelSize={25} />
 
