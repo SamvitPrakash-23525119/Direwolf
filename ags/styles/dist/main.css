@@ -85,7 +85,11 @@
   padding-top: 7px;
   border-radius: 22px;
   margin-top: 4px;
+}
+
+.media-info {
   margin-left: 6px;
+  margin-right: 10px;
 }
 
 .media-title {
@@ -113,7 +117,7 @@
 }
 
 .cover-art {
-  border-radius: 33px;
+  margin-right: 10px;
 }
 
 .clock {

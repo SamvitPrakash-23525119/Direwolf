@@ -1,3 +1,5 @@
+@use "sass:map";
+
 @use "colors";
 @use "animations";
 @use "tray";
@@ -6,6 +8,6 @@
 @use "clock";
 
 .icon {
-  color: map-get($map: colors.$theme-colors, $key: accent);
+  color: map.get($map: colors.$theme-colors, $key: accent);
   padding: 5px;
 }

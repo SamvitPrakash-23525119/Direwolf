@@ -1,7 +1,8 @@
 @use "colors";
+@use "sass:map";
 
 .tray-bar {
-  background-color: map-get($map: colors.$theme-colors, $key: primary);
+  background-color: map.get($map: colors.$theme-colors, $key: primary);
   padding: 14px;
   padding-bottom: 7px;
   padding-top: 7px;
@@ -11,6 +12,6 @@
 }
 
 .icon {
-  color: map-get($map: colors.$theme-colors, $key: accent);
+  color: map.get($map: colors.$theme-colors, $key: accent);
   padding: 5px;
 }
