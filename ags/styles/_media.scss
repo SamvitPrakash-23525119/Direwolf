@@ -10,9 +10,24 @@
   margin-left: 6px;
 }
 
-.media-label {
+.media-title {
   color: map-get($map: colors.$theme-colors, $key: accent);
   padding-left: 6px;
   padding-right: 6px;
   font-size: 11px;
+}
+
+.media-artist {
+  color: map-get($map: colors.$theme-colors, $key: accent);
+  padding-left: 6px;
+  padding-right: 6px;
+  font-size: 11px;
+}
+
+.media-button {
+  padding: 1px;
+  padding-left: 2px;
+  padding-right: 2px;
+  margin: 2px;
+  border-radius: 33px;
 }

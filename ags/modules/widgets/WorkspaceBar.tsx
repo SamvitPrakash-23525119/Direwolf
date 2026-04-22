@@ -1,12 +1,11 @@
 import { createBinding, For } from "gnim"
+import Hyprland from "gi://AstalHyprland"
 
-import HyprlandService from "../../services/hyprland"
 import getWorkspaceGroup from "../../utilities/workspaces"
 import toRoman from "../../utilities/to_numerals"
 
 export default function WorkspaceBar() {
-  const hyprUtil = HyprlandService.getInstance()
-  const hypr = hyprUtil.getHypr()
+  const hypr = Hyprland.get_default()
 
   const focusedWorkspace = createBinding(hypr, "focusedWorkspace")
 

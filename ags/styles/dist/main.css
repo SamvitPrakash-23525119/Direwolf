@@ -88,11 +88,26 @@
   margin-left: 6px;
 }
 
-.media-label {
+.media-title {
   color: rgb(248, 228, 134);
   padding-left: 6px;
   padding-right: 6px;
   font-size: 11px;
+}
+
+.media-artist {
+  color: rgb(248, 228, 134);
+  padding-left: 6px;
+  padding-right: 6px;
+  font-size: 11px;
+}
+
+.media-button {
+  padding: 1px;
+  padding-left: 2px;
+  padding-right: 2px;
+  margin: 2px;
+  border-radius: 33px;
 }
 
 .clock {

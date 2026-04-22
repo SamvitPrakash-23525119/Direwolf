@@ -1,5 +1,6 @@
 import { Astal } from "ags/gtk4"
 import WorkspaceBar from "../widgets/WorkspaceBar"
+import MediaBar from "../widgets/MediaBar"
 
 export default function Bar() {
   return (
@@ -15,15 +16,12 @@ export default function Bar() {
       visible
     >
       <centerbox hexpand>
-        <box $type="start" class={"media-bar"}>
-          <image class={"icon"} iconName={"emblem-music-symbolic"} />
-          <label class={"media-label"} label={"DireWolf - The Wolf Is Loose"} />
-        </box>
+        <MediaBar />
 
         <WorkspaceBar />
 
         <box $type="end" class={"tray-bar"}>
-          <image class={"icon"} iconName={"network-wireless-100-symbolic"} />
+          <image class={"icon"} iconName={"network-wireless-10-symbolic"} />
           <image class={"icon"} iconName={"bluetooth-symbolic"} />
           <image class={"icon"} iconName={"audio-volume-high-symbolic"} />
           <image class={"icon"} iconName={"application-menu-symbolic"} />
