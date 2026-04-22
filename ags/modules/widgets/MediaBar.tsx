@@ -63,11 +63,19 @@ export default function MediaBar() {
   })
 
   return (
-    <box $type="start" class={"media-bar"} visible={available((t) => t)}>
+    <box
+      $type="start"
+      class={"media-bar"}
+      visible={available((t) => t)}
+      width_request={200}
+    >
       <image class={"cover-art"} file={coverArt((t) => t)} pixelSize={25} />
-      <label class={"media-title"} label={title((t) => t)} />
-      <label class={"media-seperator"} label={"•"} />
-      <label class={"media-artist"} label={artist((t) => t)} />
+
+      <box class={"media-info"}>
+        <label class={"media-title"} label={title((t) => t)} />
+        <label class={"media-seperator"} label={"•"} />
+        <label class={"media-artist"} label={artist((t) => t)} />
+      </box>
 
       <button class={"media-button"} onClicked={() => play_previous()?.()}>
         <image
