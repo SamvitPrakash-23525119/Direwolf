@@ -1,5 +1,4 @@
 import Mpris from "gi://AstalMpris"
-import { Gtk } from "ags/gtk4"
 import { createState, createBinding, createEffect } from "gnim"
 
 export default function MediaBar() {

@@ -1,19 +1,24 @@
 {
-  "packages": {
-    "nodemon": {
-      "version": "3.1.14",
-      "name": "nodemon",
-      "packageManager": "npm"
-    },
-    "sass": {
-      "version": "1.98.0",
-      "name": "sass",
-      "packageManager": ["pacman", "npm"]
-    },
-    "ags": {
-      "version": "3.1.0",
-      "name": "aylurs-gtk-shell",
-      "packageManager": ["pacman", "yay"]
-    }
-  }
+	"packages": {
+		"nodemon": {
+			"version": "3.1.14",
+			"name": "nodemon",
+			"packageManager": "npm"
+		},
+		"sass": {
+			"version": "1.98.0",
+			"name": "sass",
+			"packageManager": ["pacman", "npm"]
+		},
+		"ags": {
+			"version": "3.1.0",
+			"name": "aylurs-gtk-shell",
+			"packageManager": ["pacman", "yay"]
+		},
+		"astal": {
+			"version": "0.1.0",
+			"name": "git clone https://github.com/aylur/astal.git",
+			"packageManager": ["git"]
+		}
+	}
 }
