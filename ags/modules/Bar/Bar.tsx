@@ -1,21 +1,8 @@
-import { Astal, Gtk } from "ags/gtk4"
-import { createBinding, For } from "gnim"
-
-import HyprlandUtils from "../../utilities/hyprland"
-import getWorkspaceGroup from "../../utilities/workspaces"
-import toRoman from "../../utilities/to_numerals"
+import { Astal } from "ags/gtk4"
+import WorkspaceBar from "../widgets/WorkspaceBar"
+import MediaBar from "../widgets/MediaBar"
 
 export default function Bar() {
-  const hyprUtil = HyprlandUtils.getInstance()
-  const hypr = hyprUtil.getHypr()
-
-  const focusedWorkspace = createBinding(hypr, "focusedWorkspace")
-
-  const visibleIds = focusedWorkspace.as((focused) => {
-    const currentId = focused?.id ?? 1
-    return getWorkspaceGroup(currentId, 5)
-  })
-
   return (
     <window
       class={"top-bar-window"}
@@ -28,37 +15,18 @@ export default function Bar() {
       layer={Astal.Layer.TOP}
       visible
     >
-      <box hexpand>
-        <box class={"media-bar"} halign={Gtk.Align.START} hexpand>
-          <image class={"icon"} iconName={"emblem-music-symbolic"} />
-          <label class={"media-label"} label={"DireWolf - The Wolf Is Loose"} />
-        </box>
+      <centerbox hexpand>
+        <MediaBar />
 
-        <box class={"workspace-bar"} halign={Gtk.Align.CENTER} hexpand>
-          <For each={visibleIds}>
-            {(id) => (
-              <button
-                class={focusedWorkspace.as((focused) =>
-                  focused?.id === id
-                    ? "workspace-button-active"
-                    : "workspace-button",
-                )}
-                onClicked={() => hypr.dispatch("workspace", `${id}`)}
-              >
-                <label label={toRoman(id)} />
-              </button>
-            )}
-          </For>
-        </box>
+        <WorkspaceBar />
 
-        <box class={"tray-bar"} halign={Gtk.Align.END} hexpand>
-          <image class={"icon"} iconName={"network-wireless-100-symbolic"} />
+        <box $type="end" class={"tray-bar"}>
+          <image class={"icon"} iconName={"network-wireless-10-symbolic"} />
           <image class={"icon"} iconName={"bluetooth-symbolic"} />
           <image class={"icon"} iconName={"audio-volume-high-symbolic"} />
-          {/*<image class={"icon"} iconName={"battery-symbolic"} />*/}
           <image class={"icon"} iconName={"application-menu-symbolic"} />
         </box>
-      </box>
+      </centerbox>
     </window>
   )
 }
