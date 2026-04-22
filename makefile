@@ -2,20 +2,34 @@
 AGS := ags
 STYLES := $(AGS)/styles
 CSS_DIST := $(STYLES)/dist
-SYSTEM_LOG := logs
-AGS_LOG := $(AGS)/logs
+HYPRLAND := /home/_c3rberus/.config/hypr
+HYPRLAND_DIST := hyprland
+PROJECT_LOGS := logs
 
 # Files
 AGS_ENTRY := $(AGS)/app.tsx
 MAIN_SCSS := $(STYLES)/main.scss
 CSS := $(CSS_DIST)/main.css
+HYPRLAND_ENTRY := $(HYPRLAND)/hyprland.conf
+HYPRLAND_DIST_ENTRY := $(HYPRLAND_DIST)/hyprland.conf
+AGS_LOGS := $(PROJECT_LOGS)/ags.log
+HYPRLAND_LOGS := $(PROJECT_LOGS)/hyprland.log
 
 # Config
-HEADLESS := false
-EXTENSIONS-AGS := tsx,scss,ts
+EXTENSIONS_AGS := tsx,scss,ts
+EXTENSIONS_HYPRLAND := conf
 
-.DEFAULT_GOAL := live-update
-.PHONY := clean run live-update
+.DEFAULT_GOAL := ags-live
+.PHONY: clean run ags ags-live hyprland hyprland-live
+
+$(PROJECT_LOGS):
+	mkdir -p $(PROJECT_LOGS)
+
+$(AGS_LOGS): $(PROJECT_LOGS)
+	touch $(AGS_LOGS)
+
+$(HYPRLAND_LOGS): $(PROJECT_LOGS)
+	touch $(HYPRLAND_LOGS)
 
 $(CSS): $(MAIN_SCSS)
 	@echo 'Compiling Styles...'
@@ -25,9 +39,18 @@ ags: clean $(CSS)
 	@echo 'Running Application...'
 	ags run $(AGS_ENTRY) --gtk 4
 
-live-update:
+ags-live:
 	@echo 'Watching for changes...'
-	nodemon --ext $(EXTENSIONS-AGS)  --exec "make ags || true" -r $(AGS)
+	nodemon --ext $(EXTENSIONS_AGS)  --exec "make ags || true" -r $(AGS)
+
+hyprland:
+	@echo 'Deploying Hyprland configuration...'
+	rsync -a --delete "$(HYPRLAND_DIST)/" "$(HYPRLAND)/"
+	hyprctl reload
+
+hyprland-live:
+	@echo 'Watching for changes in Hyprland configuration...'
+	nodemon --ext $(EXTENSIONS_HYPRLAND) --exec "make hyprland || true" -r $(HYPRLAND_DIST)
 
 clean:
 	@echo 'Cleaning up...'
