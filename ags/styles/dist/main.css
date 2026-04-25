@@ -1,0 +1,124 @@
+@keyframes pulse {
+  0% {
+    background-color: rgba(255, 255, 255, 0.08);
+  }
+  50% {
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+  100% {
+    background-color: rgba(255, 255, 255, 0.08);
+  }
+}
+.tray-bar {
+  background-color: rgba(0, 3, 7, 0.6);
+  padding: 14px;
+  padding-bottom: 7px;
+  padding-top: 7px;
+  border-radius: 22px;
+  margin-top: 4px;
+  margin-right: 6px;
+}
+
+.tray-battery-label {
+  color: rgb(248, 228, 134);
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.workspace-bar {
+  background-color: rgba(0, 3, 7, 0.6);
+  padding: 14px;
+  padding-bottom: 5px;
+  padding-top: 5px;
+  border-radius: 22px;
+  margin-top: 4px;
+}
+
+.workspace-bar-special {
+  border: rgb(248, 228, 134);
+  border-style: solid;
+  border-width: 1px;
+}
+
+.workspace-label {
+  color: rgb(248, 228, 134);
+  padding-right: 6px;
+  padding-left: 6px;
+  font-size: 15px;
+}
+
+.workspace-button {
+  color: rgb(248, 228, 134);
+  background-color: rgba(0, 0, 0, 0);
+  border-radius: 22px;
+  font-size: 12px;
+  padding: 6px;
+}
+
+.workspace-button:hover {
+  color: white;
+}
+
+.workspace-button-active {
+  background-color: rgba(255, 255, 255, 0.08);
+  animation: pulse 1s normal ease-in-out;
+  padding: 6px;
+  padding-right: 10px;
+  padding-left: 10px;
+  border-radius: 33px;
+}
+
+.media-bar {
+  background-color: rgba(0, 3, 7, 0.6);
+  padding: 14px;
+  padding-bottom: 7px;
+  padding-top: 7px;
+  border-radius: 22px;
+  margin-top: 4px;
+  margin-left: 6px;
+}
+
+.media-info {
+  margin-left: 6px;
+  margin-right: 10px;
+}
+
+.media-title {
+  color: rgb(248, 228, 134);
+  padding-left: 6px;
+  padding-right: 6px;
+  font-size: 11px;
+  font-weight: 450;
+}
+
+.media-artist {
+  color: rgb(248, 228, 134);
+  padding-left: 6px;
+  padding-right: 6px;
+  font-size: 11px;
+  font-weight: 400;
+}
+
+.media-button {
+  padding: 1px;
+  padding-left: 2px;
+  padding-right: 2px;
+  margin: 2px;
+  border-radius: 33px;
+}
+
+.cover-art {
+  margin-right: 10px;
+}
+
+.clock {
+  font-size: 15px;
+  color: rgb(248, 228, 134);
+}
+
+.icon {
+  color: rgb(248, 228, 134);
+  padding: 5px;
+}
+
+/*# sourceMappingURL=main.css.map */

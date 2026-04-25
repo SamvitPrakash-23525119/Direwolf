@@ -1,0 +1,74 @@
+{
+	"dependencies": [
+		{
+			"name": "aylurs-gtk-shell",
+			"version": "3.1.0",
+			"installation": {
+				"source": "pacman",
+				"command": "sudo pacman -Sy",
+				"package": "aylurs-gtk-shell"
+			}
+		},
+		{
+			"name": "astal",
+			"version": "0.1.0",
+			"installation": {
+				"source": "git",
+				"command": "git clone",
+				"repository": "https://github.com/aylur/astal.git"
+			}
+		},
+		{
+			"name": "playerctl",
+			"version": "2.4.1",
+			"installation": {
+				"source": "pacman",
+				"command": "sudo pacman -Sy",
+				"package": "playerctl"
+			}
+		},
+		{
+			"name": "glib2-devel",
+			"version": "2.88.0",
+			"installation": {
+				"source": "pacman",
+				"command": "sudo pacman -Sy",
+				"package": "glib2-devel"
+			}
+		}
+	],
+	"devDependencies": [
+		{
+			"name": "nodemon",
+			"version": "3.1.14",
+			"installation": {
+				"source": "npm",
+				"command": "npm install -i",
+				"package": "nodemon"
+			}
+		},
+		{
+			"name": "sass",
+			"version": "1.98.0",
+			"installation": {
+				"source": "npm",
+				"command": "npm install -i",
+				"package": "sass"
+			}
+		}
+	],
+	"extras": [
+		{
+			"name": "astal",
+			"libraries": [
+				"network",
+				"bluetooth",
+				"wireplumber",
+				"hyprland",
+				"mpris",
+				"battery"
+			],
+			"commands": ["meson setup build --prefix=/usr", "meson compile -C build"]
+		}
+	]
+}
