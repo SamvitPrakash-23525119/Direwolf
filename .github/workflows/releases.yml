@@ -20,9 +20,9 @@ jobs:
 
       - name: "Install Dependencies"
         run: |
+          pacman -Syu --noconfirm
+          pacman -S --noconfirm nodejs npm aylurs-gtk-shell
           npm install -g sass
-          sudo pacman -Syu --noconfirm
-          sudo pacman -S --noconfirm aylurs-gtk-shell
 
       - name: Build DireWolf
         run: |
