@@ -1,14 +1,17 @@
 import Network from "gi://AstalNetwork"
 import Bluetooth from "gi://AstalBluetooth"
+import Wp from "gi://AstalWp"
 import { createEffect, createState, createBinding } from "gnim"
 
 export default function TrayBar() {
 	const [wifi_icon, set_wifi_icon] = createState("")
 	const [bluetooth_icon, set_bluetooth_icon] = createState("")
 	const [bluetooth_enabled, set_bluetooth_enabled] = createState(false)
+	const [audio_icon, set_audio_icon] = createState("")
 
 	const nm = Network.get_default()
 	const bluetoothctl = Bluetooth.get_default()
+	const wpctl = Wp.get_default()
 
 	// Wifi
 	createEffect(() => {
@@ -24,7 +27,6 @@ export default function TrayBar() {
 		const enabled = createBinding(bluetoothctl, "is_powered")
 
 		set_bluetooth_enabled(enabled())
-		console.log("Bluetooth Enabled:", enabled())
 	})
 
 	// Bluetooth Connected
@@ -39,20 +41,36 @@ export default function TrayBar() {
 				}
 			})
 		} else set_bluetooth_icon("bluetooth-symbolic")
-		console.log(bluetooth_icon())
+	})
+
+	// Audio
+	createEffect(() => {
+		const speaker = wpctl.audio.default_speaker
+		if (speaker) {
+			const volume_icon = createBinding(speaker, "volume_icon")
+
+			set_audio_icon(volume_icon())
+		}
 	})
 
 	return (
 		<box $type="end" class={"tray-bar"}>
-			<image class={"icon"} iconName={wifi_icon((t) => t)} pixelSize={20} />
+			<image class={"icon"} iconName={wifi_icon((t) => t)} pixelSize={19} />
+
+			<image
+				visible={bluetooth_enabled((t) => t)}
+				iconName={bluetooth_icon((t) => t)}
+				class={"icon"}
+				pixelSize={19}
+			/>
+
+			<image class={"icon"} iconName={audio_icon((t) => t)} pixelSize={19} />
+
 			<image
 				class={"icon"}
-				iconName={bluetooth_icon((t) => t)}
-				pixelSize={20}
-				visible={bluetooth_enabled((t) => t)}
+				iconName={"application-menu-symbolic"}
+				pixelSize={19}
 			/>
-			<image class={"icon"} iconName={"audio-volume-high-symbolic"} />
-			<image class={"icon"} iconName={"application-menu-symbolic"} />
 		</box>
 	)
 }

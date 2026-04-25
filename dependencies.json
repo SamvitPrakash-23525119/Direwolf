@@ -24,6 +24,11 @@
 			"version": "2.4.1",
 			"name": "playerctl",
 			"packageManager": ["pacman", "yay"]
+		},
+		"glib2-devel": {
+			"version": "2.88.0",
+			"name": "glib2-devel",
+			"packageManager": ["pacman", "yay"]
 		}
 	}
 }
