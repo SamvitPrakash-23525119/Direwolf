@@ -8,6 +8,6 @@
 @use "clock";
 
 .icon {
-  color: map.get($map: colors.$theme-colors, $key: accent);
-  padding: 5px;
+	color: map.get($map: colors.$theme-colors, $key: accent);
+	padding: 5px;
 }

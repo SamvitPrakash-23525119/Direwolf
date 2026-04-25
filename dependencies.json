@@ -19,6 +19,16 @@
 			"version": "0.1.0",
 			"name": "git clone https://github.com/aylur/astal.git",
 			"packageManager": ["git"]
+		},
+		"playerctl": {
+			"version": "2.4.1",
+			"name": "playerctl",
+			"packageManager": ["pacman", "yay"]
+		},
+		"glib2-devel": {
+			"version": "2.88.0",
+			"name": "glib2-devel",
+			"packageManager": ["pacman", "yay"]
 		}
 	}
 }
