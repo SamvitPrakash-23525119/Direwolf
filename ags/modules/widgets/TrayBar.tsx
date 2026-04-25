@@ -65,32 +65,29 @@ export default function TrayBar() {
 
 			set_battery_icon(icon())
 			set_battery_percentage(percentage())
-
-			console.log("Battery percentage:", percentage())
-			console.log("Battery icon:", icon(), "\n\n")
 		}
 	})
 
 	return (
 		<box $type="end" class={"tray-bar"}>
-			<image class={"icon"} iconName={wifi_icon((t) => t)} pixelSize={19} />
+			<image class={"icon"} iconName={wifi_icon((t) => t)} pixelSize={17} />
 
 			<image
 				visible={bluetooth_enabled((t) => t)}
 				iconName={bluetooth_icon((t) => t)}
 				class={"icon"}
-				pixelSize={19}
+				pixelSize={17}
 			/>
 
-			<image class={"icon"} iconName={audio_icon((t) => t)} pixelSize={19} />
+			<image class={"icon"} iconName={audio_icon((t) => t)} pixelSize={17} />
 
-			<image class={"icon"} iconName={battery_icon((t) => t)} pixelSize={19} />
+			<image class={"icon"} iconName={battery_icon((t) => t)} pixelSize={17} />
 			<label
 				class={"tray-battery-label"}
 				label={battery_percentage((t) => t * 100 + "%")}
 			/>
 
-			<image class={"icon"} iconName={"go-down-symbolic"} pixelSize={15} />
+			<image class={"icon"} iconName={"go-down-symbolic"} pixelSize={13} />
 		</box>
 	)
 }

@@ -20,7 +20,11 @@ EXTENSIONS_AGS := tsx,scss,ts
 EXTENSIONS_HYPRLAND := conf
 
 .DEFAULT_GOAL := ags-live
-.PHONY: clean run ags ags-live hyprland hyprland-live
+.PHONY: clean run ags ags-live hyprland hyprland-live ags-deployment run-ags-deployment
+
+# Deployment
+DIST := dist
+DIST_FILE := $(DIST)/DireWolf
 
 $(PROJECT_LOGS):
 	mkdir -p $(PROJECT_LOGS)
@@ -51,6 +55,17 @@ hyprland:
 hyprland-live:
 	@echo 'Watching for changes in Hyprland configuration...'
 	nodemon --ext $(EXTENSIONS_HYPRLAND) --exec "make hyprland || true" -r $(HYPRLAND_DIST)
+
+$(DIST):
+	mkdir -p $(DIST)
+
+ags-deployment: clean $(CSS) $(DIST)
+	@echo 'Bundling application for deployment...'
+	ags bundle $(AGS_ENTRY) $(DIST_FILE)
+
+run-ags-deployment: ags-deployment
+	@echo 'Running bundled application...'
+	./$(DIST_FILE)
 
 clean:
 	@echo 'Cleaning up...'
