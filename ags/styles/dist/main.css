@@ -22,6 +22,7 @@
 .tray-battery-label {
   color: rgb(248, 228, 134);
   font-size: 11px;
+  font-weight: 500;
 }
 
 .workspace-bar {
@@ -67,17 +68,6 @@
   border-radius: 33px;
 }
 
-@keyframes pulse {
-  0% {
-    background-color: rgba(255, 255, 255, 0.08);
-  }
-  50% {
-    background-color: rgba(255, 255, 255, 0.2);
-  }
-  100% {
-    background-color: rgba(255, 255, 255, 0.08);
-  }
-}
 .media-bar {
   background-color: rgba(0, 3, 7, 0.6);
   padding: 14px;

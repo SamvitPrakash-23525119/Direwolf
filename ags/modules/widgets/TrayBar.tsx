@@ -65,6 +65,9 @@ export default function TrayBar() {
 
 			set_battery_icon(icon())
 			set_battery_percentage(percentage())
+
+			console.log("Battery percentage:", percentage())
+			console.log("Battery icon:", icon(), "\n\n")
 		}
 	})
 
