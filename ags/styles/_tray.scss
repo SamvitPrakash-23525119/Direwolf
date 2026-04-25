@@ -2,16 +2,16 @@
 @use "sass:map";
 
 .tray-bar {
-  background-color: map.get($map: colors.$theme-colors, $key: primary);
-  padding: 14px;
-  padding-bottom: 7px;
-  padding-top: 7px;
-  border-radius: 22px;
-  margin-top: 4px;
-  margin-right: 6px;
+	background-color: map.get($map: colors.$theme-colors, $key: primary);
+	padding: 14px;
+	padding-bottom: 7px;
+	padding-top: 7px;
+	border-radius: 22px;
+	margin-top: 4px;
+	margin-right: 6px;
 }
 
-.icon {
-  color: map.get($map: colors.$theme-colors, $key: accent);
-  padding: 5px;
+.tray-battery-label {
+	color: map.get($map: colors.$theme-colors, $key: accent);
+	font-size: 11px;
 }

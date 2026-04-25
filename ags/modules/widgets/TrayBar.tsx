@@ -1,6 +1,7 @@
 import Network from "gi://AstalNetwork"
 import Bluetooth from "gi://AstalBluetooth"
 import Wp from "gi://AstalWp"
+import Battery from "gi://AstalBattery"
 import { createEffect, createState, createBinding } from "gnim"
 
 export default function TrayBar() {
@@ -8,10 +9,13 @@ export default function TrayBar() {
 	const [bluetooth_icon, set_bluetooth_icon] = createState("")
 	const [bluetooth_enabled, set_bluetooth_enabled] = createState(false)
 	const [audio_icon, set_audio_icon] = createState("")
+	const [battery_icon, set_battery_icon] = createState("")
+	const [battery_percentage, set_battery_percentage] = createState(0)
 
 	const nm = Network.get_default()
 	const bluetoothctl = Bluetooth.get_default()
 	const wpctl = Wp.get_default()
+	const battery = Battery.get_default()
 
 	// Wifi
 	createEffect(() => {
@@ -53,6 +57,17 @@ export default function TrayBar() {
 		}
 	})
 
+	// Battery
+	createEffect(() => {
+		if (battery.is_present) {
+			const icon = createBinding(battery, "icon_name")
+			const percentage = createBinding(battery, "percentage")
+
+			set_battery_icon(icon())
+			set_battery_percentage(percentage())
+		}
+	})
+
 	return (
 		<box $type="end" class={"tray-bar"}>
 			<image class={"icon"} iconName={wifi_icon((t) => t)} pixelSize={19} />
@@ -66,11 +81,13 @@ export default function TrayBar() {
 
 			<image class={"icon"} iconName={audio_icon((t) => t)} pixelSize={19} />
 
-			<image
-				class={"icon"}
-				iconName={"application-menu-symbolic"}
-				pixelSize={19}
+			<image class={"icon"} iconName={battery_icon((t) => t)} pixelSize={19} />
+			<label
+				class={"tray-battery-label"}
+				label={battery_percentage((t) => t * 100 + "%")}
 			/>
+
+			<image class={"icon"} iconName={"go-down-symbolic"} pixelSize={15} />
 		</box>
 	)
 }
