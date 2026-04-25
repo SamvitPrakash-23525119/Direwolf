@@ -11,10 +11,18 @@ permissions:
 jobs:
   release:
     runs-on: ubuntu-latest
+    container:
+      image: archlinux:latest
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+
+      - name: "Install Dependencies"
+        run: |
+          npm install -g sass
+          sudo pacman -Syu --noconfirm
+          sudo pacman -S --noconfirm aylurs-gtk-shell
 
       - name: Build DireWolf
         run: |
