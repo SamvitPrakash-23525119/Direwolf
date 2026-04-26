@@ -49,9 +49,11 @@ jobs:
           cp dist/DireWolf dist/DireWolf-${{ github.ref_name }}
 
       - name: Create GitHub release
+        working-directory: ${{ github.workspace }}
         run: |
           gh release create ${{ github.ref_name }} \
             dist/DireWolf-${{ github.ref_name }} \
+            --repo ${{ github.repository }} \
             --title "${{ github.ref_name }}" \
             --notes "Release of DireWolf version ${{ github.ref_name }}." \
             --generate-notes
