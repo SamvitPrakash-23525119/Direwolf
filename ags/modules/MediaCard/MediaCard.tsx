@@ -111,7 +111,7 @@ export default function MediaCard({ visible, player }: MediaCardProps) {
 				<AudioVisualizer
 					className={"media-card-audio-visualizer"}
 					gap={1}
-					bars={50}
+					bars={150}
 				/>
 
 				<centerbox>
