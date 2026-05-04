@@ -133,9 +133,9 @@
   margin: 10px;
   padding: 15px;
   border-radius: 22px;
-  /* border-width: 1px;
-  border-color: map.get(colors.$accents, accent);
-  border-style: solid; */
+  border-width: 0.2px;
+  border-color: rgb(248, 228, 134);
+  border-style: solid;
 }
 
 .media-card-cover-art {
