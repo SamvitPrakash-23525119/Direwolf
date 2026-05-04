@@ -40,9 +40,6 @@ jobs:
       - name: Verify build output exists
         run: |
           test -f dist/DireWolf
-      - name: Update VERSION file
-        run: |
-          echo "${{ github.ref_name }}" > VERSION
 
       - name: Rename release binary
         run: |

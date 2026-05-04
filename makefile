@@ -25,7 +25,7 @@ EXTENSIONS_HYPRLAND := conf
 
 # Deployment
 DIST := dist
-DIST_FILE := $(DIST)/DireWolf
+DIST_FILE := $(DIST)/Direwolf
 
 $(PROJECT_LOGS):
 	mkdir -p $(PROJECT_LOGS)
