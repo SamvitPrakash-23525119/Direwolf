@@ -78,11 +78,6 @@
   margin-left: 6px;
 }
 
-.media-info {
-  margin-left: 6px;
-  margin-right: 10px;
-}
-
 .media-title {
   color: rgb(248, 228, 134);
   padding-left: 6px;
@@ -99,6 +94,10 @@
   font-weight: 400;
 }
 
+.media-card-control-box {
+  margin-top: 15px;
+}
+
 .media-button {
   padding: 1px;
   padding-left: 2px;
@@ -107,13 +106,76 @@
   border-radius: 33px;
 }
 
+.media-info-button {
+  margin-right: 2px;
+  margin-right: 2px;
+  border-radius: 14px;
+  padding-left: 16px;
+  padding-right: 10px;
+  padding-top: 3px;
+  padding-bottom: 2px;
+  /* color: rgb(0, 0, 0, 0); */
+}
+
+/* .media-info-button:hover { */
+/* color: rgba(255, 255, 255, 0.65); */
+/* } */
 .cover-art {
   margin-right: 10px;
 }
 
+.media-seperator {
+  color: rgb(248, 228, 134);
+}
+
+.media-card-box {
+  background-color: rgba(0, 3, 7, 0.6);
+  margin: 10px;
+  padding: 15px;
+  border-radius: 22px;
+  border-width: 1px;
+  border-color: rgb(248, 228, 134);
+  border-style: solid;
+}
+
+.media-card-cover-art {
+  margin-top: 5px;
+}
+
+.media-card-info-box {
+  margin-top: 20px;
+  margin-left: 10px;
+}
+
+.media-card-title {
+  color: rgb(248, 228, 134);
+  padding-right: 6px;
+  font-size: 16px;
+  font-weight: 450;
+}
+
+.media-card-artist {
+  color: rgb(248, 228, 134);
+  padding-right: 6px;
+  font-size: 16px;
+  font-weight: 350;
+}
+
+.media-card-audio-visualizer {
+  margin-top: 5px;
+  margin-bottom: 0px;
+}
+
+.media-button-large {
+  padding: 6px;
+  padding-left: 6px;
+  padding-right: 6px;
+  margin: 2px;
+  border-radius: 55px;
+}
+
 .clock {
   font-size: 15px;
-  color: rgb(248, 228, 134);
 }
 
 .icon {

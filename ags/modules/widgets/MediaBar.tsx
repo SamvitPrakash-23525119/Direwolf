@@ -1,13 +1,20 @@
 import Mpris from "gi://AstalMpris"
+import { Gtk } from "ags/gtk4"
 import { createState, createBinding, createEffect } from "gnim"
 
-export default function MediaBar() {
+type MediaBarProps = {
+	setMediaCard: (mediaCardState: boolean) => void
+	setPlayer: (player: Mpris.Player | null) => void
+}
+
+export default function MediaBar({ setMediaCard, setPlayer }: MediaBarProps) {
 	const [title, setTitle] = createState("")
 	const [artist, setArtist] = createState("")
 	const [playbackSymbol, setPlaybackSymbol] = createState("")
 	const [coverArt, setCoverArt] = createState("")
 	const [playback, setPlayback] = createState(false)
 	const [available, setAvailable] = createState(false)
+	const [reveal, setReveal] = createState(true)
 	const [play_pause, setPlay_pause] = createState<(() => void) | null>(null)
 	const [play_next, setPlay_next] = createState<(() => void) | null>(null)
 	const [play_previous, setPlay_previous] = createState<(() => void) | null>(
@@ -18,6 +25,7 @@ export default function MediaBar() {
 
 	createEffect(() => {
 		setAvailable(false)
+		setPlayer(null)
 		const players = createBinding(mpris, "players")
 		const arr = players()
 
@@ -57,6 +65,7 @@ export default function MediaBar() {
 				setPlay_next(() => next_method)
 				setPlay_previous(() => previous_method)
 				setAvailable(title() != "" ? true : false)
+				setPlayer(player)
 			}
 		})
 	})
@@ -68,33 +77,52 @@ export default function MediaBar() {
 			visible={available((t) => t)}
 			width_request={100}
 		>
-			<image class={"cover-art"} file={coverArt((t) => t)} pixelSize={25} />
+			<togglebutton
+				class={"media-info-button"}
+				onToggled={({ active }) => {
+					setMediaCard(active)
+					setReveal(!active)
+				}}
+			>
+				<box>
+					<image class={"cover-art"} file={coverArt((t) => t)} pixelSize={25} />
+					<label class={"media-title"} label={title((t) => t)} />
+					<label class={"media-seperator"} label={"•"} />
+					<label class={"media-artist"} label={artist((t) => t)} />
+				</box>
+			</togglebutton>
 
-			<box class={"media-info"}>
-				<label class={"media-title"} label={title((t) => t)} />
-				<label class={"media-seperator"} label={"•"} />
-				<label class={"media-artist"} label={artist((t) => t)} />
-			</box>
+			<revealer
+				revealChild={reveal((t) => t)}
+				transitionDuration={200}
+				transitionType={Gtk.RevealerTransitionType.SLIDE_RIGHT}
+			>
+				<box>
+					<button class={"media-button"} onClicked={() => play_previous()?.()}>
+						<image
+							class={"icon"}
+							iconName={"go-previous-symbolic"}
+							pixelSize={10}
+						/>
+					</button>
 
-			<button class={"media-button"} onClicked={() => play_previous()?.()}>
-				<image
-					class={"icon"}
-					iconName={"go-previous-symbolic"}
-					pixelSize={10}
-				/>
-			</button>
+					<button class={"media-button"} onClicked={() => play_pause()?.()}>
+						<image
+							class={"icon"}
+							iconName={playbackSymbol((t) => t)}
+							pixelSize={10}
+						/>
+					</button>
 
-			<button class={"media-button"} onClicked={() => play_pause()?.()}>
-				<image
-					class={"icon"}
-					iconName={playbackSymbol((t) => t)}
-					pixelSize={10}
-				/>
-			</button>
-
-			<button class={"media-button"} onClicked={() => play_next()?.()}>
-				<image class={"icon"} iconName={"go-next-symbolic"} pixelSize={10} />
-			</button>
+					<button class={"media-button"} onClicked={() => play_next()?.()}>
+						<image
+							class={"icon"}
+							iconName={"go-next-symbolic"}
+							pixelSize={10}
+						/>
+					</button>
+				</box>
+			</revealer>
 		</box>
 	)
 }

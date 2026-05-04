@@ -4,10 +4,11 @@
 @use "animations";
 @use "tray";
 @use "workspace";
-@use "media";
+@use "mediaBar";
+@use "mediaCard";
 @use "clock";
 
 .icon {
-	color: map.get($map: colors.$theme-colors, $key: accent);
+	color: map.get($map: colors.$accents, $key: accent);
 	padding: 5px;
 }

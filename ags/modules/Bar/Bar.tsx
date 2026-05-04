@@ -1,9 +1,15 @@
+import Mpris from "gi://AstalMpris"
 import { Astal } from "ags/gtk4"
 import WorkspaceBar from "../widgets/WorkspaceBar"
 import MediaBar from "../widgets/MediaBar"
 import TrayBar from "../widgets/TrayBar"
 
-export default function Bar() {
+type BarProps = {
+	setMediaCard: (mediaCardState: boolean) => void
+	setPlayer: (player: Mpris.Player | null) => void
+}
+
+export default function Bar({ setMediaCard, setPlayer }: BarProps) {
 	return (
 		<window
 			class={"top-bar-window"}
@@ -16,7 +22,7 @@ export default function Bar() {
 			visible
 		>
 			<centerbox hexpand>
-				<MediaBar />
+				<MediaBar setMediaCard={setMediaCard} setPlayer={setPlayer} />
 				<WorkspaceBar />
 				<TrayBar />
 			</centerbox>
