@@ -1,4 +1,5 @@
 import Mpris from "gi://AstalMpris"
+import Pango from "gi://Pango?version=1.0"
 import { Gtk } from "ags/gtk4"
 import { createState, createBinding, createEffect } from "gnim"
 
@@ -75,7 +76,7 @@ export default function MediaBar({ setMediaCard, setPlayer }: MediaBarProps) {
 			$type="start"
 			class={"media-bar"}
 			visible={available((t) => t)}
-			width_request={100}
+			// width_request={360}
 		>
 			<togglebutton
 				class={"media-info-button"}
@@ -86,9 +87,21 @@ export default function MediaBar({ setMediaCard, setPlayer }: MediaBarProps) {
 			>
 				<box>
 					<image class={"cover-art"} file={coverArt((t) => t)} pixelSize={25} />
-					<label class={"media-title"} label={title((t) => t)} />
+					<label
+						class={"media-title"}
+						label={title((t) => t)}
+						singleLineMode
+						maxWidthChars={15}
+						ellipsize={Pango.EllipsizeMode.END}
+					/>
 					<label class={"media-seperator"} label={"•"} />
-					<label class={"media-artist"} label={artist((t) => t)} />
+					<label
+						class={"media-artist"}
+						label={artist((t) => t)}
+						singleLineMode
+						maxWidthChars={8}
+						ellipsize={Pango.EllipsizeMode.END}
+					/>
 				</box>
 			</togglebutton>
 
