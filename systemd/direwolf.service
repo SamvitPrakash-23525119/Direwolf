@@ -1,0 +1,12 @@
+[Unit]
+Description=Direwolf Linux Desktop Shell
+PartOf=graphical-session.target
+After=graphical-session.target
+
+[Service]
+ExecStart=/usr/bin/direwolf
+Restart=on-failure
+RestartSec=1
+
+[Install]
+WantedBy=graphical-session.target

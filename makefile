@@ -1,9 +1,10 @@
 # Directories
-AGS := ags
+SRC := src
+AGS := $(SRC)/ags
 STYLES := $(AGS)/styles
 CSS_DIST := $(STYLES)/dist
 HYPRLAND := /home/_c3rberus/.config/hypr
-HYPRLAND_DIST := hyprland
+HYPRLAND_DIST := $(SRC)/hyprland
 PROJECT_LOGS := logs
 
 # Files
