@@ -1,0 +1,30 @@
+# Maintainer: Samvit Prakash <samvitprakash2004@gmail.com>
+
+pkgname=direwolf
+pkgver=0.1.5
+pkgrel=1
+pkgdesc="Direwolf Linux Desktop Shell"
+arch=('any')
+url="https://github.com/SamvitPrakash-23525119/Direwolf"
+license=('Apache')
+
+depends=(
+  'aylurs-gtk-shell>=3.1.0'
+  'playerctl>=2.4.1'
+  'hyprland>=0.54.3'
+)
+
+install="$pkgname.install"
+
+source=(
+  "$pkgname-$pkgver.tar.gz"
+)
+
+sha256sums=(
+  'SKIP'
+)
+
+package() {
+  cd "$srcdir/$pkgname-$pkgver"
+  make install DESTDIR="$pkgdir" PREFIX=/usr
+}

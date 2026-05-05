@@ -1,0 +1,21 @@
+post_install() {
+  cat <<'EOF'
+
+Direwolf installed.
+
+Start once:
+  direwolf
+
+Enable the user service:
+  systemctl --user daemon-reload
+  systemctl --user enable --now direwolf.service
+
+For Hyprland, you may also start it from hyprland.conf:
+  exec-once = systemctl --user start direwolf.service
+
+EOF
+}
+
+post_upgrade() {
+  post_install
+}
