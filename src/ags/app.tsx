@@ -11,13 +11,12 @@ app.start({
   instanceName: "Direwolf",
   main() {
     const [mediaCard, setMediaCard] = createState(false)
-    const [player, setPlayer] = createState<Mpris.Player | null>(null)
 
     console.log("Started AGS...")
 
     return (
       <>
-        <Bar setMediaCard={setMediaCard} setPlayer={setPlayer} />
+        <Bar setMediaCard={setMediaCard} />
         <MediaCard visible={mediaCard} />
       </>
     )
