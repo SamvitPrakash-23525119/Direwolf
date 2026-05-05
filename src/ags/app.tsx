@@ -7,19 +7,19 @@ import Bar from "./modules/Bar/Bar"
 import MediaCard from "./modules/MediaCard/MediaCard"
 
 app.start({
-	css: css,
-	instanceName: "Direwolf",
-	main() {
-		const [mediaCard, setMediaCard] = createState(false)
-		const [player, setPlayer] = createState<Mpris.Player | null>(null)
+  css: css,
+  instanceName: "Direwolf",
+  main() {
+    const [mediaCard, setMediaCard] = createState(false)
+    const [player, setPlayer] = createState<Mpris.Player | null>(null)
 
-		console.log("Started AGS...")
+    console.log("Started AGS...")
 
-		return (
-			<>
-				<Bar setMediaCard={setMediaCard} setPlayer={setPlayer} />
-				<MediaCard visible={mediaCard} player={player} />
-			</>
-		)
-	},
+    return (
+      <>
+        <Bar setMediaCard={setMediaCard} setPlayer={setPlayer} />
+        <MediaCard visible={mediaCard} />
+      </>
+    )
+  },
 })

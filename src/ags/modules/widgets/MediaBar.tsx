@@ -1,15 +1,14 @@
-import Mpris from "gi://AstalMpris"
-import MprisService from "../../services/share/MprisService"
 import Pango from "gi://Pango?version=1.0"
+import MprisService from "../../services/share/MprisService"
+import type Mpris from "gi://AstalMpris"
 import { Gtk } from "ags/gtk4"
 import { createState, createBinding, createEffect } from "gnim"
 
 type MediaBarProps = {
   setMediaCard: (mediaCardState: boolean) => void
-  setPlayer: (player: Mpris.Player | null) => void
 }
 
-export default function MediaBar({ setMediaCard, setPlayer }: MediaBarProps) {
+export default function MediaBar({ setMediaCard }: MediaBarProps) {
   const [title, setTitle] = createState("")
   const [artist, setArtist] = createState("")
   const [playbackSymbol, setPlaybackSymbol] = createState("")
@@ -23,11 +22,12 @@ export default function MediaBar({ setMediaCard, setPlayer }: MediaBarProps) {
     null,
   )
 
-  const mpris = MprisService.get_default().getMpris()
+  const mService = MprisService.get_default()
+  const mpris = mService.getMpris()
 
   createEffect(() => {
     setAvailable(false)
-    setPlayer(null)
+
     const players = createBinding(mpris, "players")
     const arr = players()
 
@@ -67,7 +67,7 @@ export default function MediaBar({ setMediaCard, setPlayer }: MediaBarProps) {
         setPlay_next(() => next_method)
         setPlay_previous(() => previous_method)
         setAvailable(title() != "" ? true : false)
-        setPlayer(player)
+        mService.setPlayer(player)
       }
     })
   })
