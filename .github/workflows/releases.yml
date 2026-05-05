@@ -33,26 +33,38 @@ jobs:
           sudo -u builder yay -S --noconfirm aylurs-gtk-shell
           npm install -g sass
 
-      - name: Build DireWolf
+      - name: Build Direwolf
         run: |
           make ags-deployment
 
       - name: Verify build output exists
         run: |
-          test -f dist/DireWolf
-      - name: Update VERSION file
-        run: |
-          echo "${{ github.ref_name }}" > VERSION
+          test -f dist/Direwolf
 
       - name: Rename release binary
         run: |
-          cp dist/DireWolf dist/DireWolf-${{ github.ref_name }}
+          cp dist/Direwolf dist/Direwolf-${{ github.ref_name }}
+
+      - name: Create tar ball
+        run: |
+          tar -czf dist/Direwolf-${{ github.ref_name }}.tar.gz \
+          dist/Direwolf-${{ github.ref_name }} \
+          packaging/arch/direwolf \
+          packaging/arch/direwolf.service \
+          makefile
+
+      - name: Create release zip
+        run: |
+          zip dist/Direwolf-${{ github.ref_name }}.zip \
+          dist/Direwolf-${{ github.ref_name }}.tar.gz \
+          packaging/arch/PKGBUILD \
+          packaging/arch/direwolf.install
 
       - name: Create GitHub release
         working-directory: ${{ github.workspace }}
         run: |
           gh release create ${{ github.ref_name }} \
-            dist/DireWolf-${{ github.ref_name }} \
+            dist/Direwolf-${{ github.ref_name }}.zip \
             --repo ${{ github.repository }} \
             --title "${{ github.ref_name }}" \
             --notes "Release of DireWolf version ${{ github.ref_name }}." \

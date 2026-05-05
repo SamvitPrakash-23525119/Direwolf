@@ -1,9 +1,10 @@
 # Directories
-AGS := ags
+SRC := src
+AGS := $(SRC)/ags
 STYLES := $(AGS)/styles
 CSS_DIST := $(STYLES)/dist
 HYPRLAND := /home/_c3rberus/.config/hypr
-HYPRLAND_DIST := hyprland
+HYPRLAND_DIST := $(SRC)/hyprland
 PROJECT_LOGS := logs
 
 # Files
@@ -24,7 +25,7 @@ EXTENSIONS_HYPRLAND := conf
 
 # Deployment
 DIST := dist
-DIST_FILE := $(DIST)/DireWolf
+DIST_FILE := $(DIST)/Direwolf
 
 $(PROJECT_LOGS):
 	mkdir -p $(PROJECT_LOGS)
