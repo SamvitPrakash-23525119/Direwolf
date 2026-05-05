@@ -178,6 +178,36 @@
   font-size: 15px;
 }
 
+.volume-modal-box {
+  background-color: rgba(0, 3, 7, 0.95);
+  border-radius: 15px;
+  margin: 15px;
+  border-width: 0.4px;
+  border-color: rgb(248, 228, 134);
+  border-style: solid;
+}
+
+.volume-icon {
+  margin-left: 5px;
+  margin-top: 2px;
+  margin-bottom: 2px;
+}
+
+.volume-progress-box {
+  margin-left: 5px;
+  margin-right: 15px;
+}
+
+.progress-bar {
+  background-color: rgba(248, 228, 134, 0.2);
+  border-radius: 4px;
+}
+
+.progress-bar-fill {
+  background-color: rgb(248, 228, 134);
+  border-radius: 4px;
+}
+
 .icon {
   color: rgb(248, 228, 134);
   padding: 5px;

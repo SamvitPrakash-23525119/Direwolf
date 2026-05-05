@@ -1,14 +1,14 @@
 import app from "ags/gtk4/app"
-import Mpris from "gi://AstalMpris"
-import Cava from "gi://AstalCava"
-import { createEffect, createState, createBinding } from "gnim"
 import css from "./styles/dist/main.css"
 import Bar from "./modules/Bar/Bar"
 import MediaCard from "./modules/MediaCard/MediaCard"
+import VolumeModal from "./modules/VolumeModal/VolumeModal"
+import { createState } from "gnim"
 
 app.start({
   css: css,
   instanceName: "Direwolf",
+  iconTheme: "Adwaita",
   main() {
     const [mediaCard, setMediaCard] = createState(false)
 
@@ -18,6 +18,7 @@ app.start({
       <>
         <Bar setMediaCard={setMediaCard} />
         <MediaCard visible={mediaCard} />
+        <VolumeModal />
       </>
     )
   },

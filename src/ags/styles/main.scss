@@ -7,8 +7,10 @@
 @use "mediaBar";
 @use "mediaCard";
 @use "clock";
+@use "volumeModal";
+@use "progressBar";
 
 .icon {
-	color: map.get($map: colors.$accents, $key: accent);
-	padding: 5px;
+  color: map.get($map: colors.$accents, $key: accent);
+  padding: 5px;
 }
