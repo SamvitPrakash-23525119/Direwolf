@@ -84,7 +84,7 @@ export default function TrayBar() {
       <image class={"icon"} iconName={battery_icon((t) => t)} pixelSize={17} />
       <label
         class={"tray-battery-label"}
-        label={battery_percentage((t) => t * 100 + "%")}
+        label={battery_percentage((t) => (t * 100).toFixed(0) + "%")}
       />
 
       <image class={"icon"} iconName={"go-down-symbolic"} pixelSize={13} />
