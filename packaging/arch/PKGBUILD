@@ -1,7 +1,7 @@
 # Maintainer: Samvit Prakash <samvitprakash2004@gmail.com>
 
 pkgname=direwolf
-pkgver=0.1.5
+pkgver=v0.1.5
 pkgrel=1
 pkgdesc="Direwolf Linux Desktop Shell"
 arch=('any')
@@ -14,7 +14,7 @@ depends=(
   'hyprland>=0.54.3'
 )
 
-install="$pkgname.install"
+# install="$pkgname.install"
 
 source=(
   "$pkgname-$pkgver.tar.gz"
@@ -25,6 +25,6 @@ sha256sums=(
 )
 
 package() {
-  cd "$srcdir/$pkgname-$pkgver"
+  cd "$srcdir"
   make install DESTDIR="$pkgdir" PREFIX=/usr
 }
