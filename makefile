@@ -1,3 +1,6 @@
+# Other
+NAME := direwolf
+
 # Directories
 SRC := src
 AGS := $(SRC)/ags
@@ -13,8 +16,6 @@ MAIN_SCSS := $(STYLES)/main.scss
 CSS := $(CSS_DIST)/main.css
 HYPRLAND_ENTRY := $(HYPRLAND)/hyprland.conf
 HYPRLAND_DIST_ENTRY := $(HYPRLAND_DIST)/hyprland.conf
-AGS_LOGS := $(PROJECT_LOGS)/ags.log
-HYPRLAND_LOGS := $(PROJECT_LOGS)/hyprland.log
 
 # Config
 EXTENSIONS_AGS := tsx,scss,ts
@@ -25,16 +26,7 @@ EXTENSIONS_HYPRLAND := conf
 
 # Deployment
 DIST := dist
-DIST_FILE := $(DIST)/Direwolf
-
-$(PROJECT_LOGS):
-	mkdir -p $(PROJECT_LOGS)
-
-$(AGS_LOGS): $(PROJECT_LOGS)
-	touch $(AGS_LOGS)
-
-$(HYPRLAND_LOGS): $(PROJECT_LOGS)
-	touch $(HYPRLAND_LOGS)
+DIST_FILE := $(DIST)/$(NAME).ags
 
 $(CSS): $(MAIN_SCSS)
 	@echo 'Compiling Styles...'
@@ -67,6 +59,23 @@ ags-deployment: clean $(CSS) $(DIST)
 run-ags-deployment: ags-deployment
 	@echo 'Running bundled application...'
 	./$(DIST_FILE)
+
+package:
+
+	tar -czvf dist/direwolf-v0.1.5.tar.gz \
+	  -C bin direwolf \
+	  -C ../systemd direwolf.service \
+	  -C ../packaging/arch makefile \
+	  -C ../../dist direwolf-v0.1.5
+
+	zip -j dist/direwolf-v0.1.5.zip \
+	  test/direwolf-v0.1.5.tar.gz \
+	  packaging/arch/PKGBUILD
+
+	#rm -f dist/direwolf-v0.1.5.tar.gz
+
+cleanup:
+	rm -rf dist
 
 clean:
 	@echo 'Cleaning up...'

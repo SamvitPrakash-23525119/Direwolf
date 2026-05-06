@@ -16,7 +16,6 @@ export default function ProgressBar({
 }: ProgressBarProps) {
   const fillWidth = value((v) => {
     const percent = Math.max(0, Math.min(v / max, 1))
-    console.log(Math.round(percent * width))
     return Math.floor(percent * width)
   })
 

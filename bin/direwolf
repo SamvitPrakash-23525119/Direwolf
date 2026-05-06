@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-exec /usr/lib/direwolf/Direwolf "$@"
+exec /usr/lib/direwolf/direwolf "$@"
