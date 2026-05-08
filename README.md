@@ -18,7 +18,7 @@
 </div>
 
 <div align="center">
-  <img src="./Aurora/assets/screen-recordings/aurora-demo.gif" alt="Aurora Weather App Demo" width="200">
+  <img src="./assets/screenshots/desktop.png" width="450">
 </div>
 
 ## Overview
