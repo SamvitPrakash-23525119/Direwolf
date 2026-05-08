@@ -1,5 +1,6 @@
 import NmService from "../../services/share/NmService"
 import BluetoothService from "../../services/share/BluetoothService"
+import type Bluetooth from "../../services/share/BluetoothService"
 import WpctlService from "../../services/share/WpctlService"
 import BatteryService from "../../services/share/BatteryService"
 import { createEffect, createState, createBinding } from "gnim"
