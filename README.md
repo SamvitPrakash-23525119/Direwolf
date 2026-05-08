@@ -3,7 +3,7 @@
   <img src="./assets/logos/direwolf_logo.jpg" width="100"/>
 
   <h1>Direwolf Linux Desktop Shell</h1>
-  <p><strong>A modern reactive Linux desktop UI built with AGS, TypeScript, and Hyprland.</strong></p>
+  <p><strong>A modern reactive Linux desktop shell built with AGS, TypeScript, and Hyprland.</strong></p>
 
   ![Direwolf](https://img.shields.io/badge/Direwolf-000000?style=for-the-badge&logo=smartphone&logoColor=white)
   
