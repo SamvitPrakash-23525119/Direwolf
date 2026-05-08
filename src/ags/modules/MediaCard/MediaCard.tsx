@@ -14,10 +14,6 @@ export default function MediaCard({ visible }: MediaCardProps) {
   const [artist, setArtist] = createState("")
   const [playbackSymbol, setPlaybackSymbol] = createState("")
   const [playback, setPlayback] = createState(false)
-  const [position, setPosition] = createState(0)
-  const [length, setLength] = createState(0)
-  const [draggingValue, setDraggingValue] = createState(0)
-  const [seek, setSeek] = createState<((position: number) => void) | null>(null)
   const [play_pause, setPlay_pause] = createState<(() => void) | null>(null)
   const [play_next, setPlay_next] = createState<(() => void) | null>(null)
   const [play_previous, setPlay_previous] = createState<(() => void) | null>(
@@ -26,32 +22,17 @@ export default function MediaCard({ visible }: MediaCardProps) {
 
   const mpris = MprisService.get_default()
 
+  // Player Metadata
   createEffect(() => {
     const player = mpris.getPlayer()
     if (player) {
       const title = createBinding(player, "title")
       const artist = createBinding(player, "artist")
-      const playing = createBinding(player, "playbackStatus")
       const coverArt = createBinding(player, "cover_art")
-      const position = createBinding(player, "position")
-      const length = createBinding(player, "length")
 
       setTitle(title())
       setArtist(artist())
       setCoverArt(coverArt())
-
-      if (playing() == 0) {
-        setPlaybackSymbol("media-playback-pause-symbolic")
-        setPlayback(true)
-      } else if (playing() == 1) {
-        setPlaybackSymbol("media-playback-start-symbolic")
-        setPlayback(false)
-      } else {
-        setPlaybackSymbol("media-playback-start-symbolic")
-        setPlayback(false)
-        setPosition(0)
-        return
-      }
 
       const play_pause_method = () => {
         if (playback()) player.pause()
@@ -69,12 +50,31 @@ export default function MediaCard({ visible }: MediaCardProps) {
       setPlay_pause(() => play_pause_method)
       setPlay_next(() => next_method)
       setPlay_previous(() => previous_method)
+    }
+  })
 
-      setPosition(position())
-      setLength(length())
-      setSeek(() => (pos: number) => {
-        player.set_position(pos)
-      })
+  // Playback status
+  createEffect(() => {
+    const player = mpris.getPlayer()
+
+    if (!player) {
+      setPlaybackSymbol("media-playback-start-symbolic")
+      setPlayback(false)
+      return
+    }
+
+    const playing = createBinding(player, "playbackStatus")
+
+    if (playing() == 0) {
+      setPlaybackSymbol("media-playback-pause-symbolic")
+      setPlayback(true)
+    } else if (playing() == 1) {
+      setPlaybackSymbol("media-playback-start-symbolic")
+      setPlayback(false)
+    } else {
+      setPlaybackSymbol("media-playback-start-symbolic")
+      setPlayback(false)
+      return
     }
   })
 
