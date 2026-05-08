@@ -1,6 +1,6 @@
 
 <div align="center">
-  <img src="./assets/logos/direwolf_logo.jpg" width="100"/>
+  <img src="./assets/logos/direwolf.svg" width="100"/>
 
   <h1>Direwolf Linux Desktop Shell</h1>
   <p><strong>A modern reactive Linux desktop shell built with AGS, TypeScript, and Hyprland.</strong></p>
