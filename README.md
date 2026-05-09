@@ -101,7 +101,6 @@ or
 │   └── arch
 │       ├── makefile
 │       └── PKGBUILD
-├── README
 ├── README.md
 ├── src
 │   ├── ags
