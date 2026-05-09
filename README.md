@@ -7,11 +7,11 @@
 
   ![Direwolf](https://img.shields.io/badge/Direwolf-000000?style=for-the-badge&logo=smartphone&logoColor=white)
   
-  ![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
-  ![AGS](https://img.shields.io/badge/AGS-007ACC?style=for-the-badge&logo=framework&logoColor=white)
-  ![SCSS](https://img.shields.io/badge/SCSS-CC6699?style=for-the-badge&logo=sass&logoColor=white)
-  ![Hyprland](https://img.shields.io/badge/Hyprland-000000?style=for-the-badge&logo=hyprland&logoColor=white)
   ![Wayland](https://img.shields.io/badge/Wayland-000000?style=for-the-badge&logo=wayland&logoColor=white)
+  ![AGS](https://img.shields.io/badge/Aylurs_GTK_Shell-007ACC?style=for-the-badge&logo=gtk&logoColor=white)
+  ![Hyprland](https://img.shields.io/badge/Hyprland-000000?style=for-the-badge&logo=hyprland&logoColor=white)
+  ![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
+  ![SCSS](https://img.shields.io/badge/SCSS-CC6699?style=for-the-badge&logo=sass&logoColor=white)
   
   ![Arch Linux](https://img.shields.io/badge/Arch_Linux-1793D1?style=for-the-badge&logo=archlinux&logoColor=white)
 
@@ -23,7 +23,7 @@
 
 ## Overview
 
-**Direwolf** is a modern Linux desktop UI built with AGS (Aylur's GTK Shell) and powered by reactive TypeScript components, designed for speed, modularity, and aesthetic minimalism. This project focuses on creating a polished Hyprland experience with dynamic widgets, smooth animations, system integrations, and a clean architecture that scales as the desktop evolves.
+**Direwolf** is a modern Linux desktop shell built with Aylur's GTK Shell and powered by reactive TypeScript widgets, designed for speed, modularity, and aesthetic minimalism. This project focuses on creating a polished Hyprland experience with dynamic widgets, smooth animations, system integrations, and a clean architecture that scales as the desktop evolves.
 
 From media controls and network indicators to workspace management and blurred glassmorphism panels, the goal is to turn the Linux desktop into a responsive control deck instead of a pile of disconnected scripts.
 
@@ -47,62 +47,10 @@ From media controls and network indicators to workspace management and blurred g
 
 ## Screenshots
 
-### Home Screen
-*Main weather display showing current conditions*
-<div align="center">
-  <img src="./Aurora/assets/images/screenshots/Home-Sunny.jpeg" height="300"/>
-  <img src="./Aurora/assets/images/screenshots/Home-Windy.jpeg" height="300"/>
-  <img src="./Aurora/assets/images/screenshots/Home-Cloudy.jpeg" height="300"/>
-  <img src="./Aurora/assets/images/screenshots/Home-Rainy.jpeg" height="300"/>
-  <img src="./Aurora/assets/images/screenshots/Home-Lightning.jpeg" height="300"/>
-  <img src="./Aurora/assets/images/screenshots/Home-Snowy.jpeg" height="300"/>
-</div>
 
-### Hourly Forecast
-*24-hour weather forecast timeline*
 <div align="center">
-  <img src="./Aurora/assets/images/screenshots/Forecast-Sunny.jpeg" height="300"/>
-  <img src="./Aurora/assets/images/screenshots/Forecast-Windy.jpeg" height="300"/>
-  <img src="./Aurora/assets/images/screenshots/Forecast-Cloudy.jpeg" height="300"/>
-  <img src="./Aurora/assets/images/screenshots/Forecast-Rainy.jpeg" height="300"/>
-  <img src="./Aurora/assets/images/screenshots/Forecast-Lightning.jpeg" height="300"/>
-  <img src="./Aurora/assets/images/screenshots/Forecast-Snowy.jpeg" height="300"/>
+  <img src="./assets/screenshots/desktop.png" width="450">
 </div>
-
-### Sky Science Metrics
-*Detailed weather and astronomical data*
-<div align="center">
-  <img src="./Aurora/assets/images/screenshots/Metrics-Sunny.jpeg" height="300"/>
-  <img src="./Aurora/assets/images/screenshots/Metrics-Windy.jpeg" height="300"/>
-  <img src="./Aurora/assets/images/screenshots/Metrics-Cloudy.jpeg" height="300"/>
-  <img src="./Aurora/assets/images/screenshots/Metrics-Rainy.jpeg" height="300"/>
-  <img src="./Aurora/assets/images/screenshots/Metrics-Lightning.jpeg" height="300"/>
-  <img src="./Aurora/assets/images/screenshots/Metrics-Snowy.jpeg" height="300"/>
-</div>
-
-### Weekly Forecast
-*Weekly weather forecast timeline*
-<div align="center">
-  <img src="./Aurora/assets/images/screenshots/Weekly-Sunny.jpeg" height="300"/>
-  <img src="./Aurora/assets/images/screenshots/Weekly-Windy.jpeg" height="300"/>
-  <img src="./Aurora/assets/images/screenshots/Weekly-Cloudy.jpeg" height="300"/>
-  <img src="./Aurora/assets/images/screenshots/Weekly-Rainy.jpeg" height="300"/>
-  <img src="./Aurora/assets/images/screenshots/Weekly-Lightning.jpeg" height="300"/>
-  <img src="./Aurora/assets/images/screenshots/Weekly-Snowy.jpeg" height="300"/>
-</div>
-
-### New Location Bookmark
-*New Location Bookmarking*
-<div align="center">
-  <img src="./Aurora/assets/images/screenshots/Location.jpeg" height="300"/>
-  <img src="./Aurora/assets/images/screenshots/Location-Text.jpeg" height="300"/>
-</div>
-
-### Dynamic UI/UX
-<div align="center">
-  <p><em>Aurora adapts its UI for different weather conditions: Sunny, Cloudy, Rainy, Snowy, Lightning, and Windy</em></p>
-</div>
-
 
 ## Getting Started
 
