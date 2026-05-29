@@ -21,7 +21,7 @@ jobs:
       - name: "Install Dependencies"
         run: |
           pacman -Syu --noconfirm
-          pacman -S --noconfirm base-devel git nodejs npm github-cli
+          pacman -S --noconfirm base-devel git nodejs npm github-cli pacman-contrib tar zip
 
           useradd -m builder
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
@@ -39,32 +39,36 @@ jobs:
 
       - name: Verify build output exists
         run: |
-          test -f dist/Direwolf
+          test -f dist/direwolf.ags
 
       - name: Rename release binary
         run: |
-          cp dist/Direwolf dist/Direwolf-${{ github.ref_name }}
+          cp dist/direwolf.ags dist/direwolf-${{ github.ref_name }}
 
       - name: Create tar ball
         run: |
-          tar -czf dist/Direwolf-${{ github.ref_name }}.tar.gz \
-          dist/Direwolf-${{ github.ref_name }} \
-          packaging/arch/direwolf \
-          packaging/arch/direwolf.service \
-          makefile
+          tar -czvf dist/direwolf-${{ github.ref_name }}.tar.gz \
+          -C bin direwolf \
+          -C ../systemd direwolf.service \
+          -C ../packaging/arch makefile \
+          -C ../../dist direwolf-${{ github.ref_name }}
+
+      - name: SHA256 checksum
+        working-directory: ./packaging/arch
+        run: |
+          updpkgsums
 
       - name: Create release zip
         run: |
-          zip dist/Direwolf-${{ github.ref_name }}.zip \
-          dist/Direwolf-${{ github.ref_name }}.tar.gz \
-          packaging/arch/PKGBUILD \
-          packaging/arch/direwolf.install
+          zip -j dist/direwolf-${{ github.ref_name }}.zip \
+          test/direwolf-${{ github.ref_name }}.tar.gz \
+          packaging/arch/PKGBUILD
 
       - name: Create GitHub release
         working-directory: ${{ github.workspace }}
         run: |
           gh release create ${{ github.ref_name }} \
-            dist/Direwolf-${{ github.ref_name }}.zip \
+            dist/direwolf-${{ github.ref_name }}.zip \
             --repo ${{ github.repository }} \
             --title "${{ github.ref_name }}" \
             --notes "Release of DireWolf version ${{ github.ref_name }}." \

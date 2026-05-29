@@ -2,7 +2,7 @@ PREFIX ?= /usr
 DESTDIR ?=
 
 PKG_NAME = direwolf
-APP_NAME = Direwolf
+APP_NAME = direwolf
 VERSION = v0.1.5
 
 BINDIR = $(PREFIX)/bin
