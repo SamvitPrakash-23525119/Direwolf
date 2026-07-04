@@ -7,12 +7,12 @@ export default function Bar(){
         <window 
             visible 
             class={"bar"}
-            anchor={Astal.WindowAnchor.TOP}
+            anchor={Astal.WindowAnchor.TOP | Astal.WindowAnchor.LEFT | Astal.WindowAnchor.RIGHT}
             exclusivity={Astal.Exclusivity.EXCLUSIVE}
         >
-            <box hexpand spacing={8} class={"bar-content"}>
+            <centerbox hexpand class={"bar-content"}>
                 <SystemTray/>
-            </box>
+            </centerbox>
         </window>
     )
 }

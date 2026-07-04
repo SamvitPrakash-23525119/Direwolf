@@ -1,9 +1,7 @@
-import { Gtk } from "ags/gtk4";
-
 export default function SystemTray(){
     return (
         <box 
-            hexpand 
+            $type='end'
             spacing={8} 
             class={"system-tray"}
         >
