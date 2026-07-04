@@ -1,5 +1,6 @@
 import app from "ags/gtk4/app"
 import css from "./styles/dist/main.css"
+import Bar from "./modules/widgets/Bar"
 
 app.start({
   css: css,
@@ -7,5 +8,7 @@ app.start({
   iconTheme: "Adwaita",
   main() {
     console.log("Started AGS...")
+
+    return <Bar/>
   },
 })
