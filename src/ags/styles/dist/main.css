@@ -3,18 +3,111 @@
   font-family: "Noto Sans Nandinagari";
 }
 
-.system-tray {
+.top-bar {
   background-color: rgb(249, 240, 240);
   border-radius: 22px;
   padding: 5px;
-  padding-right: 7px;
-  padding-left: 7px;
+  padding-right: 10px;
+  padding-left: 10px;
   margin-top: 5px;
   margin-right: 5px;
 }
 
-.time {
+/* 
+How to use workspace styles:
+============================
+
+> Use button styles for active workspaces
+> Use label style for the current workspace
+*/
+.workspace-button-label {
+  margin: 0px;
+  padding: 0px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 22px;
   color: rgb(28, 13, 13);
+}
+
+.workspace-button-label:hover {
+  color: rgb(249, 240, 240);
+  background-color: rgb(231, 126, 126);
+}
+
+.workspace-button-label-active {
+  margin: 0px;
+  padding: 0px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 22px;
+  color: rgb(231, 126, 126);
+}
+
+.workspace-button-label-active:hover {
+  color: rgb(249, 240, 240);
+  background-color: rgb(231, 126, 126);
+}
+
+.workspace-button-label-current {
+  margin: 0px;
+  padding: 0px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 22px;
+  color: rgb(249, 240, 240);
+  background-color: rgb(231, 126, 126);
+}
+
+.workspace-button {
+  margin: 0px;
+  padding: 2px;
+  padding-left: 0px;
+  padding-right: 0px;
+  border-radius: 22px;
+  background-color: rgb(249, 240, 240);
+}
+
+.workspace-button-active {
+  margin: 0px;
+  padding: 2px;
+  padding-left: 0px;
+  padding-right: 0px;
+  border-radius: 22px;
+  color: rgb(191, 24, 24);
+}
+
+.workspace-button-active-start {
+  margin: 0px;
+  padding: 2px;
+  padding-left: 0px;
+  padding-right: 0px;
+  border-radius: 22px;
+  color: rgb(191, 24, 24);
+  border-radius: 0px;
+  border-top-left-radius: 22px;
+  border-bottom-left-radius: 22px;
+}
+
+.workspace-button-active-center {
+  margin: 0px;
+  padding: 2px;
+  padding-left: 0px;
+  padding-right: 0px;
+  border-radius: 22px;
+  color: rgb(191, 24, 24);
+  border-radius: 0px;
+}
+
+.workspace-button-active-end {
+  margin: 0px;
+  padding: 2px;
+  padding-left: 0px;
+  padding-right: 0px;
+  border-radius: 22px;
+  color: rgb(191, 24, 24);
+  border-radius: 0px;
+  border-top-right-radius: 22px;
+  border-bottom-right-radius: 22px;
 }
 
 .bar {

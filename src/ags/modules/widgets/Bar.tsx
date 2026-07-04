@@ -1,6 +1,7 @@
 import {Astal} from "ags/gtk4"
 
 import SystemTray from "../components/System_Tray"
+import Workspaces from "../components/Workspaces"
 
 export default function Bar(){
     return (
@@ -12,6 +13,7 @@ export default function Bar(){
         >
             <centerbox hexpand class={"bar-content"}>
                 <SystemTray/>
+                <Workspaces/>
             </centerbox>
         </window>
     )
