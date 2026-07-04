@@ -1,0 +1,7 @@
+@use 'sass:map';
+@use 'colors';
+
+.bar{
+    background-color: rgb(0, 0, 0, 0);
+    // background-color: map.get(colors.$themes, dark, background);
+}
