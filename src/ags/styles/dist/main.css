@@ -21,61 +21,90 @@ How to use workspace styles:
 > Use label style for the current workspace
 */
 .workspace-button-label {
-  color: rgb(28, 13, 13);
-}
-
-.workspace-button-label-current {
-  color: rgb(249, 240, 240);
-  background-color: rgb(231, 126, 126);
+  margin: 0px;
   padding: 0px;
   padding-left: 10px;
   padding-right: 10px;
   border-radius: 22px;
+  color: rgb(28, 13, 13);
+}
+
+.workspace-button-label:hover {
+  color: rgb(249, 240, 240);
+  background-color: rgb(231, 126, 126);
 }
 
 .workspace-button-label-active {
-  color: rgb(191, 24, 24);
+  margin: 0px;
+  padding: 0px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 22px;
+  color: rgb(231, 126, 126);
+}
+
+.workspace-button-label-active:hover {
+  color: rgb(249, 240, 240);
+  background-color: rgb(231, 126, 126);
+}
+
+.workspace-button-label-current {
+  margin: 0px;
+  padding: 0px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 22px;
+  color: rgb(249, 240, 240);
+  background-color: rgb(231, 126, 126);
 }
 
 .workspace-button {
-  background-color: rgb(249, 240, 240);
+  margin: 0px;
   padding: 2px;
-  padding-left: 5px;
-  padding-right: 5px;
+  padding-left: 0px;
+  padding-right: 0px;
   border-radius: 22px;
+  background-color: rgb(249, 240, 240);
 }
 
 .workspace-button-active {
-  color: rgb(191, 24, 24);
+  margin: 0px;
   padding: 2px;
-  padding-left: 5px;
-  padding-right: 5px;
+  padding-left: 0px;
+  padding-right: 0px;
   border-radius: 22px;
+  color: rgb(191, 24, 24);
 }
 
 .workspace-button-active-start {
-  color: rgb(191, 24, 24);
+  margin: 0px;
   padding: 2px;
-  padding-left: 5px;
-  padding-right: 5px;
+  padding-left: 0px;
+  padding-right: 0px;
+  border-radius: 22px;
+  color: rgb(191, 24, 24);
   border-radius: 0px;
   border-top-left-radius: 22px;
   border-bottom-left-radius: 22px;
 }
 
 .workspace-button-active-center {
-  color: rgb(191, 24, 24);
+  margin: 0px;
   padding: 2px;
-  padding-left: 5px;
-  padding-right: 5px;
+  padding-left: 0px;
+  padding-right: 0px;
+  border-radius: 22px;
+  color: rgb(191, 24, 24);
   border-radius: 0px;
 }
 
 .workspace-button-active-end {
-  color: rgb(191, 24, 24);
+  margin: 0px;
   padding: 2px;
-  padding-left: 5px;
-  padding-right: 5px;
+  padding-left: 0px;
+  padding-right: 0px;
+  border-radius: 22px;
+  color: rgb(191, 24, 24);
   border-radius: 0px;
   border-top-right-radius: 22px;
   border-bottom-right-radius: 22px;

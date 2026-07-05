@@ -25,11 +25,11 @@ export default function SystemTray(){
                 pixelSize={ICON_SIZE}
             />
             
-            {/* <image 
+            <image 
                 iconName={'view-more-horizontal-symbolic'} 
                 class={"icon"}
                 pixelSize={ICON_SIZE} 
-            /> */}
+            />
         </box>
     )
 }
