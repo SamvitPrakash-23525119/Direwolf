@@ -1,8 +1,4 @@
 @import url("https://fonts.googleapis.com/css?family=Noto%20Sans%20Nandinagari:700|Noto%20Sans%20Nandinagari:400");
-.nandinagari {
-  font-family: "Noto Sans Nandinagari";
-}
-
 .top-bar {
   background-color: rgb(249, 240, 240);
   border-radius: 22px;
@@ -11,6 +7,11 @@
   padding-left: 10px;
   margin-top: 5px;
   margin-right: 5px;
+  margin-left: 5px;
+}
+
+.nandinagari {
+  font-family: "Noto Sans Nandinagari";
 }
 
 /* 
@@ -110,8 +111,32 @@ How to use workspace styles:
   border-bottom-right-radius: 22px;
 }
 
-.bar {
-  background-color: rgba(0, 0, 0, 0);
+.media-pill {
+  padding-left: 15px;
+}
+
+.media-control-button {
+  border-radius: 22px;
+  padding: 0px;
+}
+
+.media-icon {
+  border-radius: 22px;
+  padding: 10px;
+  margin: 0px;
+}
+
+.media-icon:hover {
+  background-color: rgb(231, 126, 126);
+  color: rgb(249, 240, 240);
+}
+
+.media-label {
+  color: rgb(28, 13, 13);
+}
+
+.media-album-cover {
+  border-radius: 22px;
 }
 
 .small {

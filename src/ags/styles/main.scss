@@ -1,10 +1,9 @@
 @use "sass:map";
-@use "fonts";
 @use "colors";
 
 @use "bar";
 @use "workspaces";
-@use "temp";
+@use "media_pill";
 
 .small {
 	font-size: 0.750rem; 
