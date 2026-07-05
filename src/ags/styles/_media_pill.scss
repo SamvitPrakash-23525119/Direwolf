@@ -1,0 +1,33 @@
+@use 'sass:map';
+@use 'colors';
+@use 'fonts';
+
+.media-pill {
+    padding-left: 15px;
+}
+
+.media-control-button {
+    border-radius: 22px;
+    padding: 0px;
+}
+
+.media-icon {
+    border-radius: 22px;
+    padding-left: 9px;
+    padding-right: 9px;
+    margin: 0px;
+}
+
+.media-icon:hover {
+    background-color: map.get(colors.$themes, light, secondary);
+    color: map.get(colors.$themes, light, background);
+}
+
+.media-label {
+    color: map.get(colors.$themes, light, text);
+
+}
+
+.media-album-cover {
+    border-radius: 22px;
+}
