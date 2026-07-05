@@ -2,6 +2,11 @@
 @use 'colors';
 @use 'fonts';
 
+.time-bar {
+    margin-left: 2.5px;
+    margin-right: 2.5px;
+}
+
 .time-label {
     color: map.get(colors.$themes, light, text);
     padding:0px;

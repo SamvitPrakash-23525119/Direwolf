@@ -114,6 +114,8 @@ How to use workspace styles:
 .media-pill {
   padding-left: 15px;
   padding-right: 15px;
+  margin-left: 2.5px;
+  margin-right: 2.5px;
 }
 
 .media-control-button {
@@ -143,6 +145,11 @@ How to use workspace styles:
   padding: 0px;
 }
 
+.time-bar {
+  margin-left: 2.5px;
+  margin-right: 2.5px;
+}
+
 .time-label {
   color: rgb(28, 13, 13);
   padding: 0px;
@@ -154,6 +161,8 @@ How to use workspace styles:
   padding: 0px;
   padding-left: 9px;
   padding-right: 9px;
+  margin-left: 2.5px;
+  margin-right: 2.5px;
 }
 
 .messages-button {
@@ -162,16 +171,27 @@ How to use workspace styles:
 
 .start-bar {
   padding: 0px;
+  margin-right: 2.5px;
 }
 
 .start-button {
+  border-radius: 22px;
+  padding: 1px;
+}
+
+.start-icon {
   border-radius: 22px;
   padding-left: 8px;
   padding-right: 8px;
 }
 
-.start-button:hover {
-  color: rgb(191, 24, 24);
+.start-icon:hover {
+  color: rgb(249, 240, 240);
+  background-color: rgb(231, 126, 126);
+}
+
+.system-tray-bar {
+  margin-left: 2.5px;
 }
 
 .small {
