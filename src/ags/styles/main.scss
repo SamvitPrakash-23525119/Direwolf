@@ -2,7 +2,8 @@
 @use "fonts";
 @use "colors";
 
-@use "system_tray";
+@use "bar";
+@use "workspaces";
 @use "temp";
 
 .small {

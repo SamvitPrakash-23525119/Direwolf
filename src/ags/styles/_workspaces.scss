@@ -1,0 +1,75 @@
+@use 'sass:map';
+@use 'colors';
+@use 'fonts';
+
+/* 
+How to use workspace styles:
+============================
+
+> Use button styles for active workspaces
+> Use label style for the current workspace
+*/
+
+.workspace-button-label {
+    color: map.get(colors.$themes, light, text);
+}
+
+.workspace-button-label-current {
+    color: map.get(colors.$themes, light, background);
+    background-color: map.get(colors.$themes, light, secondary);
+    padding: 0px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 22px;
+}
+
+.workspace-button-label-active {
+    color: map.get(colors.$themes, light, accent);
+}
+
+.workspace-button {
+    background-color: map.get(colors.$themes, light, background);
+    padding: 2px;
+    padding-left: 5px;
+    padding-right: 5px;
+    border-radius: 22px;
+    
+}
+
+.workspace-button-active {
+    color: map.get(colors.$themes, light, accent);
+    padding: 2px;
+    padding-left: 5px;
+    padding-right: 5px;
+    border-radius: 22px;
+}
+
+.workspace-button-active-start {
+    color: map.get(colors.$themes, light, accent);
+    padding: 2px;
+    padding-left: 5px;
+    padding-right: 5px;
+    border-radius: 0px;
+    border-top-left-radius: 22px;
+    border-bottom-left-radius: 22px;
+}
+
+.workspace-button-active-center {
+    color: map.get(colors.$themes, light, accent);
+    padding: 2px;
+    padding-left: 5px;
+    padding-right: 5px;
+    border-radius: 0px;
+}
+
+.workspace-button-active-end {
+    color: map.get(colors.$themes, light, accent);
+    padding: 2px;
+    padding-left: 5px;
+    padding-right: 5px;
+    border-radius: 0px;
+    border-top-right-radius: 22px;
+    border-bottom-right-radius: 22px;
+}
+
+
