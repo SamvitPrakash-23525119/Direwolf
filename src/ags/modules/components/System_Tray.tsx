@@ -4,7 +4,7 @@ export default function SystemTray(){
     return (
         <box 
             spacing={8} 
-            class={"top-bar"}
+            class={"top-bar system-tray-bar"}
         >
             <image 
                 iconName={'network-wireless-signal-excellent-symbolic'} 
