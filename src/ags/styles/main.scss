@@ -4,6 +4,8 @@
 @use "bar";
 @use "workspaces";
 @use "media_pill";
+@use "utility_bar";
+@use 'messages';
 
 .small {
 	font-size: 0.750rem; 

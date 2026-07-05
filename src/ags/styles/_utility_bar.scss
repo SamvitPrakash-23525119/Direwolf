@@ -1,0 +1,8 @@
+@use 'sass:map';
+@use 'colors';
+@use 'fonts';
+
+.time-label {
+    color: map.get(colors.$themes, light, text);
+    padding:0px;
+}

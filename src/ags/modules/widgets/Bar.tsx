@@ -3,6 +3,8 @@ import {Astal} from "ags/gtk4"
 import SystemTray from "../components/System_Tray"
 import Workspaces from "../components/Workspaces"
 import MediaPill from "../components/Media_Pill"
+import Time from "../components/Time"
+import Messages from "../components/Messages"
 
 export default function Bar(){
     return (
@@ -13,7 +15,12 @@ export default function Bar(){
             exclusivity={Astal.Exclusivity.EXCLUSIVE}
         >
             <centerbox hexpand class={"bar-content"}>
-                <SystemTray/>
+                <box $type='end'>
+                    <Time/>
+                    <Messages/>
+                    <SystemTray/>
+                </box>
+
                 <Workspaces/>
                 <MediaPill/>
             </centerbox>
