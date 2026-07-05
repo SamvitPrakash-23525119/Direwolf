@@ -2,7 +2,7 @@ import Battery from "gi://AstalBattery"
 
 export default class BatteryService {
   static instance: BatteryService
-  static battery: Battery
+  static battery: any
 
   static get_default() {
     if (!BatteryService.instance) BatteryService.instance = new BatteryService()

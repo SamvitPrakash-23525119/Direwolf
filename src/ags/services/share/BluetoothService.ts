@@ -2,7 +2,7 @@ import Bluetooth from "gi://AstalBluetooth"
 
 export default class BluetoothService {
   static instance: BluetoothService
-  static bluetoothctl: Bluetooth
+  static bluetoothctl: any
 
   static get_default() {
     if (!BluetoothService.instance)
