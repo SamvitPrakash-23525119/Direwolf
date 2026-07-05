@@ -4,11 +4,12 @@
 @use "bar";
 @use "workspaces";
 @use "media_pill";
-@use "utility_bar";
+@use "time";
 @use 'messages';
 
 .small {
 	font-size: 0.750rem; 
+	font-weight: 550;
 	/* 12px */
 }
 

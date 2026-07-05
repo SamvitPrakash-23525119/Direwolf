@@ -16,8 +16,8 @@ export default function Bar(){
         >
             <centerbox hexpand class={"bar-content"}>
                 <box $type='end'>
-                    <Time/>
                     <Messages/>
+                    <Time/>
                     <SystemTray/>
                 </box>
 

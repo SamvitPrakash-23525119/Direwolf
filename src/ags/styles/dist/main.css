@@ -146,6 +146,8 @@ How to use workspace styles:
 .time-label {
   color: rgb(28, 13, 13);
   padding: 0px;
+  padding-left: 3px;
+  padding-right: 4px;
 }
 
 .messages-bar {
@@ -160,6 +162,7 @@ How to use workspace styles:
 
 .small {
   font-size: 0.75rem;
+  font-weight: 550;
   /* 12px */
 }
 
