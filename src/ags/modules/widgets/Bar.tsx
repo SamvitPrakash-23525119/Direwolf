@@ -1,10 +1,11 @@
 import {Astal} from "ags/gtk4"
 
 import SystemTray from "../components/System_Tray"
-import Workspaces from "../components/Workspaces"
-import MediaPill from "../components/Media_Pill"
 import Time from "../components/Time"
 import Messages from "../components/Messages"
+import Workspaces from "../components/Workspaces"
+import MediaPill from "../components/Media_Pill"
+import StartButton from "../components/Start_Button"
 
 export default function Bar(){
     return (
@@ -22,7 +23,11 @@ export default function Bar(){
                 </box>
 
                 <Workspaces/>
-                <MediaPill/>
+
+                <box $type='start'>
+                    <StartButton/>
+                    <MediaPill/>
+                </box>
             </centerbox>
         </window>
     )
