@@ -160,6 +160,20 @@ How to use workspace styles:
   padding: 0px;
 }
 
+.start-bar {
+  padding: 0px;
+}
+
+.start-button {
+  border-radius: 22px;
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
+.start-button:hover {
+  color: rgb(191, 24, 24);
+}
+
 .small {
   font-size: 0.75rem;
   font-weight: 550;

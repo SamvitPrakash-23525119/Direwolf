@@ -38,7 +38,7 @@ ags: clean $(CSS)
 
 ags-inspect: clean $(CSS)
 	@echo 'Running Application in Debug Mode...'
-	ags inspect $(AGS_ENTRY) #--gtk 4
+	ags inspect -i 'Direwolf'
 
 ags-live:
 	@echo 'Watching for changes...'

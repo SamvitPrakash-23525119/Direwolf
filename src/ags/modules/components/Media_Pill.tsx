@@ -3,7 +3,6 @@ import { ICON_SIZE } from "../../constants/icons"
 export default function MediaPill(){
     return (
         <box
-            $type='start'
             spacing={10}
             class={"top-bar media-pill"}
         >
