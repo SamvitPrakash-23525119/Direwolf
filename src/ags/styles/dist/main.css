@@ -2,7 +2,7 @@
 .top-bar {
   background-color: rgb(249, 240, 240);
   border-radius: 22px;
-  padding: 5px;
+  padding: 3px;
   padding-right: 10px;
   padding-left: 10px;
   margin-top: 5px;
@@ -176,11 +176,12 @@ How to use workspace styles:
 
 .start-button {
   border-radius: 22px;
-  padding: 1px;
+  padding: 1.5px;
 }
 
 .start-icon {
   border-radius: 22px;
+  padding: 0px;
   padding-left: 8px;
   padding-right: 8px;
 }
