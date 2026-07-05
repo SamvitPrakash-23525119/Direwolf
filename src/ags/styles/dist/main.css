@@ -113,6 +113,7 @@ How to use workspace styles:
 
 .media-pill {
   padding-left: 15px;
+  padding-right: 15px;
 }
 
 .media-control-button {
@@ -122,6 +123,7 @@ How to use workspace styles:
 
 .media-icon {
   border-radius: 22px;
+  padding: 0px;
   padding-left: 9px;
   padding-right: 9px;
   margin: 0px;
@@ -138,10 +140,29 @@ How to use workspace styles:
 
 .media-album-cover {
   border-radius: 22px;
+  padding: 0px;
+}
+
+.time-label {
+  color: rgb(28, 13, 13);
+  padding: 0px;
+  padding-left: 3px;
+  padding-right: 4px;
+}
+
+.messages-bar {
+  padding: 0px;
+  padding-left: 9px;
+  padding-right: 9px;
+}
+
+.messages-button {
+  padding: 0px;
 }
 
 .small {
   font-size: 0.75rem;
+  font-weight: 550;
   /* 12px */
 }
 

@@ -3,7 +3,6 @@ import { ICON_SIZE } from "../../constants/icons";
 export default function SystemTray(){
     return (
         <box 
-            $type='end'
             spacing={8} 
             class={"top-bar"}
         >
