@@ -58,16 +58,28 @@ How to use workspace styles:
     border-radius: 22px;
 }
 
+@mixin workspace-buttons-hover {
+    color: map.get(colors.$themes, light, secondary);
+}
+
 .workspace-button {
     @include workspace-buttons;
 
     background-color: map.get(colors.$themes, light, background);
 }
 
+.workspace-button:hover {
+    @include workspace-buttons-hover;
+}
+
 .workspace-button-active {
     @include workspace-buttons;
 
     color: map.get(colors.$themes, light, accent);
+}
+
+.workspace-button-active:hover {
+    @include workspace-buttons-hover;
 }
 
 .workspace-button-active-start {
@@ -79,11 +91,19 @@ How to use workspace styles:
     border-bottom-left-radius: 22px;
 }
 
+.workspace-button-active-start:hover {
+    @include workspace-buttons-hover;
+}
+
 .workspace-button-active-center {
     @include workspace-buttons;
 
     color: map.get(colors.$themes, light, accent);
     border-radius: 0px;
+}
+
+.workspace-button-active-center:hover {
+    @include workspace-buttons-hover;
 }
 
 .workspace-button-active-end {
@@ -93,6 +113,10 @@ How to use workspace styles:
     border-radius: 0px;
     border-top-right-radius: 22px;
     border-bottom-right-radius: 22px;
+}
+
+.workspace-button-active-end:hover {
+    @include workspace-buttons-hover;
 }
 
 

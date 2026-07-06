@@ -2,7 +2,7 @@ import Wp from "gi://AstalWp"
 
 export default class WpctlService {
   static instance: WpctlService
-  static wpctl: Wp
+  static wpctl: any
 
   static get_default() {
     if (!WpctlService.instance) WpctlService.instance = new WpctlService()

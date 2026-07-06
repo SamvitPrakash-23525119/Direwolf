@@ -2,7 +2,7 @@ import Hyprland from "gi://AstalHyprland"
 
 export default class HyprlandService {
   static instance: HyprlandService
-  static hypr: Hyprland
+  static hypr: any
 
   static get_default() {
     if (!HyprlandService.instance) {

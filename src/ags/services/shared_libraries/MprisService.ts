@@ -5,7 +5,7 @@ const [player, setPlayer] = createState<Mpris.Player | null>(null)
 
 export default class MprisService {
   static instance: MprisService
-  static mpris: Mpris
+  static mpris: any
   static player = player
   static setPlayer = setPlayer
 

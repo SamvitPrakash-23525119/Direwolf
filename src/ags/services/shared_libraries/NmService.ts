@@ -2,7 +2,7 @@ import Network from "gi://AstalNetwork"
 
 export default class NmService {
   static instance: NmService
-  static nm: Network
+  static nm: any
 
   static get_default() {
     if (!NmService.instance) NmService.instance = new NmService()
