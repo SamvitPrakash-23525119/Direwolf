@@ -2,7 +2,7 @@ import Hyprland from "../../services/shared_libraries/HyprlandService"
 import getWorkspaceGroup from "../../utilities/workspaces"
 import toRoman from "../../utilities/to_numerals";
 import { activeWorkspaces_button, activeWorkspace_label } from "../../utilities/active_workspaces";
-import { createBinding, For } from 'gnim'
+import { createBinding, For, createComputed } from 'gnim'
 
 export default function Workspaces() {
     const hypr = Hyprland.get_default().getHypr();
@@ -26,6 +26,18 @@ export default function Workspaces() {
         return activeIds;
     });
 
+    const labelClass = createComputed(() => {
+        const focused = focusedWorkspace()
+        const active = activeIds()
+
+        return (id: number) =>
+            `${focused?.id === id
+                ? "workspace-button-label-current"
+                : "workspace-button-label"} ${
+                activeWorkspace_label(active, id)
+            } small nandinagari`
+    })
+
     return (
         <box
             $type='center'
@@ -39,7 +51,7 @@ export default function Workspaces() {
                     >
                         <label
                             label={toRoman(id)}
-                            class={focusedWorkspace.as((focused) => `${focused?.id === id ? 'workspace-button-label-current' : 'workspace-button-label'} ${activeIds.as((activeIds) => activeWorkspace_label(activeIds, id))} small nandinagari`) }            
+                            class={labelClass.as((labelClass) => labelClass(id))}
                         />
                     </button>
 
