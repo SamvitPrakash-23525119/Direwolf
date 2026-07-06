@@ -1,51 +1,50 @@
-export default function Workspaces(){
+import Hyprland from "../../services/shared_libraries/HyprlandService"
+import getWorkspaceGroup from "../../utilities/workspaces"
+import toRoman from "../../utilities/to_numerals";
+import { activeWorkspaces_button, activeWorkspace_label } from "../../utilities/active_workspaces";
+import { createBinding, For } from 'gnim'
+
+export default function Workspaces() {
+    const hypr = Hyprland.get_default().getHypr();
+
+    const focusedWorkspace = createBinding(hypr, "focused_workspace");
+    const workspaces = createBinding(hypr, "workspaces");
+
+    const visibleIds = focusedWorkspace.as((focused) => {
+        const currentId = focused?.id ?? 1
+        return getWorkspaceGroup(currentId, 10)
+    })
+
+    const activeIds = workspaces.as((workspaces) => {
+        var activeIds = [];
+        
+        for (const i in workspaces) {
+            const workspace = workspaces[i].id;
+            activeIds.push(workspace);
+        }
+        
+        return activeIds;
+    });
+
     return (
         <box
             $type='center'
             class={"top-bar"}
         >
-            <button class={"workspace-button"}>
-                <label label={'I'} class={"workspace-button-label small nandinagari"}/>
-            </button>
+            <For each={visibleIds} >
+                {(id) => (
+                    <button 
+                        class={activeIds.as((activeIds) => activeWorkspaces_button(activeIds, id))}
+                        onClicked={() => hypr.dispatch("workspace", `${id}`)}
+                    >
+                        <label
+                            label={toRoman(id)}
+                            class={focusedWorkspace.as((focused) => `${focused?.id === id ? 'workspace-button-label-current' : 'workspace-button-label'} ${activeIds.as((activeIds) => activeWorkspace_label(activeIds, id))} small nandinagari`) }            
+                        />
+                    </button>
 
-            <button class={"workspace-button"}>
-                <label label={'II'} class={"workspace-button-label small nandinagari"}/>
-            </button>
-
-            <button class={"workspace-button-active-start"}>
-                <label label={'III'} class={"workspace-button-label-active small nandinagari"}/>
-            </button>
-
-            <button class={"workspace-button-active-center"}>
-                <label label={'IV'} class={"workspace-button-label-active small nandinagari"}/>
-            </button>
-
-            <button class={"workspace-button-active-center"}>
-                <label label={'V'} class={"workspace-button-label-current small nandinagari"}/>
-            </button>
-
-            <button class={"workspace-button-active-end"}>
-                <label label={'VI'} class={"workspace-button-label-active small nandinagari"}/>
-            </button>
-
-            <button class={"workspace-button"}>
-                <label label={'VIII'} class={"workspace-button-label small nandinagari"}/>
-            </button>
-
-            <button class={"workspace-button-active"}>
-                <label label={'IX'} class={"workspace-button-label-active small nandinagari"}/>
-            </button>
-
-            <button class={"workspace-button"}>
-                <label label={'X'} class={"workspace-button-label small nandinagari"}/>
-            </button>
-
-            <button class={"workspace-button"}>
-                <label label={'XV'} class={"workspace-button-label small nandinagari"}/>
-            </button>
-
-
-
+                )}
+            </For>
         </box>
     )
 }

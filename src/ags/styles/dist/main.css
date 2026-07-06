@@ -72,6 +72,10 @@ How to use workspace styles:
   background-color: rgb(249, 240, 240);
 }
 
+.workspace-button:hover {
+  color: rgb(231, 126, 126);
+}
+
 .workspace-button-active {
   margin: 0px;
   padding: 2px;
@@ -79,6 +83,10 @@ How to use workspace styles:
   padding-right: 0px;
   border-radius: 22px;
   color: rgb(191, 24, 24);
+}
+
+.workspace-button-active:hover {
+  color: rgb(231, 126, 126);
 }
 
 .workspace-button-active-start {
@@ -93,6 +101,10 @@ How to use workspace styles:
   border-bottom-left-radius: 22px;
 }
 
+.workspace-button-active-start:hover {
+  color: rgb(231, 126, 126);
+}
+
 .workspace-button-active-center {
   margin: 0px;
   padding: 2px;
@@ -101,6 +113,10 @@ How to use workspace styles:
   border-radius: 22px;
   color: rgb(191, 24, 24);
   border-radius: 0px;
+}
+
+.workspace-button-active-center:hover {
+  color: rgb(231, 126, 126);
 }
 
 .workspace-button-active-end {
@@ -113,6 +129,10 @@ How to use workspace styles:
   border-radius: 0px;
   border-top-right-radius: 22px;
   border-bottom-right-radius: 22px;
+}
+
+.workspace-button-active-end:hover {
+  color: rgb(231, 126, 126);
 }
 
 .media-pill {
