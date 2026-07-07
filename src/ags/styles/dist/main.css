@@ -188,14 +188,27 @@ How to use workspace styles:
 
 .messages-bar {
   padding: 0px;
-  padding-left: 9px;
-  padding-right: 9px;
   margin-left: 2.5px;
   margin-right: 2.5px;
 }
 
 .messages-button {
+  margin: 0px;
   padding: 0px;
+  border-radius: 22px;
+  padding: 1.5px;
+}
+
+.messages-icon {
+  border-radius: 22px;
+  padding: 0px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.messages-icon:hover {
+  color: rgb(249, 240, 240);
+  background-color: rgb(231, 126, 126);
 }
 
 .start-bar {
