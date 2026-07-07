@@ -1,7 +1,8 @@
 import NmService from "../../services/shared_libraries/NmService";
 import BluetoothService from "../../services/shared_libraries/BluetoothService";
+import WpctlService from "../../services/shared_libraries/WpctlService";
 import { ICON_SIZE } from "../../constants/icons";
-import { createBinding, createEffect, createState, For } from "gnim";
+import { createBinding, createEffect, createState, For, createMemo } from "gnim";
 
 export default function SystemTray() {
     /* 
@@ -63,24 +64,32 @@ export default function SystemTray() {
 
         setBluetoothIcon([]); // Reset the bluetoothIcon state before updating it
 
-        if(bluetoothPowered()) {
-            if(bluetoothConnected()) {
+        if (bluetoothPowered()) {
+            if (bluetoothConnected()) {
                 for (var i = 0; i < bluetoothDevices().length; i++) {
                     const device = bluetoothDevices()[i];
                     const deviceConnected = createBinding(device, 'connected');
-                    
-                    if(deviceConnected()) {
+
+                    if (deviceConnected()) {
                         const deviceIcon = createBinding(device, 'icon');
-                        setBluetoothIcon(prev => [...prev, [deviceIcon()+'-symbolic', device.name]]);
+                        setBluetoothIcon(prev => [...prev, [deviceIcon() + '-symbolic', device.name]]);
                     }
                 }
 
-            } else setBluetoothIcon([['bluetooth-active-symbolic','No Devices Connected']]);
-        
-        } else setBluetoothIcon([['bluetooth-disabled-symbolic','Bluetooth Disabled']]);
+            } else setBluetoothIcon([['bluetooth-active-symbolic', 'No Devices Connected']]);
+
+        } else setBluetoothIcon([['bluetooth-disabled-symbolic', 'Bluetooth Disabled']]);
 
     })
 
+    /*
+        Wireplumber
+        ==================
+    */
+    const wpctl = WpctlService.get_default().getWpctl();
+
+    const defaultSpeaker = createBinding(wpctl, 'default_speaker');
+    const volumeIcon = createBinding(defaultSpeaker(), 'volume_icon');
 
     return (
         <box
@@ -94,12 +103,12 @@ export default function SystemTray() {
                     pixelSize={ICON_SIZE}
                     tooltipText={networkSSID()}
                 />
-                
+
                 <For each={bluetoothIcon} >
                     {(icon) => (
-                        <image 
-                            iconName={icon[0]} 
-                            class={"icon"} 
+                        <image
+                            iconName={icon[0]}
+                            class={"icon"}
                             pixelSize={ICON_SIZE}
                             tooltipText={icon[1]}
                         />
@@ -108,7 +117,7 @@ export default function SystemTray() {
             </box>
 
             <image
-                iconName={'audio-volume-high-symbolic'}
+                iconName={volumeIcon((t) => t)}
                 class={"icon"}
                 pixelSize={ICON_SIZE}
             />
@@ -117,6 +126,7 @@ export default function SystemTray() {
                 iconName={'view-more-horizontal-symbolic'}
                 class={"icon"}
                 pixelSize={ICON_SIZE}
+                tooltipText={'System Tray'}
             />
 
         </box>
