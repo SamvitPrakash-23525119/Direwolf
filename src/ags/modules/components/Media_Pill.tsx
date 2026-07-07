@@ -61,13 +61,12 @@ export default function MediaPill(){
             class={"top-bar media-pill"}
             // widthRequest={270}
         >
-            <box class={'media-album-cover-box'} overflow={Gtk.Overflow.HIDDEN} hexpand={false}>
-                <image 
-                    file={coverArt((t) => t)} 
-                    class={'media-album-cover'}
-                    pixelSize={28}
-                />
-            </box>
+            <image 
+                file={coverArt((t) => t)} 
+                class={'media-album-cover'}
+                pixelSize={28}
+                overflow={Gtk.Overflow.HIDDEN}
+            />
             
             <label label={title((t) => t)} class={'media-label small'} ellipsize={Pango.EllipsizeMode.END} hexpand={false} maxWidthChars={16}/>
 
