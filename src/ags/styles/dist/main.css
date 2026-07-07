@@ -225,8 +225,8 @@ How to use workspace styles:
 .start-icon {
   border-radius: 22px;
   padding: 0px;
-  padding-left: 8px;
-  padding-right: 8px;
+  padding-left: 6px;
+  padding-right: 6px;
 }
 
 .start-icon:hover {
