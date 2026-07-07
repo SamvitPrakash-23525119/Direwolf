@@ -1,28 +1,37 @@
 import app from "ags/gtk4/app"
 import css from "./styles/dist/main.css"
 import Bar from "./modules/widgets/Bar"
-import BluetoothService from "./services/shared_libraries/BluetoothService"
-import {createBinding, createEffect, createState} from "gnim"
+import WpctlService from "./services/shared_libraries/WpctlService"
+import { createBinding, createEffect } from "gnim"
 
 app.start({
-  css: css,
-  instanceName: "Direwolf",
-  iconTheme: "Adwaita",
-  main() {
-    console.log("Started AGS...")
-    const bluetoothctl = BluetoothService.get_default().getBluetoothctl()
+	css: css,
+	instanceName: "Direwolf",
+	iconTheme: "Adwaita",
+	main() {
+		console.log("Started AGS...")
+		const wpctl = WpctlService.get_default().getWpctl();
 
-    for(const i in bluetoothctl.devices[0]) console.log(i)
+		for (const i in wpctl.default_speaker) console.log(i);
 
-    return (
-      <>
-        <Bar/>
-        {/* <window visible>
-          <label label="Hello World" class={"p nandinagari"} />
-          <image iconName={icon((t) => t)} class={"icon"} pixelSize={32} />
+		console.log('--------------------------');
 
-        </window> */}
-      </>
-    )
-  },
+
+		createEffect(() => {
+			const defaultSpeaker = createBinding(wpctl, 'default_speaker');
+			const volume = createBinding(defaultSpeaker(), 'volume');
+
+			console.log(volume());
+
+		})
+
+		console.log('muted:' ,wpctl.default_speaker.mute);
+
+
+		return (
+			<>
+				<Bar />
+			</>
+		)
+	},
 })
