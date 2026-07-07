@@ -16,17 +16,17 @@ export default function Bar(){
             exclusivity={Astal.Exclusivity.EXCLUSIVE}
         >
             <centerbox hexpand class={"bar-content"}>
-                <box $type='end'>
-                    <Messages/>
-                    <Time/>
-                    <SystemTray/>
+                <box $type='start'>
+                    <StartButton/>
+                    <MediaPill/>
                 </box>
 
                 <Workspaces/>
 
-                <box $type='start'>
-                    <StartButton/>
-                    <MediaPill/>
+                <box $type='end'>
+                    <Messages/>
+                    <Time/>
+                    <SystemTray/>
                 </box>
             </centerbox>
         </window>
