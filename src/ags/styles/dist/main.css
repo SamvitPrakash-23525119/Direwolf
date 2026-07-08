@@ -182,7 +182,7 @@ How to use workspace styles:
 .time-label {
   color: rgb(28, 13, 13);
   padding: 0px;
-  padding-left: 3px;
+  padding-left: 1px;
   padding-right: 4px;
 }
 
