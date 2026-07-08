@@ -1,4 +1,5 @@
 import MprisService from "../../services/shared_libraries/MprisService"
+import type Mpris from "gi://AstalMpris"
 import Pango from "gi://Pango"
 import Gtk from "gi://Gtk?version=4.0";
 import { ICON_SIZE } from "../../constants/icons"
@@ -29,7 +30,7 @@ export default function MediaPill(){
                 const coverArt = createBinding(players()[0], 'cover_art');
 
                 setTitle(title() + " - " + artist());
-                setPlayback(playback());
+                setPlayback(playback() == 0 ? false : true);
                 setCoverArt(coverArt());
 
                 const playNext =  () => {

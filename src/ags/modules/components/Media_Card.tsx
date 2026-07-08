@@ -6,7 +6,7 @@ import { createBinding, createEffect, createState } from "gnim";
 import { ICON_SIZE } from "../../constants/icons";
 
 interface MediaCardProps {
-    player?: Mpris.Player;
+    player: Mpris.Player;
 }
 
 export default function MediaCard({ player }: MediaCardProps){
@@ -28,26 +28,26 @@ export default function MediaCard({ player }: MediaCardProps){
     
             createEffect(() => {
                 // for(const i in players()[0]) {
-                    const title = createBinding(players()[0], 'title');
-                    const artist = createBinding(players()[0], 'artist');
-                    const playback = createBinding(players()[0], 'playback_status');
-                    const coverArt = createBinding(players()[0], 'cover_art');
+                    const title = createBinding(player, 'title');
+                    const artist = createBinding(player, 'artist');
+                    const playback = createBinding(player, 'playback_status');
+                    const coverArt = createBinding(player, 'cover_art');
     
                     setTitle(title());
                     setArtist(artist());
-                    setPlayback(playback());
+                    setPlayback(playback() == 0 ? false : true);
                     setCoverArt(coverArt());
     
                     const playNext =  () => {
-                        players()[0]?.next();
+                        player.next();
                     }
                     
     
                     const playPrev =  () => {
-                        players()[0]?.previous();
+                        player.previous();
                     }
                     const playPause =  () => {
-                        players()[0]?.play_pause();
+                        player.play_pause();
                     }
     
                     setPlay_next(() => playNext);
