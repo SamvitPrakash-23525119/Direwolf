@@ -1,0 +1,47 @@
+@use 'sass:map';
+@use 'colors';
+@use 'fonts';
+
+.media-card-box{
+    padding-top: 10px;
+    padding-bottom: 4px;
+
+}
+
+.media-card-album-cover{
+    border-radius: 100%;
+    padding: 0px;
+    margin: 0px;
+
+}
+
+@mixin media-card-label {
+    color: map.get(colors.$themes, light, text);
+}
+
+.media-card-label-title {
+    @include media-card-label;
+    font-weight: 555;
+    font-size: 13px;
+}
+
+.media-card-label-artist {
+    @include media-card-label;
+    font-style: italic;
+}
+
+.media-card-control-button {
+    border-radius: 22px;
+    padding: 0px;
+}
+
+.media-card-icon {
+    border-radius: 22px;
+    padding: 0px;
+    margin: 0px;
+}
+
+.media-card-icon:hover {
+    background-color: map.get(colors.$themes, light, secondary);
+    color: map.get(colors.$themes, light, background);
+}

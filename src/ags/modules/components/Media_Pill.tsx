@@ -68,7 +68,14 @@ export default function MediaPill(){
                 overflow={Gtk.Overflow.HIDDEN}
             />
             
-            <label label={title((t) => t)} class={'media-label small'} ellipsize={Pango.EllipsizeMode.END} hexpand={false} maxWidthChars={16}/>
+            <label 
+                label={title((t) => t)} 
+                class={'media-label small nandinagari'} 
+                ellipsize={Pango.EllipsizeMode.END} 
+                hexpand={false} 
+                maxWidthChars={16}
+                tooltipText={title((t) => t)}
+            />
 
             <box>
                 <button class={'media-control-button'} onClicked={() => play_prev()?.()}>

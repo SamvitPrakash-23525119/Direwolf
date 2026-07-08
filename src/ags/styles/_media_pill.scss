@@ -15,6 +15,7 @@
 }
 
 .media-album-cover{
+    border-radius: 22px;
     padding: 0px;
     margin: 0px;
 }
@@ -35,9 +36,4 @@
 .media-label {
     color: map.get(colors.$themes, light, text);
 
-}
-
-.media-album-cover {
-    border-radius: 22px;
-    padding: 0px;
 }
