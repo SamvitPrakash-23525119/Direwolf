@@ -179,6 +179,21 @@ How to use workspace styles:
 
 .media-label {
   color: rgb(28, 13, 13);
+  border-radius: 22px;
+  padding: 0px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.media-label:hover {
+  background-color: rgb(231, 126, 126);
+  color: rgb(249, 240, 240);
+}
+
+.media-pill-button {
+  border-radius: 22px;
+  padding: 0px;
+  margin: 0px;
 }
 
 .time-bar {

@@ -59,30 +59,53 @@ export default function MediaPill(){
 
     })
 
+    const openModal = () => {
+        mediaPlayerService.modal_toggle();
+    }
     
     return (
         <box
             visible={player_count.as((index) => index != 0)}
-            spacing={10}
             class={"top-bar media-pill"}
+            widthRequest={250}
+            hexpand={false}
         >
-            <image 
-                file={coverArt((t) => t)} 
-                class={'media-album-cover'}
-                pixelSize={28}
-                overflow={Gtk.Overflow.HIDDEN}
-            />
-            
-            <label 
-                label={title((t) => t)} 
-                class={'media-label small nandinagari'} 
-                ellipsize={Pango.EllipsizeMode.END} 
-                hexpand={false} 
-                maxWidthChars={16}
-                tooltipText={title((t) => t)}
-            />
+            <button
+                class={'media-pill-button'}
+                onClicked={() => openModal()}
+            >
+                <box
+                    spacing={10}
+                    class={'media-pill-box'}
+                    hexpand
+                >
+                    <image 
+                        file={coverArt((t) => t)} 
+                        class={'media-album-cover'}
+                        pixelSize={28}
+                        overflow={Gtk.Overflow.HIDDEN}
+                        halign={Gtk.Align.START}
+                    />
+                    
+                    <label 
+                        label={title((t) => t)} 
+                        class={'media-label small nandinagari'} 
+                        ellipsize={Pango.EllipsizeMode.END} 
+                        hexpand={false} 
+                        // maxWidthChars={20}
+                        maxWidthChars={player((p) =>{
+                            if(p?.can_go_previous && p?.can_go_next) return 20;
+                            else return 30;
+                        })}
+                        tooltipText={title((t) => t)}
+                        halign={Gtk.Align.END}
+                    />
+                </box>
+            </button>
 
-            <box>
+            <box
+                halign={Gtk.Align.END}
+            >
                 <button class={'media-control-button'} onClicked={() => play_prev()?.()} visible={player((p) => p?.can_go_previous ?? false)}>
                     <image iconName={'media-skip-backward-symbolic'} class={'icon media-icon'} pixelSize={ICON_SIZE-3}/>
                 </button>

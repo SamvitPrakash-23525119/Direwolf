@@ -17,7 +17,7 @@ export default function MediaCard({ player, index }: MediaCardProps){
         const title = createBinding(player, 'title');
         const artist = createBinding(player, 'artist');
         const playback = createBinding(player, 'playback_status');
-        const coverArt = createBinding(player, 'cover_art').as((art) => art ? art : '/home/_c3rberus/GitHub/Direwolf/assets/placeholders/media/colored-musical-note-audio-symbol.jpg');
+        const coverArt = createBinding(player, 'cover_art').as((art) => art ? art : '/home/_c3rberus/GitHub/Direwolf/assets/placeholders/media/paper-craft-art-musical-note.jpg');
 
         const setPlayerIndex = () => {
             if(index !== undefined) mediaPlayerService.player_index = index;
@@ -33,20 +33,18 @@ export default function MediaCard({ player, index }: MediaCardProps){
                 widthRequest={200}
             >
 
-
-
                 <image 
                     file={coverArt((t) => t)} 
                     class={'media-card-album-cover'}
                     pixelSize={200}
                     overflow={Gtk.Overflow.HIDDEN}
                     halign={Gtk.Align.CENTER}
-                    />
-            
+                />
                 
                 <box
                     orientation={Gtk.Orientation.VERTICAL}
                 >
+
                     <label 
                         label={title((t) => t)} 
                         class={'media-card-label-title nandinagari'} 
@@ -54,7 +52,7 @@ export default function MediaCard({ player, index }: MediaCardProps){
                         hexpand={false} 
                         maxWidthChars={25}
                         halign={Gtk.Align.CENTER}
-                        />
+                    />
 
                     <label 
                         label={artist((a) => a)} 
@@ -63,7 +61,7 @@ export default function MediaCard({ player, index }: MediaCardProps){
                         hexpand={false} 
                         maxWidthChars={25}
                         halign={Gtk.Align.CENTER}
-                        />
+                    />
 
                 </box>
 

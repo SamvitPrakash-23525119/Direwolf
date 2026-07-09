@@ -46,7 +46,7 @@ export default function MediaPlayers(){
                         iconName={'window-close-symbolic'} 
                         class={'icon media-players-modal-icon'} 
                         pixelSize={ICON_SIZE}
-                        halign={Gtk.Align.START}
+                        halign={Gtk.Align.END}
                     />
                 </button>
 
