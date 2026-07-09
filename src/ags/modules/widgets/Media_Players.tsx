@@ -2,8 +2,10 @@ import MediaCard from "../components/Media_Card"
 import MprisService from "../../services/shared_libraries/MprisService"
 import type Mpris from "gi://AstalMpris"
 import MediaPlayerService from "../../services/media/MediaPlayerService"
+import Gtk from "gi://Gtk?version=4.0";
 import {Astal} from "ags/gtk4"
 import { createBinding, For, Accessor, createEffect } from "gnim";
+import { ICON_SIZE } from "../../constants/icons";
 
 export default function MediaPlayers(){
     const mpris = MprisService.get_default().getMpris();
@@ -22,26 +24,43 @@ export default function MediaPlayers(){
         mediaPlayerService.player_count = players().length;
     });
 
+    const closeModal = () => {
+        mediaPlayerService.modal_toggle();
+    }
+
     return (
         <window
             visible={modalOpen.as((open) => open)}
-            class={'.'}
-            // anchor={Astal.WindowAnchor.TOP}
+            class={'media-players-modal'}
             layer={Astal.Layer.TOP}
             exclusivity={Astal.Exclusivity.NORMAL}
         >
-            
             <box
-                spacing={25}
-            >
-                <For each={players}>
-                    {(player, i) => (
-                        <MediaCard player={player} index={i()}/>
-                    )}
-                </For>
-            </box>
-         
+                orientation={Gtk.Orientation.VERTICAL}
+                >
+                <button
+                    class={'media-players-modal-button'}
+                    onClicked={() => closeModal()}
+                >
+                    <image 
+                        iconName={'window-close-symbolic'} 
+                        class={'icon media-players-modal-icon'} 
+                        pixelSize={ICON_SIZE}
+                        halign={Gtk.Align.START}
+                    />
+                </button>
 
+                <box
+                    spacing={25}
+                    class={'media-players-container'}
+                >
+                    <For each={players}>
+                        {(player, i) => (
+                            <MediaCard player={player} index={i()}/>
+                        )}
+                    </For>
+                </box>
+            </box>
         </window>
     )
 }

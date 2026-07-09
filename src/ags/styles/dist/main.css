@@ -1,3 +1,14 @@
+.shadow {
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.55);
+  border-radius: 22px;
+  transition: transform 450ms ease, box-shadow 450ms ease;
+}
+
+.shadow:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.55);
+}
+
 .top-bar {
   background-color: rgb(249, 240, 240);
   border-radius: 22px;
@@ -236,7 +247,7 @@ How to use workspace styles:
 
 .media-card-toggle {
   border-radius: 22px;
-  padding: 1px;
+  padding: 0px;
 }
 
 .media-card-toggle-box {
@@ -307,6 +318,35 @@ How to use workspace styles:
 }
 
 .media-card-icon:hover {
+  background-color: rgb(231, 126, 126);
+  color: rgb(249, 240, 240);
+}
+
+.media-players-modal {
+  background-color: rgb(249, 240, 240);
+  border-radius: 22px;
+}
+
+.media-players-modal-button {
+  padding-top: 10px;
+  padding-right: 10px;
+  padding-left: 10px;
+  margin: 0px;
+}
+
+.media-players-container {
+  margin-left: 30px;
+  margin-right: 30px;
+  margin-bottom: 10px;
+}
+
+.media-players-modal-icon {
+  border-radius: 22px;
+  padding-right: 5px;
+  padding-left: 5px;
+}
+
+.media-players-modal-icon:hover {
   background-color: rgb(231, 126, 126);
   color: rgb(249, 240, 240);
 }

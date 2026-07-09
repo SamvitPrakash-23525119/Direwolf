@@ -28,7 +28,7 @@ export default function MediaCard({ player, index }: MediaCardProps){
             orientation={Gtk.Orientation.VERTICAL}
         >
             <box 
-                class={'top-bar media-card-box'}
+                class={'top-bar media-card-box shadow'}
                 orientation={Gtk.Orientation.VERTICAL}
                 widthRequest={200}
             >
