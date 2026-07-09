@@ -27,6 +27,16 @@ export default class MediaPlayerService extends GoObject.Object {
                     50,
                     0
                 ),
+
+                'player_count': GoObject.ParamSpec.int(
+                    "player_count",
+                    "Player Count",
+                    "The number of media players currently available.",
+                    GoObject.ParamFlags.READWRITE,
+                    0,
+                    50,
+                    0
+                ),
             },
 
         }, this)
@@ -34,7 +44,7 @@ export default class MediaPlayerService extends GoObject.Object {
 
     private _open: boolean = false;
     private _player_index: number = 0;
-
+    private _player_count: number = 0;
     static get_default(): MediaPlayerService {
         if (!this.instance) {
             this.instance = new MediaPlayerService();
@@ -66,6 +76,17 @@ export default class MediaPlayerService extends GoObject.Object {
         if (this._player_index !== value) {
             this._player_index = value;
             this.notify("player_index");
+        }
+    }
+
+    public get player_count(): number {
+        return this._player_count;
+    }
+
+    public set player_count(value: number) {
+        if (this._player_count !== value) {
+            this._player_count = value;
+            this.notify("player_count");
         }
     }
 

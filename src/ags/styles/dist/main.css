@@ -234,9 +234,35 @@ How to use workspace styles:
   margin-left: 2.5px;
 }
 
+.media-card-toggle {
+  border-radius: 22px;
+  padding: 2px;
+  color: rgb(231, 126, 126);
+}
+
+.media-card-toggle-box {
+  padding: 0px;
+}
+
+.media-card-toggle-icon {
+  border-radius: 22px;
+  padding: 0px;
+  margin: 0px;
+}
+
+.media-card-toggle-icon:hover {
+  background-color: rgb(231, 126, 126);
+  color: rgb(249, 240, 240);
+}
+
 .media-card-box {
+  margin: 0px;
   padding-top: 10px;
   padding-bottom: 4px;
+}
+
+.media-card-controls-box {
+  margin-top: 20px;
 }
 
 .media-card-album-cover {
@@ -247,6 +273,7 @@ How to use workspace styles:
 
 .media-card-label-title {
   color: rgb(28, 13, 13);
+  margin-top: 10px;
   font-weight: 555;
   font-size: 13px;
 }

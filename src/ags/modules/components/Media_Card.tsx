@@ -1,125 +1,101 @@
-import MprisService from "../../services/shared_libraries/MprisService";
 import type Mpris from "gi://AstalMpris"
-import Pango from "gi://Pango";
+import MediaPlayerService from "../../services/media/MediaPlayerService";
 import Gtk from "gi://Gtk?version=4.0";
-import { createBinding, createEffect, createState } from "gnim";
+import Pango from "gi://Pango";
+import { createBinding } from "gnim";
 import { ICON_SIZE } from "../../constants/icons";
 
 interface MediaCardProps {
     player: Mpris.Player;
+    index?: number;
 }
 
-export default function MediaCard({ player }: MediaCardProps){
-        const [title, setTitle] = createState('');
-        const [artist, setArtist] = createState('');
-        const [playback, setPlayback] = createState(false);
-        const [coverArt, setCoverArt] = createState('');
-        const [play_next, setPlay_next] = createState<(() => void) | null>(null);
-        const [play_prev, setPlay_prev] = createState<(() => void) | null>(null);
-        const [play_pause, setPlay_pause] = createState<(() => void) | null>(null);
+export default function MediaCard({ player, index }: MediaCardProps){
+        const mediaPlayerService = MediaPlayerService.get_default();
+        const playerIndex = createBinding(mediaPlayerService, "player_index");
     
-        const mpris = MprisService.get_default().getMpris();
-    
-        
-        createEffect(() => {
-            const players = createBinding(mpris, "players");
-    
-            if(players().length === 0) return;
-    
-            createEffect(() => {
-                // for(const i in players()[0]) {
-                    const title = createBinding(player, 'title');
-                    const artist = createBinding(player, 'artist');
-                    const playback = createBinding(player, 'playback_status');
-                    const coverArt = createBinding(player, 'cover_art');
-    
-                    setTitle(title());
-                    setArtist(artist());
-                    setPlayback(playback() == 0 ? false : true);
-                    setCoverArt(coverArt());
-    
-                    const playNext =  () => {
-                        player.next();
-                    }
-                    
-    
-                    const playPrev =  () => {
-                        player.previous();
-                    }
-                    const playPause =  () => {
-                        player.play_pause();
-                    }
-    
-                    setPlay_next(() => playNext);
-                    setPlay_prev(() => playPrev);
-                    setPlay_pause(() => playPause);
-    
-    
-                // }
-            });
-    
-        })
-    
+        const title = createBinding(player, 'title');
+        const artist = createBinding(player, 'artist');
+        const playback = createBinding(player, 'playback_status');
+        const coverArt = createBinding(player, 'cover_art').as((art) => art ? art : '/home/_c3rberus/GitHub/Direwolf/assets/logos/direwolf-detailed.png');
 
-
+        const setPlayerIndex = () => {
+            if(index !== undefined) {
+                mediaPlayerService.player_index = index;
+            }
+        }
+    
     return (
-        <box 
-            class={'top-bar media-card-box'}
+        <box
             orientation={Gtk.Orientation.VERTICAL}
-            widthRequest={200}
-            spacing={10}
         >
-        
-            <image 
-                file={coverArt((t) => t)} 
-                class={'media-card-album-cover'}
-                pixelSize={200}
-                overflow={Gtk.Overflow.HIDDEN}
-                halign={Gtk.Align.CENTER}
-            />
-        
-            
-            <box
+            <box 
+                class={'top-bar media-card-box'}
                 orientation={Gtk.Orientation.VERTICAL}
+                widthRequest={200}
             >
-                <label 
-                    label={title((t) => t)} 
-                    class={'media-card-label-title nandinagari'} 
-                    ellipsize={Pango.EllipsizeMode.END} 
-                    hexpand={false} 
-                    maxWidthChars={25}
+
+
+
+                <image 
+                    file={coverArt((t) => t)} 
+                    class={'media-card-album-cover'}
+                    pixelSize={200}
+                    overflow={Gtk.Overflow.HIDDEN}
                     halign={Gtk.Align.CENTER}
-                />
-
-                <label 
-                    label={artist((a) => a)} 
-                    class={'media-card-label-artist small nandinagari'} 
-                    ellipsize={Pango.EllipsizeMode.END} 
-                    hexpand={false} 
-                    maxWidthChars={25}
-                    halign={Gtk.Align.CENTER}
-                />
-
-            </box>
-
-            <box
-                halign={Gtk.Align.CENTER}
-                spacing={10}
-            >
-                <button class={'media-card-control-button'} onClicked={() => play_prev()?.()}>
-                    <image iconName={'media-skip-backward-symbolic'} class={'icon media-card-icon'} pixelSize={ICON_SIZE}/>
-                </button>
-
-                <button class={'media-card-control-button'} onClicked={() => play_pause()?.()}>
-                    <image iconName={playback((p) => !p ? 'media-playback-pause-symbolic' : 'media-playback-start-symbolic')} class={'icon media-card-icon'} pixelSize={ICON_SIZE}/>
-                </button>
-
-                <button class={'media-card-control-button'} onClicked={() => play_next()?.()}>
-                    <image iconName={'media-skip-forward-symbolic'} class={'icon media-card-icon'} pixelSize={ICON_SIZE}/>
-                </button>
-            </box>
+                    />
             
+                
+                <box
+                    orientation={Gtk.Orientation.VERTICAL}
+                >
+                    <label 
+                        label={title((t) => t)} 
+                        class={'media-card-label-title nandinagari'} 
+                        ellipsize={Pango.EllipsizeMode.END} 
+                        hexpand={false} 
+                        maxWidthChars={25}
+                        halign={Gtk.Align.CENTER}
+                        />
 
+                    <label 
+                        label={artist((a) => a)} 
+                        class={'media-card-label-artist small nandinagari'} 
+                        ellipsize={Pango.EllipsizeMode.END} 
+                        hexpand={false} 
+                        maxWidthChars={25}
+                        halign={Gtk.Align.CENTER}
+                        />
+
+                </box>
+
+                <box
+                    halign={Gtk.Align.CENTER}
+                    spacing={10}
+                    class={'media-card-controls-box'}
+                >
+                    <button class={'media-card-control-button'} onClicked={() => player.previous()}>
+                        <image iconName={'media-skip-backward-symbolic'} class={'icon media-card-icon'} pixelSize={ICON_SIZE}/>
+                    </button>
+
+                    <button class={'media-card-control-button'} onClicked={() => player.play_pause()}>
+                        <image iconName={playback((p) => !p ? 'media-playback-pause-symbolic' : 'media-playback-start-symbolic')} class={'icon media-card-icon'} pixelSize={ICON_SIZE}/>
+                    </button>
+
+                    <button class={'media-card-control-button'} onClicked={() => player.next()}>
+                        <image iconName={'media-skip-forward-symbolic'} class={'icon media-card-icon'} pixelSize={ICON_SIZE}/>
+                    </button>
+                </box>
+            </box>
+
+            <box 
+                class={'top-bar media-card-toggle-box'}
+                halign={Gtk.Align.CENTER}
+            >
+                <togglebutton active={playerIndex.as((i) => i === index)} class={'media-card-toggle'} onToggled={({ active }) => setPlayerIndex()} >
+                    <image iconName={'object-select-symbolic'} class={'icon media-card-toggle-icon'} pixelSize={ICON_SIZE}/>
+                </togglebutton>
+            </box>
 
         </box>
     )

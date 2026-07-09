@@ -1,12 +1,11 @@
 import MprisService from "../../services/shared_libraries/MprisService"
-import type Mpris from "gi://AstalMpris"
+import MediaPlayerService from "../../services/media/MediaPlayerService";
 import Pango from "gi://Pango"
 import Gtk from "gi://Gtk?version=4.0";
 import { ICON_SIZE } from "../../constants/icons"
 import { createBinding, createEffect, createMemo, createState } from "gnim";
 
 export default function MediaPill(){
-    const [offset, setOffset] = createState(0);
     const [title, setTitle] = createState('');
     const [playback, setPlayback] = createState(false);
     const [coverArt, setCoverArt] = createState('');
@@ -15,42 +14,44 @@ export default function MediaPill(){
     const [play_pause, setPlay_pause] = createState<(() => void) | null>(null);
 
     const mpris = MprisService.get_default().getMpris();
+    const mediaPlayerService = MediaPlayerService.get_default();
 
+    const player_count = createBinding(mediaPlayerService, "player_count");
     
     createEffect(() => {
         const players = createBinding(mpris, "players");
-
-        if(players().length === 0) return;
-
+        const playerIndex = createBinding(mediaPlayerService, "player_index");
+        const player = players()[playerIndex()];
+        
+        if(!player) return;
+        
         createEffect(() => {
-            // for(const i in players()[0]) {
-                const title = createBinding(players()[0], 'title');
-                const artist = createBinding(players()[0], 'artist');
-                const playback = createBinding(players()[0], 'playback_status');
-                const coverArt = createBinding(players()[0], 'cover_art');
+            if(!player) return;
 
-                setTitle(title() + " - " + artist());
-                setPlayback(playback() == 0 ? false : true);
-                setCoverArt(coverArt());
+            const title = createBinding(player, 'title');
+            const artist = createBinding(player, 'artist');
+            const playback = createBinding(player, 'playback_status');
+            const coverArt = createBinding(player, 'cover_art').as((art) => art ? art : '/home/_c3rberus/GitHub/Direwolf/assets/logos/direwolf3.svg');
 
-                const playNext =  () => {
-                    players()[0]?.next();
-                }
-                
+            setTitle(title() + " - " + artist());
+            setPlayback(playback() == 0 ? false : true);
+            setCoverArt(coverArt());
 
-                const playPrev =  () => {
-                    players()[0]?.previous();
-                }
-                const playPause =  () => {
-                    players()[0]?.play_pause();
-                }
+            const playNext =  () => {
+                player?.next();
+            }
+            
 
-                setPlay_next(() => playNext);
-                setPlay_prev(() => playPrev);
-                setPlay_pause(() => playPause);
+            const playPrev =  () => {
+                player?.previous();
+            }
+            const playPause =  () => {
+                player?.play_pause();
+            }
 
-
-            // }
+            setPlay_next(() => playNext);
+            setPlay_prev(() => playPrev);
+            setPlay_pause(() => playPause);
         });
 
     })
@@ -58,9 +59,9 @@ export default function MediaPill(){
     
     return (
         <box
+            visible={player_count.as((index) => index != 0)}
             spacing={10}
             class={"top-bar media-pill"}
-            // widthRequest={270}
         >
             <image 
                 file={coverArt((t) => t)} 
