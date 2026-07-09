@@ -92,9 +92,19 @@ export default function MediaCard({ player, index }: MediaCardProps){
                 class={'top-bar media-card-toggle-box'}
                 halign={Gtk.Align.CENTER}
             >
-                <togglebutton active={playerIndex.as((i) => i === index)} class={'media-card-toggle'} onToggled={({ active }) => setPlayerIndex()} >
-                    <image iconName={'object-select-symbolic'} class={'icon media-card-toggle-icon'} pixelSize={ICON_SIZE}/>
-                </togglebutton>
+                <button  class={'media-card-toggle'} onClicked={() => setPlayerIndex()} >
+                    <image 
+                        iconName={'object-select-symbolic'} 
+                        class={playerIndex.as((i) =>{
+                            if(i === index) {
+                                return 'media-card-toggle-icon-active';
+                            } else {
+                                return 'icon media-card-toggle-icon';
+                            }
+                        })}
+                        pixelSize={ICON_SIZE}
+                    />
+                </button>
             </box>
 
         </box>

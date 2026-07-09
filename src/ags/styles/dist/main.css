@@ -237,7 +237,6 @@ How to use workspace styles:
 .media-card-toggle {
   border-radius: 22px;
   padding: 2px;
-  color: rgb(231, 126, 126);
 }
 
 .media-card-toggle-box {
@@ -248,6 +247,19 @@ How to use workspace styles:
   border-radius: 22px;
   padding: 0px;
   margin: 0px;
+}
+
+.media-card-toggle-icon-active {
+  background-color: rgb(231, 126, 126);
+  color: rgb(249, 240, 240);
+  border-radius: 22px;
+  padding: 0px;
+  margin: 0px;
+}
+
+.media-card-toggle-icon-active:hover {
+  background-color: rgb(231, 126, 126);
+  color: rgb(249, 240, 240);
 }
 
 .media-card-toggle-icon:hover {
