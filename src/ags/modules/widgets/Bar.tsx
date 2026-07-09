@@ -1,5 +1,4 @@
 import {Astal} from "ags/gtk4"
-
 import SystemTray from "../components/System_Tray"
 import Time from "../components/Time"
 import Messages from "../components/Messages"

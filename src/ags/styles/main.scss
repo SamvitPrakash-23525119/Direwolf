@@ -1,5 +1,6 @@
 @use "sass:map";
 @use "colors";
+@use 'common_styling';
 
 @use "bar";
 @use "workspaces";
@@ -8,6 +9,8 @@
 @use 'messages';
 @use 'start_button';
 @use 'system_tray';
+@use 'media_card';
+@use 'media_players';
 
 .small {
 	font-size: 0.750rem; 

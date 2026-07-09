@@ -1,85 +1,120 @@
+import type Mpris from "gi://AstalMpris"
 import MprisService from "../../services/shared_libraries/MprisService"
+import MediaPlayerService from "../../services/media/MediaPlayerService";
 import Pango from "gi://Pango"
 import Gtk from "gi://Gtk?version=4.0";
 import { ICON_SIZE } from "../../constants/icons"
-import { createBinding, createEffect, createMemo, createState } from "gnim";
+import { createBinding, createEffect, createState } from "gnim";
 
 export default function MediaPill(){
-    const [offset, setOffset] = createState(0);
     const [title, setTitle] = createState('');
     const [playback, setPlayback] = createState(false);
     const [coverArt, setCoverArt] = createState('');
     const [play_next, setPlay_next] = createState<(() => void) | null>(null);
     const [play_prev, setPlay_prev] = createState<(() => void) | null>(null);
     const [play_pause, setPlay_pause] = createState<(() => void) | null>(null);
+    const [player, setPlayer] = createState<Mpris.Player | null>(null);
 
     const mpris = MprisService.get_default().getMpris();
+    const mediaPlayerService = MediaPlayerService.get_default();
 
+    const player_count = createBinding(mediaPlayerService, "player_count");
     
     createEffect(() => {
         const players = createBinding(mpris, "players");
-
-        if(players().length === 0) return;
-
+        const playerIndex = createBinding(mediaPlayerService, "player_index");
+        const player = players()[playerIndex()];
+        
+        if(!player) return;
+        
         createEffect(() => {
-            // for(const i in players()[0]) {
-                const title = createBinding(players()[0], 'title');
-                const artist = createBinding(players()[0], 'artist');
-                const playback = createBinding(players()[0], 'playback_status');
-                const coverArt = createBinding(players()[0], 'cover_art');
+            if(!player) return;
 
-                setTitle(title() + " - " + artist());
-                setPlayback(playback());
-                setCoverArt(coverArt());
+            const title = createBinding(player, 'title');
+            const artist = createBinding(player, 'artist');
+            const playback = createBinding(player, 'playback_status');
+            const coverArt = createBinding(player, 'cover_art').as((art) => art ? art : '/home/_c3rberus/GitHub/Direwolf/assets/placeholders/media/paper-craft-art-musical-note.jpg');
 
-                const playNext =  () => {
-                    players()[0]?.next();
-                }
-                
+            setTitle(title() + " - " + artist());
+            setPlayback(playback() == 0 ? false : true);
+            setCoverArt(coverArt());
+            setPlayer(player);
 
-                const playPrev =  () => {
-                    players()[0]?.previous();
-                }
-                const playPause =  () => {
-                    players()[0]?.play_pause();
-                }
+            const playNext =  () => {
+                player?.next();
+            }
+            
 
-                setPlay_next(() => playNext);
-                setPlay_prev(() => playPrev);
-                setPlay_pause(() => playPause);
+            const playPrev =  () => {
+                player?.previous();
+            }
+            const playPause =  () => {
+                player?.play_pause();
+            }
 
-
-            // }
+            setPlay_next(() => playNext);
+            setPlay_prev(() => playPrev);
+            setPlay_pause(() => playPause);
         });
 
     })
 
+    const openModal = () => {
+        mediaPlayerService.modal_toggle();
+    }
     
     return (
         <box
-            spacing={10}
+            visible={player_count.as((index) => index != 0)}
             class={"top-bar media-pill"}
-            // widthRequest={270}
+            widthRequest={250}
+            hexpand={false}
         >
-            <image 
-                file={coverArt((t) => t)} 
-                class={'media-album-cover'}
-                pixelSize={28}
-                overflow={Gtk.Overflow.HIDDEN}
-            />
-            
-            <label label={title((t) => t)} class={'media-label small'} ellipsize={Pango.EllipsizeMode.END} hexpand={false} maxWidthChars={16}/>
+            <button
+                class={'media-pill-button'}
+                onClicked={() => openModal()}
+            >
+                <box
+                    spacing={10}
+                    class={'media-pill-box'}
+                    hexpand
+                >
+                    <image 
+                        file={coverArt((t) => t)} 
+                        class={'media-album-cover'}
+                        pixelSize={28}
+                        overflow={Gtk.Overflow.HIDDEN}
+                        halign={Gtk.Align.START}
+                    />
+                    
+                    <label 
+                        label={title((t) => t)} 
+                        class={'media-label small nandinagari'} 
+                        ellipsize={Pango.EllipsizeMode.END} 
+                        hexpand={false} 
+                        // maxWidthChars={20}
+                        maxWidthChars={player((p) =>{
+                            if(p?.can_go_previous && p?.can_go_next) return 20;
+                            else return 30;
+                        })}
+                        tooltipText={title((t) => t)}
+                        halign={Gtk.Align.END}
+                    />
+                </box>
+            </button>
 
-            <box>
-                <button class={'media-control-button'} onClicked={() => play_prev()?.()}>
+            <box
+                halign={Gtk.Align.END}
+            >
+                <button class={'media-control-button'} onClicked={() => play_prev()?.()} visible={player((p) => p?.can_go_previous ?? false)}>
                     <image iconName={'media-skip-backward-symbolic'} class={'icon media-icon'} pixelSize={ICON_SIZE-3}/>
                 </button>
 
-                <button class={'media-control-button'} onClicked={() => play_pause()?.()}>
+                <button class={'media-control-button'} onClicked={() => play_pause()?.()} visible={player((p) => (p?.can_play && p?.can_pause) ?? false)}>
                     <image iconName={playback((p) => !p ? 'media-playback-pause-symbolic' : 'media-playback-start-symbolic')} class={'icon media-icon'} pixelSize={ICON_SIZE-3}/>
                 </button>
 
-                <button class={'media-control-button'} onClicked={() => play_next()?.()}>
+                <button class={'media-control-button'} onClicked={() => play_next()?.()} visible={player((p) => p?.can_go_next ?? false)}>
                     <image iconName={'media-skip-forward-symbolic'} class={'icon media-icon'} pixelSize={ICON_SIZE-3}/>
                 </button>
             </box>
