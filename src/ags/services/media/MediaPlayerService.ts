@@ -1,4 +1,6 @@
 import GoObject from "gi://GObject"
+import MprisService from "../shared_libraries/MprisService"
+import type Mpris from "gi://AstalMpris"
 
 export default class MediaPlayerService extends GoObject.Object {
     static instance: MediaPlayerService | null = null;
@@ -45,12 +47,45 @@ export default class MediaPlayerService extends GoObject.Object {
     private _open: boolean = false;
     private _player_index: number = 0;
     private _player_count: number = 0;
+
+    private mprisService: Mpris;
+
+    private constructor() {
+        super();
+        this.mprisService = MprisService.get_default().getMpris();
+
+    }
+
     static get_default(): MediaPlayerService {
         if (!this.instance) {
             this.instance = new MediaPlayerService();
         }
 
         return this.instance;
+    }
+
+    public play_pause(): void {
+        const players = this.mprisService.players;
+        if (players.length > 0) {
+            const player = players[this._player_index];
+            player.play_pause();
+        }
+    }
+
+    public previous(): void {
+        const players = this.mprisService.players;
+        if (players.length > 0) {
+            const player = players[this._player_index];
+            player.previous();
+        }
+    }
+
+    public next(): void {
+        const players = this.mprisService.players;
+        if (players.length > 0) {
+            const player = players[this._player_index];
+            player.next();
+        }
     }
 
     public get modal_open(): boolean {

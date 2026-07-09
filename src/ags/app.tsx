@@ -4,15 +4,16 @@ import Bar from "./modules/widgets/Bar"
 import MediaPlayers from "./modules/widgets/Media_Players"
 import MediaPlayerService from "./services/media/MediaPlayerService"
 
+const mediaPlayerService = MediaPlayerService.get_default();
+
 app.start({
 	css: css,
 	instanceName: "Direwolf",
 	iconTheme: "Adwaita",
 	requestHandler: (request, response) => {
-		const mediaPlayerService = MediaPlayerService.get_default();
 		mediaPlayerService.modal_toggle();
 
-		response('{"status": "ok"}')
+		console.log("Request received:", request);
 	},
 	main() {
 		console.log("Started AGS...")

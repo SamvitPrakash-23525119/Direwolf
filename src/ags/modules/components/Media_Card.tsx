@@ -17,12 +17,10 @@ export default function MediaCard({ player, index }: MediaCardProps){
         const title = createBinding(player, 'title');
         const artist = createBinding(player, 'artist');
         const playback = createBinding(player, 'playback_status');
-        const coverArt = createBinding(player, 'cover_art').as((art) => art ? art : '/home/_c3rberus/GitHub/Direwolf/assets/logos/direwolf-detailed.png');
+        const coverArt = createBinding(player, 'cover_art').as((art) => art ? art : '/home/_c3rberus/GitHub/Direwolf/assets/placeholders/media/colored-musical-note-audio-symbol.jpg');
 
         const setPlayerIndex = () => {
-            if(index !== undefined) {
-                mediaPlayerService.player_index = index;
-            }
+            if(index !== undefined) mediaPlayerService.player_index = index;
         }
     
     return (
@@ -74,15 +72,15 @@ export default function MediaCard({ player, index }: MediaCardProps){
                     spacing={10}
                     class={'media-card-controls-box'}
                 >
-                    <button class={'media-card-control-button'} onClicked={() => player.previous()}>
+                    <button class={'media-card-control-button'} onClicked={() => player.previous()} visible={player.can_go_previous}>
                         <image iconName={'media-skip-backward-symbolic'} class={'icon media-card-icon'} pixelSize={ICON_SIZE}/>
                     </button>
 
-                    <button class={'media-card-control-button'} onClicked={() => player.play_pause()}>
+                    <button class={'media-card-control-button'} onClicked={() => player.play_pause()} visible={player.can_play && player.can_pause}>
                         <image iconName={playback((p) => !p ? 'media-playback-pause-symbolic' : 'media-playback-start-symbolic')} class={'icon media-card-icon'} pixelSize={ICON_SIZE}/>
                     </button>
 
-                    <button class={'media-card-control-button'} onClicked={() => player.next()}>
+                    <button class={'media-card-control-button'} onClicked={() => player.next()} visible={player.can_go_next}>
                         <image iconName={'media-skip-forward-symbolic'} class={'icon media-card-icon'} pixelSize={ICON_SIZE}/>
                     </button>
                 </box>
