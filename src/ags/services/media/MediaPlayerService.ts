@@ -48,13 +48,7 @@ export default class MediaPlayerService extends GoObject.Object {
     private _player_index: number = 0;
     private _player_count: number = 0;
 
-    private mprisService: Mpris;
-
-    private constructor() {
-        super();
-        this.mprisService = MprisService.get_default().getMpris();
-
-    }
+    private mprisService: Mpris.Mpris = MprisService.get_default().getMpris();
 
     static get_default(): MediaPlayerService {
         if (!this.instance) {
@@ -100,7 +94,7 @@ export default class MediaPlayerService extends GoObject.Object {
     }  
 
     public modal_toggle(): void {
-        this.modal_open = !this.modal_open;
+        if(this._player_count > 0) this.modal_open = !this.modal_open;
     }
 
     public get player_index(): number {
