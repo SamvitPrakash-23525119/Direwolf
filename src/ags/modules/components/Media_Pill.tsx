@@ -14,6 +14,9 @@ export default function MediaPill(){
     const [play_prev, setPlay_prev] = createState<(() => void) | null>(null);
     const [play_pause, setPlay_pause] = createState<(() => void) | null>(null);
     const [player, setPlayer] = createState<Mpris.Player | null>(null);
+    const [can_go_next, setCanGoNext] = createState(false);
+    const [can_go_previous, setCanGoPrevious] = createState(false);
+    const [can_play, setCanPlay] = createState(false);
 
     const mpris = MprisService.get_default().getMpris();
     const mediaPlayerService = MediaPlayerService.get_default();
@@ -34,11 +37,18 @@ export default function MediaPill(){
             const artist = createBinding(player, 'artist');
             const playback = createBinding(player, 'playback_status');
             const coverArt = createBinding(player, 'cover_art').as((art) => art ? art : '/home/_c3rberus/GitHub/Direwolf/assets/placeholders/media/paper-craft-art-musical-note.jpg');
+            const canGoNext = createBinding(player, 'can_go_next');
+            const canGoPrevious = createBinding(player, 'can_go_previous');
+            const canPlay = createBinding(player, 'can_play');
+            const canPause = createBinding(player, 'can_pause');
 
             setTitle(title() + " - " + artist());
             setPlayback(playback() == 0 ? false : true);
             setCoverArt(coverArt());
             setPlayer(player);
+            setCanGoNext(canGoNext());
+            setCanGoPrevious(canGoPrevious());
+            setCanPlay(canPlay() && canPause());
 
             const playNext =  () => {
                 player?.next();
@@ -106,15 +116,15 @@ export default function MediaPill(){
             <box
                 halign={Gtk.Align.END}
             >
-                <button class={'media-control-button'} onClicked={() => play_prev()?.()} visible={player((p) => p?.can_go_previous ?? false)}>
+                <button class={'media-control-button'} onClicked={() => play_prev()?.()} visible={can_go_previous((t) => t)}>
                     <image iconName={'media-skip-backward-symbolic'} class={'icon media-icon'} pixelSize={ICON_SIZE-3}/>
                 </button>
 
-                <button class={'media-control-button'} onClicked={() => play_pause()?.()} visible={player((p) => (p?.can_play && p?.can_pause) ?? false)}>
+                <button class={'media-control-button'} onClicked={() => play_pause()?.()} visible={can_play((t) => t)}>
                     <image iconName={playback((p) => !p ? 'media-playback-pause-symbolic' : 'media-playback-start-symbolic')} class={'icon media-icon'} pixelSize={ICON_SIZE-3}/>
                 </button>
 
-                <button class={'media-control-button'} onClicked={() => play_next()?.()} visible={player((p) => p?.can_go_next ?? false)}>
+                <button class={'media-control-button'} onClicked={() => play_next()?.()} visible={can_go_next((t) => t)}>
                     <image iconName={'media-skip-forward-symbolic'} class={'icon media-icon'} pixelSize={ICON_SIZE-3}/>
                 </button>
             </box>
