@@ -3,18 +3,17 @@ import Gtk from "gi://Gtk?version=4.0";
     
 interface ProgressBarProps {    
     value: Accessor<number>;
-    // value: number
     maxValue: number;
     width?: number;
     height?: number;
     class?: string;
 }
 
-export default function ProgressBar({ value, maxValue, width=300, height=5, class:className='progress-bar-default' }: ProgressBarProps) {
+export default function ProgressBar({ value, maxValue, width=300, height=5, class:className }: ProgressBarProps) {
     
     return (
         <box
-            class={className}
+            class={'progress-bar-default ' + className}
             overflow={Gtk.Overflow.HIDDEN}
         >
             <box
