@@ -1,4 +1,4 @@
-import {ICON_SIZE} from '../../constants/icons';
+import {ICON_SIZE} from '../../../constants/icons';
 
 export default function StartButton(){
     return (
