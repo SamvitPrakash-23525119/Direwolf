@@ -4,8 +4,11 @@ import Bar from "./modules/widgets/Bar"
 import MediaPlayers from "./modules/widgets/Media_Players"
 import AudioDisplay from "./modules/widgets/Audio_Display"
 import CommandRegistry from "./services/command_registry/Command_Registry"
+import { registerMediaCommands } from "./command_registrars/media/MediaCommandsRegistrars"
 
-const commandRegistry = CommandRegistry.get_default()
+const registry = CommandRegistry.get_default()
+
+registerMediaCommands(registry);
 
 app.start({
 	css: css,
@@ -14,7 +17,7 @@ app.start({
 	cursorTheme: "Breeze",
 	requestHandler: (request, response) => {
 		const [command, ...args] = request
-		response(commandRegistry.execute({ command, args }));
+		response(registry.execute({ command, args }));
 
 	},
 	main() {
