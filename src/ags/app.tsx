@@ -3,6 +3,9 @@ import css from "./styles/dist/main.css"
 import Bar from "./modules/widgets/Bar"
 import MediaPlayers from "./modules/widgets/Media_Players"
 import MediaPlayerService from "./services/media/MediaPlayerService"
+import VolumeModal from "./modules/widgets/Volume_Modal"
+import WpctlService from "./services/shared_libraries/WpctlService"
+
 
 const mediaPlayerService = MediaPlayerService.get_default();
 
@@ -18,10 +21,16 @@ app.start({
 	main() {
 		console.log("Started AGS...")
 
+		const wpctlService = WpctlService.get_default().getWpctl();
+
+		for(const i in wpctlService.default_speaker) console.log(i);
+
+
 		return (
 			<>
 				<Bar />
 				<MediaPlayers />
+				<VolumeModal />
 			</>
 		)
 	},
