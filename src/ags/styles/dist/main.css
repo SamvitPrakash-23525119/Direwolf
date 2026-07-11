@@ -366,6 +366,37 @@ How to use workspace styles:
   color: rgb(249, 240, 240);
 }
 
+.progress-bar-default {
+  border-radius: 22px;
+  margin: 10px;
+}
+
+.progress-bar-container {
+  background-color: rgba(18, 18, 18, 0.1);
+  padding: 0px;
+  margin: 0px;
+}
+
+.progress-bar-fill {
+  background-color: rgb(231, 126, 126);
+  border-radius: 22px;
+  margin: 0px;
+  padding: 0px;
+}
+
+.volume-modal-box {
+  background-color: rgb(249, 240, 240);
+  border-radius: 22px;
+  margin: 15px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.volume-label {
+  color: rgb(28, 13, 13);
+  font-weight: 800;
+}
+
 .small {
   font-size: 0.75rem;
   font-weight: 550;
