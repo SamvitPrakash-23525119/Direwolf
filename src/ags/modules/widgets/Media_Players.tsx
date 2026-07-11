@@ -1,4 +1,4 @@
-import MediaCard from "../components/Media_Card"
+import MediaCard from "../components/media_players/Media_Card"
 import MprisService from "../../services/shared_libraries/MprisService"
 import type Mpris from "gi://AstalMpris"
 import MediaPlayerService from "../../services/media/MediaPlayerService"

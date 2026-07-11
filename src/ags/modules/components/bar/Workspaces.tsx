@@ -1,7 +1,7 @@
-import Hyprland from "../../services/shared_libraries/HyprlandService"
-import getWorkspaceGroup from "../../utilities/workspaces"
-import toRoman from "../../utilities/to_numerals";
-import { activeWorkspaces_button, activeWorkspace_label } from "../../utilities/active_workspaces";
+import Hyprland from "../../../services/shared_libraries/HyprlandService"
+import getWorkspaceGroup from "../../../utilities/workspaces"
+import toRoman from "../../../utilities/to_numerals";
+import { activeWorkspaces_button, activeWorkspace_label } from "../../../utilities/active_workspaces";
 import { createBinding, For, createComputed } from 'gnim'
 
 export default function Workspaces() {

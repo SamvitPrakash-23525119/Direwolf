@@ -1,5 +1,5 @@
 import WpctlService from "../../services/shared_libraries/WpctlService"
-import ProgressBar from "../components/Progress_Bar"
+import ProgressBar from "../components/miscellaneous/Progress_Bar"
 import { ICON_SIZE } from "../../constants/icons";
 import { createBinding, createState } from "gnim";
 import { Astal, Gtk } from "ags/gtk4";

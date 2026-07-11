@@ -1,9 +1,9 @@
 import type Mpris from "gi://AstalMpris"
-import MprisService from "../../services/shared_libraries/MprisService"
-import MediaPlayerService from "../../services/media/MediaPlayerService";
+import MprisService from "../../../services/shared_libraries/MprisService"
+import MediaPlayerService from "../../../services/media/MediaPlayerService";
 import Pango from "gi://Pango"
 import Gtk from "gi://Gtk?version=4.0";
-import { ICON_SIZE } from "../../constants/icons"
+import { ICON_SIZE } from "../../../constants/icons"
 import { createBinding, createEffect, createState } from "gnim";
 
 export default function MediaPill(){

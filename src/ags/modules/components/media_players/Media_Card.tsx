@@ -1,9 +1,9 @@
 import type Mpris from "gi://AstalMpris"
-import MediaPlayerService from "../../services/media/MediaPlayerService";
+import MediaPlayerService from "../../../services/media/MediaPlayerService";
 import Gtk from "gi://Gtk?version=4.0";
 import Pango from "gi://Pango";
 import { createBinding } from "gnim";
-import { ICON_SIZE } from "../../constants/icons";
+import { ICON_SIZE } from "../../../constants/icons";
 
 interface MediaCardProps {
     player: Mpris.Player;

@@ -1,7 +1,7 @@
-import NmService from "../../services/shared_libraries/NmService";
-import BluetoothService from "../../services/shared_libraries/BluetoothService";
-import WpctlService from "../../services/shared_libraries/WpctlService";
-import { ICON_SIZE } from "../../constants/icons";
+import NmService from "../../../services/shared_libraries/NmService";
+import BluetoothService from "../../../services/shared_libraries/BluetoothService";
+import WpctlService from "../../../services/shared_libraries/WpctlService";
+import { ICON_SIZE } from "../../../constants/icons";
 import { createBinding, createEffect, createState, For, createMemo } from "gnim";
 
 export default function SystemTray() {

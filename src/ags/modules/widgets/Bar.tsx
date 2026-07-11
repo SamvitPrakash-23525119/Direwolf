@@ -1,10 +1,10 @@
 import {Astal} from "ags/gtk4"
-import SystemTray from "../components/System_Tray"
-import Time from "../components/Time"
-import Messages from "../components/Messages"
-import Workspaces from "../components/Workspaces"
-import MediaPill from "../components/Media_Pill"
-import StartButton from "../components/Start_Button"
+import SystemTray from "../components/bar/System_Tray"
+import Time from "../components/bar/Time"
+import Messages from "../components/bar/Messages"
+import Workspaces from "../components/bar/Workspaces"
+import MediaPill from "../components/bar/Media_Pill"
+import StartButton from "../components/bar/Start_Button"
 
 export default function Bar(){
     return (
