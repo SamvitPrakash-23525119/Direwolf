@@ -1,10 +1,43 @@
 import NmService from "../../../services/shared_libraries/NmService";
 import BluetoothService from "../../../services/shared_libraries/BluetoothService";
 import WpctlService from "../../../services/shared_libraries/WpctlService";
+import TrayService from "../../../services/shared_libraries/TrayService";
 import { ICON_SIZE } from "../../../constants/icons";
-import { createBinding, createEffect, createState, For, createMemo } from "gnim";
+import { createBinding, createEffect, createState, For } from "gnim";
 
 export default function SystemTray() {
+    /*
+        Astal Tray
+        ==================
+    */
+    const [trayItems, setTrayItems] = createState<string[][]>([]);
+
+    const tray = TrayService.get_default().getTray();
+
+    
+    const items = createBinding(tray, 'items');
+    
+    createEffect(() => {    
+        setTrayItems([]); // Reset the trayItems state before updating it
+
+        if(items().length <= 0) return;
+        
+        for(var i = 0; i < items().length; i++) {
+            const item = items()[i];
+            
+            const trayItemTitle = createBinding(item, 'title');
+            const trayItemIcon = createBinding(item, 'gicon').as((gicon) => gicon.to_string());
+            const trayItemTooltip = createBinding(item, 'tooltip_markup');
+
+            setTrayItems(prev => [...prev, [trayItemIcon(), trayItemTitle(), trayItemTooltip()]]);
+
+
+        }
+    
+    });
+
+
+
     /* 
         Network Manager
         ==================
@@ -96,6 +129,20 @@ export default function SystemTray() {
             spacing={8}
             class={"top-bar system-tray-bar"}
         >
+            <box spacing={8}>
+                <For each={trayItems} >
+                    {(item) => (
+                        <image
+                            file={item[0]}
+                            class={"icon"}
+                            pixelSize={ICON_SIZE+2}
+                            tooltipText={item[1]}
+                        />
+                    )}
+                </For>
+
+            </box>
+
             <box spacing={8}>
                 <image
                     iconName={networkIcon()}
