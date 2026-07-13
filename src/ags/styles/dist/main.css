@@ -9,6 +9,17 @@
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.55);
 }
 
+/*
+    The Intrinsic <menubutton /> element is a heirarchy of other widgets
+    including a <button /> element with deafult padding and margin. This
+    is a workaround to remove the padding and margin from the <button />
+    element so that the <menubutton /> can be styled properly with CSS.
+*/
+menubutton button {
+  margin: 0px;
+  padding: 0px;
+}
+
 .top-bar {
   background-color: rgb(249, 240, 240);
   border-radius: 22px;
@@ -258,6 +269,48 @@ How to use workspace styles:
 
 .system-tray-bar {
   margin-left: 2.5px;
+}
+
+.system-tray-menu {
+  padding: 0px;
+  margin: 0px;
+}
+
+/*
+    The fields below are used to style the popup menu of the menubutton, these fields are
+    not used to style the menubutton itself, but rather the popup menu that appears when the
+    menubutton is clicked. These fields are used in the widgets that form the hierarchy of the
+    menubutton and there is no way to set styles to these widgets directly, therefore we have
+    to use the fields below to style the popup menu. These are all the currently known fields 
+    after hours of inspecting the windows and research. The empty fields are left here in order 
+    to refer to them in the future if needing to style the popup menu of a menubutton. 
+*/
+.system-tray-menu popover arrow {
+  background-color: rgb(249, 240, 240);
+}
+
+.system-tray-menu popover contents {
+  background-color: rgb(249, 240, 240);
+  font-family: "Noto Sans Nandinagari";
+  font-size: 12px;
+  font-weight: 550;
+  padding: 0px;
+  margin: 0px;
+}
+
+.system-tray-menu popover contents modelbutton {
+  color: rgb(28, 13, 13);
+}
+
+.system-tray-menu popover contents modelbutton:hover {
+  background-color: rgb(231, 126, 126);
+  color: rgb(249, 240, 240);
+}
+
+.system-tray-menu popover contents separator {
+  opacity: 0;
+  padding: 0px;
+  margin: 0px;
 }
 
 .media-card-toggle {
