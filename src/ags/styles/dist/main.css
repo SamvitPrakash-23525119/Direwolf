@@ -9,6 +9,17 @@
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.55);
 }
 
+/*
+    The Intrinsic <menubutton /> element is a heirarchy of other widgets
+    including a <button /> element with deafult padding and margin. This
+    is a workaround to remove the padding and margin from the <button />
+    element so that the <menubutton /> can be styled properly with CSS.
+*/
+menubutton button {
+  margin: 0px;
+  padding: 0px;
+}
+
 .top-bar {
   background-color: rgb(249, 240, 240);
   border-radius: 22px;
@@ -258,6 +269,11 @@ How to use workspace styles:
 
 .system-tray-bar {
   margin-left: 2.5px;
+}
+
+.system-tray-menu {
+  padding: 0px;
+  margin: 0px;
 }
 
 .media-card-toggle {

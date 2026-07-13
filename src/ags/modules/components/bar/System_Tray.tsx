@@ -2,47 +2,24 @@ import NmService from "../../../services/shared_libraries/NmService";
 import BluetoothService from "../../../services/shared_libraries/BluetoothService";
 import WpctlService from "../../../services/shared_libraries/WpctlService";
 import TrayService from "../../../services/shared_libraries/TrayService";
+import TrayIconMenu from "./Tray_Icon_Menu";
 import { ICON_SIZE } from "../../../constants/icons";
 import { createBinding, createEffect, createState, For } from "gnim";
+import { Gtk } from "ags/gtk4";
 
 export default function SystemTray() {
     /*
         Astal Tray
         ==================
     */
-    const [trayItems, setTrayItems] = createState<string[][]>([]);
-
     const tray = TrayService.get_default().getTray();
 
-    
     const items = createBinding(tray, 'items');
-    
-    createEffect(() => {    
-        setTrayItems([]); // Reset the trayItems state before updating it
-
-        if(items().length <= 0) return;
-        
-        for(var i = 0; i < items().length; i++) {
-            const item = items()[i];
-            
-            const trayItemTitle = createBinding(item, 'title');
-            const trayItemIcon = createBinding(item, 'gicon').as((gicon) => gicon.to_string());
-            const trayItemTooltip = createBinding(item, 'tooltip_markup');
-
-            setTrayItems(prev => [...prev, [trayItemIcon(), trayItemTitle(), trayItemTooltip()]]);
-
-
-        }
-    
-    });
-
-
 
     /* 
         Network Manager
         ==================
     */
-
     const nm = NmService.get_default().getNm();
 
     const primary = createBinding(nm, 'primary');
@@ -129,18 +106,13 @@ export default function SystemTray() {
             spacing={8}
             class={"top-bar system-tray-bar"}
         >
-            <box spacing={8}>
-                <For each={trayItems} >
+            <box spacing={8}>              
+                <For each={items} >
                     {(item) => (
-                        <image
-                            file={item[0]}
-                            class={"icon"}
-                            pixelSize={ICON_SIZE+2}
-                            tooltipText={item[1]}
-                        />
+                        <TrayIconMenu item={item} class={'system-tray-menu'}/>
                     )}
                 </For>
-
+                
             </box>
 
             <box spacing={8}>
