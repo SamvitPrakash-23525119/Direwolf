@@ -13,7 +13,6 @@ export default function SystemTray() {
         ==================
     */
     const tray = TrayService.get_default().getTray();
-
     const items = createBinding(tray, 'items');
 
     /* 
