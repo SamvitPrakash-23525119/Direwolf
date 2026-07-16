@@ -8,6 +8,7 @@
     padding-top: 7px;
     padding-bottom: 2px;
     border-radius: 10px;
+    margin: 10px;
 }
 
 .notification-header {
@@ -16,13 +17,6 @@
     margin-right: 2px;
 }
 
-// .notification-separator{
-//     background-color: map.get(colors.$themes, light, secondary);
-//     border-radius: 22px;
-//     padding: 0.1px;
-//     margin-bottom: 20px;
-// }
-
 .notification-title {
     color: map.get(colors.$themes, light, background);
     background-color: map.get(colors.$themes, light, primary);
@@ -30,7 +24,6 @@
     padding-left: 15px;
     padding-right: 15px;
     border-radius: 10px;
-    // margin: 5px;
 }
 
 .notification-icon {
@@ -60,4 +53,13 @@
     color: map.get(colors.$themes, light, background);
     border-radius: 5px;
     margin: 2px;
+}
+
+.notification-empty-label {
+    color: rgba(map.get(colors.$themes, light, text),0.5);
+    border-radius: 5px;
+    padding: 5px;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 50px;
 }

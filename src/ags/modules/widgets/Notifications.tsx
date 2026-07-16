@@ -1,3 +1,4 @@
+import NotificationService from "../../services/notifications/NotificationService";
 import NotificationItem from "../components/notifications/Notification_Item"
 import NotifdService from "../../services/shared_libraries/NotifdService"
 import { ICON_SIZE } from "../../constants/icons"
@@ -6,16 +7,19 @@ import { createBinding, For } from "gnim";
 
 export default function Notifications() {
     const notifd = NotifdService.get_default().getNotifd();
+    const notificationService = NotificationService.get_default();
+
+    const modal_open = createBinding(notificationService, "modal_open");
 
     const notifications = createBinding(notifd, "notifications");
+    const dnd = createBinding(notifd, "dont_disturb");
 
     return (
         <window 
-            visible
+            visible={modal_open}
             class={'.'}
             widthRequest={400}
-            // anchor={Astal.WindowAnchor.BOTTOM | Astal.WindowAnchor.LEFT}
-            anchor={Astal.WindowAnchor.BOTTOM}
+            anchor={Astal.WindowAnchor.TOP | Astal.WindowAnchor.RIGHT}
         >
             <box
                 class={"top-bar notifications-box"}
@@ -25,7 +29,7 @@ export default function Notifications() {
                 <centerbox
                     class={'notification-header'}
                 >
-                    <button $type="start">
+                    <button $type="start" onClicked={() => notificationService.modal_toggle()}>
                         <image icon_name={'go-previous-symbolic'} class={'icon notification-icon'} pixel_size={ICON_SIZE}/>
                     </button>
 
@@ -43,8 +47,6 @@ export default function Notifications() {
                     
                 </centerbox>
 
-                {/* <box class={'notification-separator'} heightRequest={0.1} widthRequest={400}/> */}
-
                 <scrolledwindow
                     maxContentHeight={350}
                     heightRequest={350}
@@ -58,11 +60,13 @@ export default function Notifications() {
                         orientation={Gtk.Orientation.VERTICAL}
                         class={"notification-items-container"}
                     >
+                    
                         <For each={notifications}>
                             {(notification) => (
                                 <NotificationItem notification_item={notification}/>
                             )}
-                        </For>  
+                        </For>
+                        
                     </box>
                 </scrolledwindow>
                 
