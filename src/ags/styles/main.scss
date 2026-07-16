@@ -13,6 +13,8 @@
 @use 'media_players';
 @use 'progress_bar';
 @use 'volume';
+@use 'notifications';
+@use 'notification_items';
 
 .small {
 	font-size: 0.750rem; 

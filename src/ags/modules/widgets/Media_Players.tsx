@@ -32,7 +32,7 @@ export default function MediaPlayers(){
         <window
             visible={modalOpen.as((open) => open)}
             class={'media-players-modal'}
-            layer={Astal.Layer.TOP}
+            layer={Astal.Layer.OVERLAY}
             exclusivity={Astal.Exclusivity.NORMAL}
         >
             <box
