@@ -39,6 +39,11 @@
     color: map.get(colors.$themes, light, background);
 }
 
+.notification-icon-active {
+    background-color: map.get(colors.$themes, light, secondary);
+    color: map.get(colors.$themes, light, background);
+}
+
 .notification-do-not-disturb {
     background-color: map.get(colors.$themes, light, secondary);
     color: map.get(colors.$themes, light, background);

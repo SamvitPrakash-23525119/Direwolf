@@ -18,7 +18,7 @@ export default function Notifications() {
         <window 
             visible={modal_open}
             class={'.'}
-            widthRequest={400}
+            widthRequest={350}
             anchor={Astal.WindowAnchor.TOP | Astal.WindowAnchor.RIGHT}
         >
             <box
@@ -34,8 +34,18 @@ export default function Notifications() {
                     </button>
 
                     <box $type='end'>
-                        <button>
-                            <image icon_name={'notifications-disabled-symbolic'} class={'icon notification-icon'} pixel_size={ICON_SIZE}/>
+                        <button
+                            onClicked={() => notifd.set_dont_disturb(!dnd())}
+                            tooltipText={dnd.as((d) => !d ? 'Enable Do Not Disturb' : 'Disable Do Not Disturb')}
+                        >
+                            <image 
+                                pixel_size={ICON_SIZE}
+                                icon_name={dnd.as((d) => !d ? 'notifications-disabled-symbolic' : 'preferences-system-notifications-symbolic')} 
+                                class={dnd.as((d) => {
+                                    if (d) return 'notification-icon notification-icon-active';
+                                    else return 'icon notification-icon';
+                                })}
+                            />
                         </button>
 
                         <label 

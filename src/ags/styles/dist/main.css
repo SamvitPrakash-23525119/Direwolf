@@ -233,6 +233,37 @@ How to use workspace styles:
   background-color: rgb(231, 126, 126);
 }
 
+.messages-icon-active {
+  color: rgb(249, 240, 240);
+  background-color: rgb(231, 126, 126);
+  border-radius: 22px;
+  padding: 0px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.messages-icon-alert {
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    background-color: rgb(249, 240, 240);
+    color: rgb(28, 13, 13);
+  }
+  25% {
+    background-color: rgb(231, 126, 126);
+    color: rgb(249, 240, 240);
+  }
+  50% {
+    background-color: rgb(231, 126, 126);
+    color: rgb(249, 240, 240);
+  }
+  100% {
+    background-color: rgb(249, 240, 240);
+    color: rgb(28, 13, 13);
+  }
+}
 .start-bar {
   padding: 0px;
   margin-right: 2.5px;
@@ -434,6 +465,11 @@ How to use workspace styles:
   color: rgb(249, 240, 240);
 }
 
+.notification-icon-active {
+  background-color: rgb(231, 126, 126);
+  color: rgb(249, 240, 240);
+}
+
 .notification-do-not-disturb {
   background-color: rgb(231, 126, 126);
   color: rgb(249, 240, 240);
@@ -460,8 +496,9 @@ How to use workspace styles:
 }
 
 .notification-item-container {
-  background-color: rgb(231, 126, 126);
+  background-color: rgb(249, 240, 240);
   border-radius: 10px;
+  border: 1px solid rgba(18, 18, 18, 0.25);
   padding: 10px;
 }
 
@@ -470,25 +507,35 @@ How to use workspace styles:
 }
 
 .notification-item-title {
+  color: rgb(28, 13, 13);
   font-weight: 550;
   font-size: 17px;
 }
 
 .notification-item-summary {
+  color: rgb(28, 13, 13);
   font-weight: 550;
   font-size: 13px;
 }
 
+.notification-item-body {
+  color: rgb(28, 13, 13);
+  font-weight: 400;
+  font-size: 12px;
+}
+
 .notification-item-button {
+  color: rgb(28, 13, 13);
+  background-color: rgb(249, 240, 240);
   border-radius: 22px;
   padding: 0px;
-  padding-left: 5px;
-  padding-right: 5px;
+  padding-left: 4px;
+  padding-right: 4px;
 }
 
 .notification-item-button:hover {
-  background-color: rgb(249, 240, 240);
-  color: rgb(28, 13, 13);
+  background-color: rgb(231, 126, 126);
+  color: rgb(249, 240, 240);
 }
 
 .notification-item-revealer {

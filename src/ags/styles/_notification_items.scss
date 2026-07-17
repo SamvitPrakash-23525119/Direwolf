@@ -4,8 +4,9 @@
 
 
 .notification-item-container {
-    background-color: map.get(colors.$themes, light, secondary);
+    background-color: map.get(colors.$themes, light, background);
     border-radius: 10px;
+    border: 1px solid rgba(map.get(colors.$themes, light, primary),0.25);
     padding: 10px;
 }
 
@@ -14,25 +15,35 @@
 }
 
 .notification-item-title {
+    color: map.get(colors.$themes, light, text);
     font-weight: 550;
 	font-size: 17px;
 }
 
 .notification-item-summary {
+    color: map.get(colors.$themes, light, text);
     font-weight: 550;
     font-size: 13px;
 }
 
+.notification-item-body {
+    color: map.get(colors.$themes, light, text);
+    font-weight: 400;
+    font-size: 12px;
+}
+
 .notification-item-button {
+    color: map.get(colors.$themes, light, text);
+    background-color: map.get(colors.$themes, light, background);
     border-radius: 22px;
     padding: 0px;
-    padding-left: 5px;
-    padding-right: 5px;
+    padding-left: 4px;
+    padding-right: 4px;
 }
 
 .notification-item-button:hover {
-    background-color: map.get(colors.$themes, light, background);
-    color: map.get(colors.$themes, light, text);
+    background-color: map.get(colors.$themes, light, secondary);
+    color: map.get(colors.$themes, light, background);
 }
 
 .notification-item-revealer {

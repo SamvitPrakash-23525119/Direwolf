@@ -8,6 +8,7 @@ import CommandRegistry from "./services/command_registry/Command_Registry"
 import { registerMediaCommands } from "./command_registrars/media/MediaCommandsRegistrars"
 
 import NotifdService from "./services/shared_libraries/NotifdService"
+import NotificationService from "./services/notifications/NotificationService"
 import { createBinding, createEffect } from "gnim"
 
 const registry = CommandRegistry.get_default()
@@ -26,29 +27,14 @@ app.start({
 	},
 	main() {
 		console.log("Started AGS...")
+		const notificationService = NotificationService.get_default();
+		const notifdService = NotifdService.get_default().getNotifd();
 
-		const notifd = NotifdService.get_default().getNotifd();
+		const dnd = createBinding(notifdService, "dont_disturb");
 
-		// for (const i in notifd) console.log(i);
-		// console.log(notifd.dont_disturb);
-		
-		createEffect(()=>{
-			const notifications = createBinding(notifd, "notifications");
-			
-			// for(const i in notifications()) console.log(i);
-
-			
-			console.log('New Volley')
-			for(const i in notifications()){
-				console.log('=========================================================');
-				console.log(notifications()[i]?.app_name);
-				console.log(notifications()[i]?.summary);
-				console.log(notifications()[i]?.body);
-				console.log(notifications()[i]?.image);
-			}
-			
-			console.log('=========================================================');
-		})
+		createEffect(() => {
+			console.log(dnd());
+		});
 		
 
 
