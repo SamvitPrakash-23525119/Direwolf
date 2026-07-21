@@ -444,8 +444,9 @@ How to use workspace styles:
 }
 
 .notification-title {
-  color: rgb(249, 240, 240);
-  background-color: rgb(18, 18, 18);
+  color: rgb(18, 18, 18);
+  font-weight: 550;
+  font-size: 18px;
   padding: 5px;
   padding-left: 15px;
   padding-right: 15px;
@@ -496,9 +497,9 @@ How to use workspace styles:
 }
 
 .notification-item-container {
-  background-color: rgb(249, 240, 240);
+  background-color: rgba(231, 126, 126, 0.1);
   border-radius: 10px;
-  border: 1px solid rgba(18, 18, 18, 0.25);
+  border: 1px solid rgba(231, 126, 126, 0.65);
   padding: 10px;
 }
 
@@ -529,8 +530,6 @@ How to use workspace styles:
   background-color: rgb(249, 240, 240);
   border-radius: 22px;
   padding: 0px;
-  padding-left: 4px;
-  padding-right: 4px;
 }
 
 .notification-item-button:hover {

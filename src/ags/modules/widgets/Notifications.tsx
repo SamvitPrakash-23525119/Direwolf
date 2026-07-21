@@ -33,33 +33,33 @@ export default function Notifications() {
                         <image icon_name={'go-previous-symbolic'} class={'icon notification-icon'} pixel_size={ICON_SIZE}/>
                     </button>
 
-                    <box $type='end'>
-                        <button
-                            onClicked={() => notifd.set_dont_disturb(!dnd())}
-                            tooltipText={dnd.as((d) => !d ? 'Enable Do Not Disturb' : 'Disable Do Not Disturb')}
-                        >
-                            <image 
-                                pixel_size={ICON_SIZE}
-                                icon_name={dnd.as((d) => !d ? 'notifications-disabled-symbolic' : 'preferences-system-notifications-symbolic')} 
-                                class={dnd.as((d) => {
-                                    if (d) return 'notification-icon notification-icon-active';
-                                    else return 'icon notification-icon';
-                                })}
-                            />
-                        </button>
+                    <label 
+                        $type="center"
+                        label={"Notifications"} 
+                        class={'nandinagari notification-title'}
 
-                        <label 
-                            label={"Notifications"} 
-                            class={'p nandinagari notification-title'}
+                    />
 
+                    <button
+                        $type="end"
+                        onClicked={() => notifd.set_dont_disturb(!dnd())}
+                        tooltipText={dnd.as((d) => !d ? 'Enable Do Not Disturb' : 'Disable Do Not Disturb')}
+                    >
+                        <image 
+                            pixel_size={ICON_SIZE}
+                            icon_name={dnd.as((d) => !d ? 'notifications-disabled-symbolic' : 'preferences-system-notifications-symbolic')} 
+                            class={dnd.as((d) => {
+                                if (d) return 'notification-icon notification-icon-active';
+                                else return 'icon notification-icon';
+                            })}
                         />
-                    </box>
+                    </button>
                     
                 </centerbox>
 
                 <scrolledwindow
                     maxContentHeight={350}
-                    heightRequest={350}
+                    heightRequest={300}
                     vscrollbarPolicy={Gtk.PolicyType.AUTOMATIC}
                     hscrollbarPolicy={Gtk.PolicyType.NEVER}
                     overlay_scrolling
@@ -80,7 +80,6 @@ export default function Notifications() {
                     </box>
                 </scrolledwindow>
                 
-
             </box>
 
         </window>

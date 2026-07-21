@@ -32,7 +32,7 @@ export default function NotificationItem({ notification_item }: NotificationItem
             <box
                 hexpand
                 orientation={Gtk.Orientation.VERTICAL}
-                spacing={5}
+                spacing={0}
                 class={'notification-item-text-container'}
             >
                 <label 
@@ -58,7 +58,6 @@ export default function NotificationItem({ notification_item }: NotificationItem
                         wrap 
                         label={body()} 
                         halign={Gtk.Align.START} 
-                        // ellipsize={Pango.EllipsizeMode.END}
                         maxWidthChars={25}
                         class={'small nandinagari notification-item-body'}
                     />

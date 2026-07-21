@@ -8,8 +8,7 @@ import CommandRegistry from "./services/command_registry/Command_Registry"
 import { registerMediaCommands } from "./command_registrars/media/MediaCommandsRegistrars"
 
 import NotifdService from "./services/shared_libraries/NotifdService"
-import NotificationService from "./services/notifications/NotificationService"
-import { createBinding, createEffect } from "gnim"
+import { createEffect, createBinding } from "gnim"
 
 const registry = CommandRegistry.get_default()
 
@@ -26,16 +25,28 @@ app.start({
 
 	},
 	main() {
-		console.log("Started AGS...")
-		const notificationService = NotificationService.get_default();
-		const notifdService = NotifdService.get_default().getNotifd();
+		console.log("Started AGS...");
 
-		const dnd = createBinding(notifdService, "dont_disturb");
+		const notifd = NotifdService.get_default().getNotifd();
+
+		// for (const i in notifd) console.log(i);
+		notifd.set_default_timeout(-1);
+		console.log("Notifications: ", notifd.defaultTimeout);
+
+		const notifications = createBinding(notifd, "notifications");
 
 		createEffect(() => {
-			console.log(dnd());
+			for(var i = 0; i < notifications().length; i++) {
+				// for (const key in notifications()[i]) console.log(key);
+				const expire = createBinding(notifications()[i], "expire");
+
+				createEffect(() => {
+					console.log("Notification ", i, " will expire in ", expire(), "ms");
+
+				});
+			}
 		});
-		
+
 
 
 		return (

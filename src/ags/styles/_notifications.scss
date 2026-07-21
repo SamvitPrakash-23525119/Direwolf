@@ -18,8 +18,10 @@
 }
 
 .notification-title {
-    color: map.get(colors.$themes, light, background);
-    background-color: map.get(colors.$themes, light, primary);
+    color: map.get(colors.$themes, light, primary);
+    // background-color: map.get(colors.$themes, light, primary);
+    font-weight: 550;
+    font-size: 18px;
     padding: 5px;
     padding-left: 15px;
     padding-right: 15px;
