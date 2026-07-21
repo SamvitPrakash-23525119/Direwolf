@@ -27,3 +27,38 @@
     color: map.get(colors.$themes, light, background);
     background-color: map.get(colors.$themes, light, secondary);
 }
+
+.messages-icon-active {
+    color: map.get(colors.$themes, light, background);
+    background-color: map.get(colors.$themes, light, secondary);
+    border-radius: 22px;
+    padding: 0px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.messages-icon-alert {
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        background-color: map.get(colors.$themes, light, background);
+        color: map.get(colors.$themes, light, text);
+    }
+
+    25% {
+        background-color: map.get(colors.$themes, light, secondary);
+        color: map.get(colors.$themes, light, background);
+    }
+
+    50% {
+        background-color: map.get(colors.$themes, light, secondary);
+        color: map.get(colors.$themes, light, background);
+    }
+
+    100% {
+        background-color: map.get(colors.$themes, light, background);
+        color: map.get(colors.$themes, light, text);
+    }
+}
