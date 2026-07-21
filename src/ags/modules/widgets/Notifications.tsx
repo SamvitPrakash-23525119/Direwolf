@@ -11,7 +11,7 @@ export default function Notifications() {
 
     const modal_open = createBinding(notificationService, "modal_open");
 
-    const notifications = createBinding(notifd, "notifications");
+    const notifications = createBinding(notificationService, "notifications");
     const dnd = createBinding(notifd, "dont_disturb");
 
     return (

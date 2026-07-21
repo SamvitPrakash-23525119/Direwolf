@@ -1,5 +1,6 @@
 import GoObject from "gi://GObject"
 import NotifdService from "../shared_libraries/NotifdService";
+import type Notifd from "gi://AstalNotifd"
 
 export default class NotificationService extends GoObject.Object {
     static instance: NotificationService | null = null;
@@ -46,6 +47,14 @@ export default class NotificationService extends GoObject.Object {
                     false,
                 ),
 
+                'notifications': GoObject.ParamSpec.object(
+                    "notifications",
+                    "Notifications",
+                    "The list of notifications currently present.",
+                    GoObject.ParamFlags.READWRITE,
+                    GoObject.Object
+                )
+
             },
         }, this)
     }
@@ -54,6 +63,7 @@ export default class NotificationService extends GoObject.Object {
     private _notification_count: number = 0;
     private _unseen_notifications: boolean = false;
     private _notifications_available: boolean = false;
+    private _notifications: Notifd.Notification[] = [];
 
     public constructor() {
         super();
@@ -130,6 +140,30 @@ export default class NotificationService extends GoObject.Object {
         if(this._notifications_available !== value) {
             this._notifications_available = value;
             this.notify("notifications_available");
+        }
+    }
+
+    public get notifications(): Notifd.Notification[] {
+        return this._notifications;
+    }
+
+    public set notifications(value: Notifd.Notification[]) {
+        if(this._notifications !== value) {
+            this._notifications = value;
+            this.notify("notifications");
+        }
+    }
+
+    public push_notification(notification: Notifd.Notification): void {
+        this._notifications.push(notification);
+        this.notify("notifications");
+    }
+
+    public remove_notification(notification: Notifd.Notification): void {
+        const index = this._notifications.indexOf(notification);
+        if (index > -1) {
+            this._notifications.splice(index, 1);
+            this.notify("notifications");
         }
     }
 
