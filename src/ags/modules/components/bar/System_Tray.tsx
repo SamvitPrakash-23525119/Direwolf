@@ -1,15 +1,24 @@
 import NmService from "../../../services/shared_libraries/NmService";
 import BluetoothService from "../../../services/shared_libraries/BluetoothService";
 import WpctlService from "../../../services/shared_libraries/WpctlService";
+import TrayService from "../../../services/shared_libraries/TrayService";
+import TrayIconMenu from "./Tray_Icon_Menu";
 import { ICON_SIZE } from "../../../constants/icons";
-import { createBinding, createEffect, createState, For, createMemo } from "gnim";
+import { createBinding, createEffect, createState, For } from "gnim";
+import { Gtk } from "ags/gtk4";
 
 export default function SystemTray() {
+    /*
+        Astal Tray
+        ==================
+    */
+    const tray = TrayService.get_default().getTray();
+    const items = createBinding(tray, 'items');
+
     /* 
         Network Manager
         ==================
     */
-
     const nm = NmService.get_default().getNm();
 
     const primary = createBinding(nm, 'primary');
@@ -96,6 +105,15 @@ export default function SystemTray() {
             spacing={8}
             class={"top-bar system-tray-bar"}
         >
+            <box spacing={8}>              
+                <For each={items} >
+                    {(item) => (
+                        <TrayIconMenu item={item} class={'system-tray-menu'}/>
+                    )}
+                </For>
+                
+            </box>
+
             <box spacing={8}>
                 <image
                     iconName={networkIcon()}

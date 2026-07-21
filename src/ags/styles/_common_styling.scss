@@ -1,4 +1,4 @@
-.shadow{
+ @mixin shadow-mixin{
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.55);
     border-radius: 22px;
 
@@ -7,9 +7,29 @@
         box-shadow 450ms ease;
 }
 
-.shadow:hover {
+@mixin shadow-hover-mixin {
     transform: translateY(-4px);
 
     box-shadow:
         0 8px 24px rgba(0, 0, 0, 0.55);
+}
+
+.shadow {
+    @include shadow-mixin;
+}
+
+.shadow:hover {
+    @include shadow-hover-mixin;
+}
+
+/*
+    The Intrinsic <menubutton /> element is a heirarchy of other widgets
+    including a <button /> element with deafult padding and margin. This
+    is a workaround to remove the padding and margin from the <button />
+    element so that the <menubutton /> can be styled properly with CSS.
+*/
+
+menubutton button {
+    margin: 0px;
+    padding: 0px;
 }
