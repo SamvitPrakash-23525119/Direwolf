@@ -6,6 +6,7 @@ export default class NotifdService {
 
     private constructor() {
         NotifdService.notifd = Notifd.get_default();
+        NotifdService.notifd.set_default_timeout(2000);
     }
 
     static get_default() {

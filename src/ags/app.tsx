@@ -4,6 +4,7 @@ import Bar from "./modules/widgets/Bar"
 import MediaPlayers from "./modules/widgets/Media_Players"
 import Notifications from "./modules/widgets/Notifications"
 import AudioDisplay from "./modules/widgets/Audio_Display"
+import NotificationToast from "./modules/widgets/Notification_Toast"
 import CommandRegistry from "./services/command_registry/Command_Registry"
 import { registerMediaCommands } from "./command_registrars/media/MediaCommandsRegistrars"
 
@@ -30,20 +31,22 @@ app.start({
 		const notifd = NotifdService.get_default().getNotifd();
 
 		// for (const i in notifd) console.log(i);
-		notifd.set_default_timeout(-1);
-		console.log("Notifications: ", notifd.defaultTimeout);
+		// notifd.set_default_timeout(-1);
+		// console.log("Notifications: ", notifd.defaultTimeout);
 
 		const notifications = createBinding(notifd, "notifications");
 
 		createEffect(() => {
 			for(var i = 0; i < notifications().length; i++) {
-				// for (const key in notifications()[i]) console.log(key);
-				const expire = createBinding(notifications()[i], "expire");
+				// for (const key in notifications()[i].actions[0]) console.log(key);
+				// console.log(notifications()[i].actions[0].invoke());
+				
+				// const expire = createBinding(notifications()[i], "expire");
 
-				createEffect(() => {
-					console.log("Notification ", i, " will expire in ", expire(), "ms");
+				// createEffect(() => {
+				// 	console.log("Notification ", i, " will expire in ", expire(), "ms");
 
-				});
+				// });
 			}
 		});
 
@@ -53,8 +56,9 @@ app.start({
 			<>
 				<Bar />
 				<MediaPlayers />
-				<AudioDisplay />
 				<Notifications />
+				<AudioDisplay />
+				<NotificationToast />
 			</>
 		)
 	},

@@ -11,7 +11,7 @@ export default function Notifications() {
 
     const modal_open = createBinding(notificationService, "modal_open");
 
-    const notifications = createBinding(notifd, "notifications");
+    const notifications = createBinding(notificationService, "notifications");
     const dnd = createBinding(notifd, "dont_disturb");
 
     return (
@@ -42,7 +42,10 @@ export default function Notifications() {
 
                     <button
                         $type="end"
-                        onClicked={() => notifd.set_dont_disturb(!dnd())}
+                        onClicked={() => {
+                            notifd.set_dont_disturb(!dnd())
+                            notificationService.toggle_toast();  
+                        }}
                         tooltipText={dnd.as((d) => !d ? 'Enable Do Not Disturb' : 'Disable Do Not Disturb')}
                     >
                         <image 

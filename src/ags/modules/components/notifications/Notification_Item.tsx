@@ -1,4 +1,5 @@
 import type Notifd from "gi://AstalNotifd"
+import NotificationService from "../../../services/notifications/NotificationService";
 import Pango from "gi://Pango"
 import { ICON_SIZE } from "../../../constants/icons";
 import { Gtk } from "ags/gtk4"
@@ -10,6 +11,8 @@ interface NotificationItemProps {
 
 export default function NotificationItem({ notification_item }: NotificationItemProps) {
     const [viewMore, setViewMore] = createState(false);
+
+    const notificationService = NotificationService.get_default();
 
     const app_name = createBinding(notification_item, "app_name");
     const summary = createBinding(notification_item, "summary");
@@ -74,7 +77,7 @@ export default function NotificationItem({ notification_item }: NotificationItem
                     class={'notification-item-button'}
                     valign={Gtk.Align.START}
                     onClicked={() => {
-                        notification_item.dismiss();
+                        notificationService.remove_notification(notification_item);
                     }}
                 />
 
