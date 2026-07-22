@@ -20,16 +20,6 @@ export default class NotificationService extends GoObject.Object {
                     GoObject.ParamFlags.READWRITE,
                     false,
                 ),
-                
-                'notification_count': GoObject.ParamSpec.int(
-                    "notification_count",
-                    "Notification Count",
-                    "The number of notifications currently present.",
-                    GoObject.ParamFlags.READWRITE,
-                    0,
-                    900,
-                    0,
-                ),
 
                 'unseen_notifications': GoObject.ParamSpec.boolean(
                     "unseen_notifications",
@@ -53,33 +43,31 @@ export default class NotificationService extends GoObject.Object {
                     "The list of notifications currently present.",
                     GoObject.ParamFlags.READWRITE,
                     GoObject.Object
-                )
+                ),
+
+                'toast_open': GoObject.ParamSpec.boolean(
+                    "toast_open",
+                    "Toast Open",
+                    "Whether the notification toast is open or not.",
+                    GoObject.ParamFlags.READWRITE,
+                    false,
+                ),
 
             },
         }, this)
     }
 
     private _open: boolean = false;
-    private _notification_count: number = 0;
     private _unseen_notifications: boolean = false;
     private _notifications_available: boolean = false;
     private _notifications: Notifd.Notification[] = [];
+    private _toast_open: boolean = false;
 
     public constructor() {
         super();
 
-        NotificationService.notifd.connect("items-changed", () => {
-            let count = NotificationService.notifd.notifications.length
-            this.notification_count = count;
-
-            if(count > 0) this.notifications_available = true;
-            else {
-                this.notifications_available = false;
-                this.modal_open = false;
-            }
-
-        });
-
+        if(NotificationService.notifd.dontDisturb) this.toast_open = false;
+        else this.toast_open = true;
     }
 
     static get_default(): NotificationService {
@@ -103,22 +91,8 @@ export default class NotificationService extends GoObject.Object {
 
     public modal_toggle(): void {
         this.modal_open = !this.modal_open;
-
+        
         if(this._unseen_notifications && this._open) this.unseen_notifications = false;
-    }
-
-    public get notification_count(): number {
-        return this._notification_count;
-    }
-
-    public set notification_count(value: number) {
-        if(this._notification_count < value) this.unseen_notifications = true;
-
-
-        if(this._notification_count !== value) {
-            this._notification_count = value;
-            this.notify("notification_count");
-        }
     }
 
     public get unseen_notifications(): boolean {
@@ -140,6 +114,12 @@ export default class NotificationService extends GoObject.Object {
         if(this._notifications_available !== value) {
             this._notifications_available = value;
             this.notify("notifications_available");
+
+            if(!value) {
+                this.modal_open = false;
+                this.notify("modal_open");
+            }
+
         }
     }
 
@@ -155,7 +135,13 @@ export default class NotificationService extends GoObject.Object {
     }
 
     public push_notification(notification: Notifd.Notification): void {
-        this._notifications.push(notification);
+        this.unseen_notifications = this.modal_open ? false : true;
+        this.notify("unseen_notifications");
+
+        this.notifications_available = true;
+        this.notify("notifications_available");
+
+        this._notifications.unshift(notification);
         this.notify("notifications");
     }
 
@@ -165,6 +151,35 @@ export default class NotificationService extends GoObject.Object {
             this._notifications.splice(index, 1);
             this.notify("notifications");
         }
+
+        if(this._notifications.length === 0) {
+            this.notifications_available = false;
+            this.notify("notifications_available");
+        }
+
+    }
+
+    public clear_notifications(): void {
+        this.notifications = [];
+        this.notify("notifications");
+
+        this.notifications_available = false;
+        this.notify("notifications_available");
+    }
+
+    public get toast_open(): boolean {
+        return this._toast_open;
+    }
+
+    public set toast_open(value: boolean) {
+        if(this._toast_open !== value) {
+            this._toast_open = value;
+            this.notify("toast_open");
+        }
+    }
+
+    public toggle_toast(): void {
+        this.toast_open = !this.toast_open;
     }
 
 }

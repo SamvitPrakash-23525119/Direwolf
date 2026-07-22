@@ -558,8 +558,19 @@ How to use workspace styles:
 
 .notification-item-container {
   background-color: rgba(231, 126, 126, 0.1);
-  border-radius: 10px;
   border: 1px solid rgba(231, 126, 126, 0.65);
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.notification-toasts-container {
+  margin: 10px;
+}
+
+.notification-toast-item-container {
+  background-color: rgb(249, 240, 240);
+  border: 1px solid rgb(231, 126, 126);
+  border-radius: 10px;
   padding: 10px;
 }
 
@@ -590,6 +601,20 @@ How to use workspace styles:
   background-color: rgb(249, 240, 240);
   border-radius: 22px;
   padding: 0px;
+}
+
+.notification-toast-item-button {
+  color: rgb(28, 13, 13);
+  background-color: rgb(249, 240, 240);
+  border-radius: 22px;
+  padding: 0px;
+  padding-left: 3px;
+  padding-right: 3px;
+}
+
+.notification-toast-item-button:hover {
+  background-color: rgb(231, 126, 126);
+  color: rgb(249, 240, 240);
 }
 
 .notification-item-button:hover {
