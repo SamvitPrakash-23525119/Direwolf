@@ -8,7 +8,7 @@ import NotificationToast from "./modules/widgets/Notification_Toast"
 import CommandRegistry from "./services/command_registry/Command_Registry"
 import { registerMediaCommands } from "./command_registrars/media/MediaCommandsRegistrars"
 
-import NotifdService from "./services/shared_libraries/NotifdService"
+import TrayService from "./services/shared_libraries/TrayService"
 import { createEffect, createBinding } from "gnim"
 
 const registry = CommandRegistry.get_default()
@@ -27,30 +27,6 @@ app.start({
 	},
 	main() {
 		console.log("Started AGS...");
-
-		const notifd = NotifdService.get_default().getNotifd();
-
-		// for (const i in notifd) console.log(i);
-		// notifd.set_default_timeout(-1);
-		// console.log("Notifications: ", notifd.defaultTimeout);
-
-		const notifications = createBinding(notifd, "notifications");
-
-		createEffect(() => {
-			for(var i = 0; i < notifications().length; i++) {
-				// for (const key in notifications()[i].actions[0]) console.log(key);
-				// console.log(notifications()[i].actions[0].invoke());
-				
-				// const expire = createBinding(notifications()[i], "expire");
-
-				// createEffect(() => {
-				// 	console.log("Notification ", i, " will expire in ", expire(), "ms");
-
-				// });
-			}
-		});
-
-
 
 		return (
 			<>

@@ -331,18 +331,15 @@ How to use workspace styles:
 
 .system-tray-menu popover contents modelbutton {
   color: rgb(28, 13, 13);
-  border-radius: 10px;
   margin-top: 2px;
   margin-bottom: 2px;
-  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.55);
-  transition: transform 450ms ease, box-shadow 450ms ease;
 }
 
 .system-tray-menu popover contents modelbutton:hover {
   background-color: rgb(231, 126, 126);
   color: rgb(249, 240, 240);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.55);
+  margin-top: 2px;
+  margin-bottom: 2px;
 }
 
 .system-tray-menu popover contents separator {
